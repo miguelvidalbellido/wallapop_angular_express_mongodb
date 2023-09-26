@@ -1,5 +1,12 @@
-const Product = require('../models/Product');
 const asyncHandler = require('express-async-handler');
+
+// Import models
+const Product = require('../models/Product');
+const Category = require('../models/Category');
+
+//////////////////////////////////////////////////
+/////////       LIST_PRODUCTS       /////////////
+////////////////////////////////////////////////
 
 const listProducts = asyncHandler(async (req, res) => {
     let limit = 20;
@@ -14,21 +21,43 @@ const listProducts = asyncHandler(async (req, res) => {
     const productCount = await Product.count(query);
 
 
-        return res.status(200).json({
-            products: await Promise.all(filteredProducts.map(async product => {
-                // return await product.toArticleResponse(false);
-                return product;
-            })),
-            productsCount: productCount
-        });
+    return res.status(200).json({
+        products: await Promise.all(filteredProducts.map(async product => {
+            return await product.toProductResponse();
+        })),
+        productsCount: productCount
+    })
+
 });
 
+//////////////////////////////////////////////////
+/////////       GET_PRODUCT         /////////////
+////////////////////////////////////////////////
+
+const getProduct = asyncHandler(async (req, res) => {
+
+    const slug = req.params.slug;
+
+    if(!slug) {
+        res.status(400).json({message: "Slug is undefined"});
+    }
+
+    const product = await Product.findOne({ slug }).exec();
+
+    if(!product) {
+        return res.status(400).json({message: "Product not found"});
+    }
+
+    res.status(200).json({
+        product: await product.toProductResponse()
+    });
+
+});
+
+//////////////////////////////////////////////////
+/////////       CREATE_PRODUCTS       ///////////
+////////////////////////////////////////////////
 const createProduct = asyncHandler(async (req, res) => {
-    // const id = req.userId;
-
-    // const author = await User.findById(id).exec();
-
-    // const { title, description, price, category } = req.body.article;
 
     const { title, description, price, category } = req.body;
 
@@ -38,16 +67,20 @@ const createProduct = asyncHandler(async (req, res) => {
         res.status(400).json({message: "All fields are required"});
     }
 
-    const product = await Product.create({ title, description, price, category });
+    const dataCategory = await Category.findOne({ name: req.body.category }).exec();
 
-    // if (Array.isArray(tagList) && tagList.length > 0) {
-    //     product.tagList = '0';
-    // }
+    if (!dataCategory) {
+        res.status(400).json({message: "Invalid category"});
+    }
+
+    const categoryObjectId = dataCategory.id;
+
+    const product = await Product.create({ title, description, price, category: categoryObjectId });
+    console.log(categoryObjectId);
 
     await product.save()
 
     return await res.status(200).json({
-        // article: await article.toArticleResponse(author)
         ok: 'ok'
     })
 
@@ -55,5 +88,6 @@ const createProduct = asyncHandler(async (req, res) => {
 
 module.exports = {
     listProducts,
-    createProduct
+    createProduct,
+    getProduct
 }

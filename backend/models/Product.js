@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
 const slugify = require('slugify');
+const Category = require('./Category');
 
 const productSchema = new mongoose.Schema({
     slug: {
@@ -36,8 +37,8 @@ const productSchema = new mongoose.Schema({
         default: 0
     },
     category: {
-        type: String,
-        required: true
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Category'
     }
 }, {
     timestamps: true
@@ -49,5 +50,22 @@ productSchema.pre('save', function(next){
     this.slug = slugify(this.title + '-' + (Math.random() * Math.pow(36, 6) | 0).toString(36),{ lower: true, replacement: '-'});
     next();
 });
+
+
+productSchema.methods.toProductResponse = async function() {
+    const categoryObj = await Category.findById(this.category).exec();// Obtenemos el object id de category para obtener el nombre
+    
+    return {
+        slug: this.slug,
+        title: this.title,
+        description: this.description,
+        price: this.price,
+        images: this.images,
+        tagList: this.tagList,
+        favouritesCount: this.favouritesCount,
+        visitsCount: this.visitsCount,
+        category: categoryObj.name
+    }
+}
 
 module.exports = mongoose.model('Product', productSchema);

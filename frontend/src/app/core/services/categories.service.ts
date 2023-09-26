@@ -18,7 +18,7 @@ export class CategoriesService {
     ) {}
 
     get(): Observable<Category[]> {
-        return this.apiService.get('api/categories')
-        .pipe(map(data => data))
+        return this.apiService.get('/api/categories')
+        .pipe(map(data => data.categories))
     }
 }

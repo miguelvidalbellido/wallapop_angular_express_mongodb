@@ -1,5 +1,9 @@
 <section class="container_catecories">
-    <div class="container_category">
+    <div [ngClass]="'container_category'" *ngFor="let item of dataCategories">
+        <img [src]="item.image">
+        <p>{{item.name}}</p>
+    </div>
+    <!-- <div class="container_category">
         <img src="https://picsum.photos/200/300" alt="">
         <p>Deporte</p>
     </div>
@@ -39,5 +43,5 @@
         <img src="https://picsum.photos/200/300" alt="">
         <p>Jardineria</p>
     </div>
-    
+     -->
 </section>

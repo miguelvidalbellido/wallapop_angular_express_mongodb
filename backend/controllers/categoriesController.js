@@ -17,7 +17,7 @@ const listCategories = asyncHandler(async (req, res) => {
         categories: await Promise.all(getCategories.map(async category => {
             return await category.toCategoryResponse();
         })),
-        categoriesCount: categoriesCount
+        // categoriesCount: categoriesCount
     })
 })
 

@@ -17,24 +17,8 @@ export class HomeComponent implements OnInit{
     ) {
 
   }
-
-  categories?: Category[]
   
-  ngOnInit(): void {
-    this.categoriesService.get().subscribe(
-      (elemento) => {
-        console.log(elemento);
-      }
-    )
-  }
-
-  getCategories() {
-    this.categoriesService.get().subscribe(
-      (elemento) => {
-        console.log(elemento);
-      }
-    )
-  }
+  ngOnInit(): void { }
   
 }
 

@@ -9,10 +9,12 @@ import {
 } from './shared'
 import { CoreModule } from './core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ShopComponent } from './shop/shop.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ShopComponent
   ],
   imports: [
     BrowserModule,

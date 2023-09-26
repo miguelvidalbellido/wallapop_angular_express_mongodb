@@ -26,11 +26,17 @@ const categorySchema = new mongoose.Schema({
 
 categorySchema.plugin(uniqueValidator);
 
+categorySchema.pre('save', function(next){
+    this.slug = slugify(this.name + '-' + (Math.random() * Math.pow(36, 6) | 0).toString(36),{ lower: true, replacement: '-'});
+    next();
+});
+
 categorySchema.methods.toCategoryResponse = async function() {
     return {
         slug: this.slug,
         name: this.name,
-        description: this.description
+        description: this.description,
+        image: this.image
     }
 }
 

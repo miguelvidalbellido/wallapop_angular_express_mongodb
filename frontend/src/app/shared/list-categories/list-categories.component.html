@@ -1,5 +1,5 @@
 <section class="container_catecories">
-    <div [ngClass]="'container_category'" *ngFor="let item of dataCategories" [routerLink]="'shop/' + item.slug">
+    <div [ngClass]="'container_category'" *ngFor="let item of dataCategories" [routerLink]="['/shop/', item.slug]">
         <img [src]="item.image">
         <p>{{item.name}}</p>
     </div>

@@ -10,6 +10,9 @@ import {
 import { CoreModule } from './core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ShopModule } from './shop/shop.module';
+import { DetailsComponent } from './details/details.component';
+import { DetailsModule } from './details/details.module';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -22,6 +25,7 @@ import { ShopModule } from './shop/shop.module';
     CoreModule,
     HomeModule,
     ShopModule,
+    DetailsModule,
     NgbModule
   ],
   providers: [],

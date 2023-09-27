@@ -11,12 +11,12 @@ export class ShopComponent implements OnInit{
   slugCategory?: String
 
 
-  constructor(private activateRoute: ActivatedRoute) {
+  constructor(private activatedRoute: ActivatedRoute) {
 
   }
 
   ngOnInit(): void {
-    this.activateRoute.paramMap.subscribe((params) => {
+    this.activatedRoute.paramMap.subscribe((params) => {
         if(params.has('slug')){
           this.slugCategory = params.get('slug') || undefined; // Nunca sera undefined ya que no entra en ese caso
         }

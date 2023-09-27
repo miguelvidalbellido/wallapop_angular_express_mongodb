@@ -9,12 +9,11 @@ import {
 } from './shared'
 import { CoreModule } from './core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ShopComponent } from './shop/shop.component';
+import { ShopModule } from './shop/shop.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ShopComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -22,6 +21,7 @@ import { ShopComponent } from './shop/shop.component';
     SharedModule,
     CoreModule,
     HomeModule,
+    ShopModule,
     NgbModule
   ],
   providers: [],

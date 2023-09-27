@@ -21,6 +21,29 @@ const listCategories = asyncHandler(async (req, res) => {
     })
 })
 
+
+//////////////////////////////////////////////////
+/////////       CREATE_CATEGORY       ///////////
+////////////////////////////////////////////////
+
+const createCategory = asyncHandler(async (req, res) => {
+    
+    const { name, description, image } = req.body;
+
+    if(!name || !description || !image) {
+        res.status(400).json({message: "All fields are required"})
+    }
+
+    const category = await Category.create({name, description, image});
+
+    await category.save();
+    
+    return await res.status(200).json({
+        ok: 'ok'
+    })
+})
+
 module.exports = {
-    listCategories
+    listCategories,
+    createCategory
 }

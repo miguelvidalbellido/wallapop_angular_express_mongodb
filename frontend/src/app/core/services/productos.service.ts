@@ -18,17 +18,22 @@ export class ProductosService {
     ) {}
 
     get(): Observable<Producto[]> {
-        return this.apiService.get('/api/productos')
-        .pipe(map(data => data))
+        return this.apiService.get('/api/products')
+        .pipe(map(data => data.products))
     }
 
-    getOne(id: String): Observable<Producto> {
-        return this.apiService.get('/api/productos/'+id)
-        .pipe(map(data => data))
+    getProductCategory(slug: String): Observable<Producto[]> {
+        return this.apiService.get('/api/products/categories/'+slug)
+        .pipe(map(data => data.products))
     }
 
-    updateOne(productoMod: any): Observable<String> {
-        return this.apiService.put('/api/productos/' + productoMod.id, productoMod)
-        .pipe(map(data => data))
-    }
+    // getOne(id: String): Observable<Producto> {
+    //     return this.apiService.get('/api/productos/'+id)
+    //     .pipe(map(data => data))
+    // }
+
+    // updateOne(productoMod: any): Observable<String> {
+    //     return this.apiService.put('/api/productos/' + productoMod.id, productoMod)
+    //     .pipe(map(data => data))
+    // }
 }

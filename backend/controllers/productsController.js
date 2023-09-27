@@ -13,6 +13,17 @@ const listProducts = asyncHandler(async (req, res) => {
     let offset = 0;
     let query = {};
 
+    // Si tenemos slug construimos una query para indicar porque ha de filtrar
+    if(req.params.slug) {
+        const dataCategory = await Category.findOne({ slug: req.params.slug }).exec();
+
+        if(!dataCategory) {
+            res.status(400).json({message: "Category not found"})
+        }
+
+        query = { category: dataCategory.id }
+    }
+
     const filteredProducts = await Product.find(query)
         .limit(Number(limit))
         .skip(Number(offset))
@@ -59,14 +70,14 @@ const getProduct = asyncHandler(async (req, res) => {
 ////////////////////////////////////////////////
 const createProduct = asyncHandler(async (req, res) => {
 
-    const { title, description, price, category } = req.body;
+    const { title, description, price, category, images } = req.body;
 
 
     // confirm data
     if (!title || !description || !price || !category) {
         res.status(400).json({message: "All fields are required"});
     }
-
+    console.log(images);
     const dataCategory = await Category.findOne({ name: req.body.category }).exec();
 
     if (!dataCategory) {
@@ -75,7 +86,7 @@ const createProduct = asyncHandler(async (req, res) => {
 
     const categoryObjectId = dataCategory.id;
 
-    const product = await Product.create({ title, description, price, category: categoryObjectId });
+    const product = await Product.create({ title, description, price, category: categoryObjectId, images });
     console.log(categoryObjectId);
 
     await product.save()

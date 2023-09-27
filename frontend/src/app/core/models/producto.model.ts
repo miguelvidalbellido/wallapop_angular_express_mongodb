@@ -1,8 +1,11 @@
 export interface Producto {
-    id: String,
-    titulo: string;
-    descripcion: string;
-    imagen: string;
-    precio: number;
-    f_pub: Date;
+    slug: String,
+    title: string;
+    description: string;
+    price: number;
+    images: string[];
+    tagList: string[];
+    favouritesCount: Number;
+    visitsCount: Number;
+    category: String;
 }

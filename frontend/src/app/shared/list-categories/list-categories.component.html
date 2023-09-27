@@ -1,47 +1,6 @@
 <section class="container_catecories">
-    <div [ngClass]="'container_category'" *ngFor="let item of dataCategories">
+    <div [ngClass]="'container_category'" *ngFor="let item of dataCategories" [routerLink]="'shop/' + item.slug">
         <img [src]="item.image">
         <p>{{item.name}}</p>
     </div>
-    <!-- <div class="container_category">
-        <img src="https://picsum.photos/200/300" alt="">
-        <p>Deporte</p>
-    </div>
-    <div class="container_category">
-        <img src="https://picsum.photos/200/300" alt="">
-        <p>Consolas</p>
-    </div>
-    <div class="container_category">
-        <img src="https://picsum.photos/200/300" alt="">
-        <p>Motor</p>
-    </div>
-    <div class="container_category">
-        <img src="https://picsum.photos/200/300" alt="">
-        <p>Bicicletas</p>
-    </div>
-    <div class="container_category">
-        <img src="https://picsum.photos/200/300" alt="">
-        <p>Jardineria</p>
-    </div>
-    <div class="container_category">
-        <img src="https://picsum.photos/200/300" alt="">
-        <p>Deporte</p>
-    </div>
-    <div class="container_category">
-        <img src="https://picsum.photos/200/300" alt="">
-        <p>Consolas</p>
-    </div>
-    <div class="container_category">
-        <img src="https://picsum.photos/200/300" alt="">
-        <p>Motor</p>
-    </div>
-    <div class="container_category">
-        <img src="https://picsum.photos/200/300" alt="">
-        <p>Bicicletas</p>
-    </div>
-    <div class="container_category">
-        <img src="https://picsum.photos/200/300" alt="">
-        <p>Jardineria</p>
-    </div>
-     -->
 </section>

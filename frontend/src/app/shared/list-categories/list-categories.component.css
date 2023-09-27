@@ -20,3 +20,6 @@
     margin: 0 auto;
   }
   
+  .container_category:hover {
+    cursor: pointer;
+  }

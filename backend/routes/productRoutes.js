@@ -7,9 +7,12 @@ const productController = require('../controllers/productsController');
 // feed endpoint must go before :slug endpoint
 router.get('/', productController.listProducts);
 
- router.get('/:slug', productController.getProduct);
+router.get('/:slug', productController.getProduct);
 
 router.post('/', productController.createProduct);
+
+router.get('/categories/:slug', productController.listProducts);
+
 
 // router.delete('/:slug', verifyJWT, articleController.deleteArticle);
 

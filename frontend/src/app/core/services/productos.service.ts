@@ -27,10 +27,10 @@ export class ProductosService {
         .pipe(map(data => data.products))
     }
 
-    // getOne(id: String): Observable<Producto> {
-    //     return this.apiService.get('/api/productos/'+id)
-    //     .pipe(map(data => data))
-    // }
+    getOne(slug?: String): Observable<Producto> {
+        return this.apiService.get('/api/products/'+slug)
+        .pipe(map(data => data.product))
+    }
 
     // updateOne(productoMod: any): Observable<String> {
     //     return this.apiService.put('/api/productos/' + productoMod.id, productoMod)

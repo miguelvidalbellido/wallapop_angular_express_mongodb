@@ -1,7 +1,10 @@
 <div class="container_products">
 
-
-    <div *ngFor="let item of dataProducts" ngClass="card dark">
+  <div *ngFor="let item of dataProducts">
+    <app-card-product 
+    [dataProduct]="item"></app-card-product>
+  </div>
+    <!-- <div *ngFor="let item of dataProducts" ngClass="card dark">
       <img [src]="item.images" class="card-img-top" alt="...">
       <div class="card-body">
         <div class="text-section">
@@ -13,10 +16,6 @@
           <a href="#" class="btn ">Ver</a>
         </div>
       </div>
-    </div>
+    </div> -->
 
 </div>
-
-<app-details-product>
-
-</app-details-product>

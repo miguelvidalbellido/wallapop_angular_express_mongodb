@@ -8,17 +8,10 @@ import { CategoriesService, Category } from 'src/app/core';
 })
 export class ListCategoriesComponent implements OnInit{
   
-  constructor(private categoriesService: CategoriesService){
-    
-  }
+  constructor(){ }
 
   dataCategories?: Category[]
 
-  ngOnInit(){
-    this.categoriesService.get()
-    .subscribe((data) => {
-      this.dataCategories = data
-    })
-  }
+  ngOnInit(){ }
 
 }

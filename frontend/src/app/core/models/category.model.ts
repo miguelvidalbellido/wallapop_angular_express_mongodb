@@ -4,3 +4,6 @@ export interface Category{
     description: String,
     image: String
 }
+
+
+

@@ -7,6 +7,7 @@ import { ListCategoriesComponent } from './list-categories/list-categories.compo
 import { ListProductsComponent } from './cmp-products/list-products/list-products.component';
 import { DetailsProductComponent } from './details-product/details-product.component';
 import { CardProductComponent } from './cmp-products/card-product/card-product.component';
+import { CarouselDetailsComponent } from './carousel-details/carousel-details.component';
 
 @NgModule({
     imports: [
@@ -14,19 +15,21 @@ import { CardProductComponent } from './cmp-products/card-product/card-product.c
         HttpClientModule,
         RouterModule,
         FormsModule,
-        ReactiveFormsModule,
+        ReactiveFormsModule
     ],
     declarations: [
     ListCategoriesComponent,
     ListProductsComponent,
     DetailsProductComponent,
-    CardProductComponent
+    CardProductComponent,
+    CarouselDetailsComponent
   ],
     exports: [
       ListCategoriesComponent,
       ListProductsComponent,
       DetailsProductComponent,
-      CommonModule
+      CommonModule,
+      CarouselDetailsComponent
     ]
 })
 export class SharedModule {}

@@ -1,2 +1,2 @@
 export * from './producto.model'
-export * from './category.module'
+export * from './category.model'

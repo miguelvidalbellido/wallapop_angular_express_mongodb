@@ -7,7 +7,10 @@ import { ListCategoriesComponent } from './list-categories/list-categories.compo
 import { ListProductsComponent } from './cmp-products/list-products/list-products.component';
 import { DetailsProductComponent } from './details-product/details-product.component';
 import { CardProductComponent } from './cmp-products/card-product/card-product.component';
-import { CarouselDetailsComponent } from './carousel-details/carousel-details.component';
+import { CarouselComponent } from './carousel/carousel.component';
+import { CardCarouselComponent } from './card-carousel/card-carousel.component';
+import { MdbCarouselModule  } from 'mdb-angular-ui-kit/carousel';
+
 
 @NgModule({
     imports: [
@@ -15,21 +18,24 @@ import { CarouselDetailsComponent } from './carousel-details/carousel-details.co
         HttpClientModule,
         RouterModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        MdbCarouselModule
     ],
     declarations: [
     ListCategoriesComponent,
     ListProductsComponent,
     DetailsProductComponent,
     CardProductComponent,
-    CarouselDetailsComponent
+    CarouselComponent,
+    CardCarouselComponent
   ],
     exports: [
       ListCategoriesComponent,
       ListProductsComponent,
       DetailsProductComponent,
       CommonModule,
-      CarouselDetailsComponent
+      CarouselComponent,
+      MdbCarouselModule
     ]
 })
 export class SharedModule {}

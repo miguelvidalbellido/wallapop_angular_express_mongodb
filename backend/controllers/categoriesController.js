@@ -23,6 +23,25 @@ const listCategories = asyncHandler(async (req, res) => {
 
 
 //////////////////////////////////////////////////
+/////////       LIST_CATEGORIES_SHORT     ///////
+////////////////////////////////////////////////
+
+const listCategoriesShort = asyncHandler(async (req, res) => {
+    let query = {};
+
+    const getCategories = await Category.find(query)
+    const categoriesCount = await Category.count(query)
+
+    return res.status(200).json({
+        categories: await Promise.all(getCategories.map(async category => {
+            return await category.toCategoryResponseShort();
+        })),
+        categoriesCount: categoriesCount
+    })
+})
+
+
+//////////////////////////////////////////////////
 /////////       CREATE_CATEGORY       ///////////
 ////////////////////////////////////////////////
 
@@ -45,5 +64,6 @@ const createCategory = asyncHandler(async (req, res) => {
 
 module.exports = {
     listCategories,
+    listCategoriesShort,
     createCategory
 }

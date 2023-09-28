@@ -40,4 +40,11 @@ categorySchema.methods.toCategoryResponse = async function() {
     }
 }
 
+categorySchema.methods.toCategoryResponseShort = async function() {
+    return {
+        slug: this.slug,
+        images: this.image
+    }
+}
+
 module.exports = mongoose.model('Category', categorySchema);

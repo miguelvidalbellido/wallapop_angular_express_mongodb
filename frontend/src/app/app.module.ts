@@ -14,6 +14,7 @@ import { DetailsComponent } from './details/details.component';
 import { DetailsModule } from './details/details.module';
 import { CommonModule } from '@angular/common';
 
+
 @NgModule({
   declarations: [
     AppComponent

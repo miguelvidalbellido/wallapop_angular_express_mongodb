@@ -9,6 +9,8 @@ import { DetailsProductComponent } from './details-product/details-product.compo
 import { CardProductComponent } from './cmp-products/card-product/card-product.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { CardCarouselComponent } from './card-carousel/card-carousel.component';
+import { MdbCarouselModule  } from 'mdb-angular-ui-kit/carousel';
+
 
 @NgModule({
     imports: [
@@ -16,7 +18,8 @@ import { CardCarouselComponent } from './card-carousel/card-carousel.component';
         HttpClientModule,
         RouterModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        MdbCarouselModule
     ],
     declarations: [
     ListCategoriesComponent,
@@ -31,7 +34,8 @@ import { CardCarouselComponent } from './card-carousel/card-carousel.component';
       ListProductsComponent,
       DetailsProductComponent,
       CommonModule,
-      CarouselComponent
+      CarouselComponent,
+      MdbCarouselModule
     ]
 })
 export class SharedModule {}

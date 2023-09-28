@@ -11,6 +11,7 @@ import { CoreModule } from './core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ShopModule } from './shop/shop.module';
 import { DetailsModule } from './details/details.module';
+import { MdbCarouselModule  } from 'mdb-angular-ui-kit/carousel';
 
 @NgModule({
   declarations: [

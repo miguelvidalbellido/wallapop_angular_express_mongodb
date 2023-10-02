@@ -3,11 +3,11 @@ import { Carousel } from 'src/app/core/models/carousel.model';
 
 
 @Component({
-  selector: 'app-card-carousel',
-  templateUrl: './card-carousel.component.html',
+  selector: 'app-card-carousel-multi',
+  templateUrl: './card-carousel-multi.component.html',
   styleUrls: ['./card-carousel.component.css']
 })
-export class CardCarouselComponent implements OnInit{
+export class CardCarouselMultiComponent implements OnInit{
 
 
   @Input()

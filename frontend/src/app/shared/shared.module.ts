@@ -10,6 +10,7 @@ import { CardProductComponent } from './cmp-products/card-product/card-product.c
 import { CarouselComponent } from './carousel/carousel.component';
 import { CardCarouselComponent } from './card-carousel/card-carousel.component';
 import { MdbCarouselModule  } from 'mdb-angular-ui-kit/carousel';
+import { CardCarouselMultiComponent } from "./card-carousel";
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { MdbCarouselModule  } from 'mdb-angular-ui-kit/carousel';
     DetailsProductComponent,
     CardProductComponent,
     CarouselComponent,
-    CardCarouselComponent
+    CardCarouselComponent,
+    CardCarouselMultiComponent
   ],
     exports: [
       ListCategoriesComponent,

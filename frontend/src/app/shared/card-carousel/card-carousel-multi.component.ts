@@ -1,5 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Carousel } from 'src/app/core/models/carousel.model';
+import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Carousel, CarouselCategories } from 'src/app/core/models/carousel.model';
+import { Signal } from '@angular/core'
 
 
 @Component({
@@ -9,18 +11,27 @@ import { Carousel } from 'src/app/core/models/carousel.model';
 })
 export class CardCarouselMultiComponent implements OnInit{
 
+constructor(){ }
 
   @Input()
-  preLoadData?: Carousel;
+  set preLoadData(data: CarouselCategories[]){
+    if(data){
+      // this.restoDivision = Array.from(Array(Math.ceil(data.length / 4)).keys())        
+      console.log(this.restoDivision);
+    }
+  }
 
-  // @Input()
-  // set preLoadData(slide: Carousel){
-  //   console.log(slide);
-  // }
+  @Input()
+  set restoDivision(data: any){
+    if(data){
+      console.log(data);
+    }
+  }
 
-  constructor() {}
+  // restoDivision!: any;
 
-  ngOnInit(): void {
-
+  ngOnInit(): void { 
+    console.log(this.restoDivision);
+       
   }
 }

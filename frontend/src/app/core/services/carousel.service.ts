@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 
 import { ApiService } from './api.service';
 import { map } from 'rxjs/operators';
-import { Carousel } from '../models/carousel.model';
+import { Carousel, CarouselCategories } from '../models/carousel.model';
 
 @Injectable({
     providedIn: 'root'
@@ -16,7 +16,7 @@ export class CarouselService {
         private apiService: ApiService
     ) {}
 
-    getCategories(): Observable<Carousel[]> {
+    getCategories(): Observable<CarouselCategories[]> {
         return this.apiService.get('/api/categories/carousel')
         .pipe(map(data => data.categories))
     }

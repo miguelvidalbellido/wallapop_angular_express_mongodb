@@ -1,49 +1,32 @@
-<div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-12">
-        <mdb-carousel [controls]="true" [indicators]="true" [animation]="'fade'">
-          <mdb-carousel-item>
-            <div class="row">
-              <div class="col-md-6">
-                <img
-                  src="https://mdbootstrap.com/img/Photos/Slides/img%20(15).webp"
-                  class="d-block w-100"
-                  alt="..."
-                />
-                
-              </div>
-              <div class="col-md-6">
-                <img
-                  src="https://mdbootstrap.com/img/Photos/Slides/img%20(22).webp"
-                  class="d-block w-100"
-                  alt="..."
-                />
-                
-              </div>
-            </div>
-          </mdb-carousel-item>
-          <mdb-carousel-item>
-            <div class="row">
-              <div class="col-md-6">
-                <img
-                  src="https://mdbootstrap.com/img/Photos/Slides/img%20(23).webp"
-                  class="d-block w-100"
-                  alt="..."
-                />
-                
-              </div>
-              <div class="col-md-6">
-                <img
-                  src="https://mdbootstrap.com/img/Photos/Slides/img%20(24).webp"
-                  class="d-block w-100"
-                  alt="..."
-                />
-               
-              </div>
-            </div>
-          </mdb-carousel-item>
-        </mdb-carousel>
-      </div>
-    </div>
-  </div>
-  
+<div class="col-md-12">
+  <mdb-carousel [controls]="true" [indicators]="true" [animation]="'fade'">
+    <!-- <div> -->
+      <mdb-carousel-item *ngFor="let i of restoDivision">
+        <div class="row">
+          <div class="col-md-6">
+            <img
+            src="https://picsum.photos/200/300"
+            class="d-block w-100"
+            alt="..."
+          />
+          </div>
+          <div class="col-md-6">
+            <img
+            src="https://picsum.photos/200/300"
+            class="d-block w-100"
+            alt="..."
+          />
+          </div>
+          <!-- <div *ngFor="let item of preLoadData" class="col-md-6">
+            <img
+              src="https://picsum.photos/200/300"
+              class="d-block w-100"
+              alt="..."
+            />
+            
+          </div> -->
+        </div>
+      </mdb-carousel-item>
+    <!-- </div> -->
+  </mdb-carousel>
+</div>

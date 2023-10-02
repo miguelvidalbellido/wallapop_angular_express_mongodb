@@ -3,5 +3,10 @@ export interface Carousel {
     images: String[]
 }
 
+export interface CarouselCategories {
+    slug: String,
+    images: String
+}
+
 
 

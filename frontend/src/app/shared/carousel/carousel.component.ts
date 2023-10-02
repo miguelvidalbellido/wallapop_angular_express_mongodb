@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Category } from 'src/app/core';
 import { Carousel } from 'src/app/core/models/carousel.model';
 
 @Component({
@@ -12,23 +13,19 @@ export class CarouselComponent implements OnInit{
   set dataCarousel(data: Carousel[]){
     if(data){
       console.log(data);
-
     }
   }
 
-  slides: any[] = new Array(3).fill({id: -1, src: '', title: '', subtitle: ''});
+  slides: Carousel = {
+    slug: 'test',
+    images: ['https://mdbootstrap.com/img/Photos/Slides/img%20(15).webp',
+    'https://mdbootstrap.com/img/Photos/Slides/img%20(22).webp',
+    'https://mdbootstrap.com/img/Photos/Slides/img%20(23).webp']
+  };
 
   constructor() { }
 
   ngOnInit(): void {
-    this.slides[0] = {
-      src: './assets/img/angular.jpg',
-    };
-    this.slides[1] = {
-      src: './assets/img/react.jpg',
-    }
-    this.slides[2] = {
-      src: './assets/img/vue.jpg',
-    }
+  
   }
 }

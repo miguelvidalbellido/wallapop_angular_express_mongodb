@@ -11,7 +11,8 @@ import { CoreModule } from './core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ShopModule } from './shop/shop.module';
 import { DetailsModule } from './details/details.module';
-import { MdbCarouselModule  } from 'mdb-angular-ui-kit/carousel';
+//import { MdbCarouselModule  } from 'mdb-angular-ui-kit/carousel';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { MdbCarouselModule  } from 'mdb-angular-ui-kit/carousel';
     HomeModule,
     ShopModule,
     DetailsModule,
-    NgbModule
+    NgbModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

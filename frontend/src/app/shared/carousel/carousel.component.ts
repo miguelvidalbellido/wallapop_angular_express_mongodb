@@ -19,8 +19,7 @@ export class CarouselComponent implements OnInit{
   @Input() 
   set dataCarouselMulti(data: CarouselCategories[]){
     if(data){
-      this.prova = data
-      this.prova2 = Array.from(Array(Math.ceil(data.length / 4)).keys())         
+      this.prova = data      
     }
   }
 

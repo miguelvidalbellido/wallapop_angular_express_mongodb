@@ -13,25 +13,21 @@ export class CardCarouselMultiComponent implements OnInit{
 
 constructor(){ }
 
+  dataTest?: CarouselCategories
+
   @Input()
-  set preLoadData(data: CarouselCategories[]){
+  set preLoadData(data: any[]){
     if(data){
-      // this.restoDivision = Array.from(Array(Math.ceil(data.length / 4)).keys())        
-      console.log(this.restoDivision);
+      this.preLoadData = data
     }
   }
 
-  @Input()
-  set restoDivision(data: any){
-    if(data){
-      console.log(data);
-    }
-  }
 
-  // restoDivision!: any;
+
 
   ngOnInit(): void { 
-    console.log(this.restoDivision);
-       
+    console.log(this.preLoadData);
   }
+
+
 }

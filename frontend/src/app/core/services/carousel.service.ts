@@ -17,7 +17,7 @@ export class CarouselService {
     ) {}
 
     getCategories(): Observable<CarouselCategories[]> {
-        return this.apiService.get('/api/categories/carousel')
+        return this.apiService.get('/api/carousel/categories')
         .pipe(map(data => data.categories))
     }
 }

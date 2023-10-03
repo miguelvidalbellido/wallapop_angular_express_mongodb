@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 
 import { ApiService } from './api.service';
 import { map } from 'rxjs/operators';
-import { Carousel, CarouselCategories } from '../models/carousel.model';
+import { Carousel, CarouselCategories, CarouselCategoriesMulti } from '../models/carousel.model';
 
 @Injectable({
     providedIn: 'root'

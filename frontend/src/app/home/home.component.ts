@@ -4,7 +4,7 @@ import { Category } from '../core/models/category.model';
 import {
   CategoriesService
 } from '../core'
-import { Carousel, CarouselCategories } from '../core/models/carousel.model';
+import { Carousel, CarouselCategories, CarouselCategoriesMulti } from '../core/models/carousel.model';
 import { CarouselService } from '../core/services/carousel.service';
 @Component({
   selector: 'app-home',
@@ -23,6 +23,8 @@ export class HomeComponent implements OnInit{
   ngOnInit(): void { 
     this.carouselService.getCategories()
     .subscribe((data) => {      
+      console.log(data);
+            
       this.dataCategories = data
     })
   }

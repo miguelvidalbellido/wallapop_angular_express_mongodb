@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Category } from 'src/app/core';
-import { Carousel, CarouselCategories } from 'src/app/core/models/carousel.model';
+import { Carousel, CarouselCategories, CarouselCategoriesMulti } from 'src/app/core/models/carousel.model';
 
 @Component({
   selector: 'app-carousel',

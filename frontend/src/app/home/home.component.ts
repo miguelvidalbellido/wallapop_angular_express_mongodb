@@ -4,7 +4,7 @@ import { Category } from '../core/models/category.model';
 import {
   CategoriesService
 } from '../core'
-import { Carousel } from '../core/models/carousel.model';
+import { Carousel, CarouselCategories } from '../core/models/carousel.model';
 import { CarouselService } from '../core/services/carousel.service';
 @Component({
   selector: 'app-home',
@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit{
     private carouselService: CarouselService
     ) { }
 
-  dataCategories!: Carousel[]
+  dataCategories!: CarouselCategories[]
   
   ngOnInit(): void { 
     this.carouselService.getCategories()

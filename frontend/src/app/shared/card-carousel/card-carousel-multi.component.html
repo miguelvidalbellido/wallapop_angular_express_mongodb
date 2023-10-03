@@ -1,45 +1,15 @@
-<ng-template *ngIf="$dataTest | async as dataTest">
-  <div class="col-md-12">
-    <mdb-carousel [controls]="true" [indicators]="true" [animation]="'fade'">
-      <!-- <div> -->
-        <mdb-carousel-item *ngFor="let items of dataTest">
-          <div class="row">
-            <div class="col-md-3" >
-              <img
-              src="https://picsum.photos/200/300"
-              class="d-block w-100"
-              alt="..."
-            />
-            </div>
-            <div class="col-md-6">
-              <img
-              src="https://picsum.photos/200/300"
-              class="d-block w-100"
-              alt="..."
-            />
-            </div>
-            <!-- <div *ngFor="let item of preLoadData" class="col-md-6">
-              <img
-                src="https://picsum.photos/200/300"
-                class="d-block w-100"
-                alt="..."
-              />
-              
-            </div> -->
+<div class="col-md-12">
+  <mdb-carousel *ngIf="dataTest?.length" [controls]="true" [indicators]="true" [animation]="'fade'">
+      <mdb-carousel-item *ngFor="let slides of dataTest">
+        <div class="row">
+          <div *ngFor="let images of slides" class="col-md-3" >
+            <img
+            src="https://picsum.photos/200/300"
+            class="d-block w-100"
+            alt="..."
+          />
           </div>
-        </mdb-carousel-item>
-      <!-- </div> -->
-    </mdb-carousel>
-  </div>
-</ng-template>
-
-<!-- <div *ngFor="let subArray of preLoadData">
-  <div *ngFor="let item of subArray">
-    <div>
-      Slug: {{ item.slug }}
-    </div>
-    <div>
-      Imagen: <img [src]="item.images" alt="{{ item.slug }}">
-    </div>
-  </div>
-</div> -->
+        </div>
+      </mdb-carousel-item>
+  </mdb-carousel>
+</div>

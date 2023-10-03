@@ -8,5 +8,7 @@ export interface CarouselCategories {
     images: String
 }
 
-
+export interface CarouselCategoriesMulti {
+    categories: CarouselCategories[]
+}
 

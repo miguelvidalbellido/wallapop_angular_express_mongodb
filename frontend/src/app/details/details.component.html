@@ -1,7 +1,8 @@
 <div class="container">
-    <div class="left-side" *ngFor="let image of dataProduct?.images">
-
-        <img [src]="image" style="width: 100%;">
+    <!-- <div class="left-side" *ngFor="let image of dataProduct?.images"> -->
+    <div class="left-side" *ngIf="carouselImages">
+        <app-carousel
+        [inputCarousel]="carouselImages"></app-carousel>
     </div>
     <div class="right-side">
       <p id="perfume">{{dataProduct?.title}}</p>

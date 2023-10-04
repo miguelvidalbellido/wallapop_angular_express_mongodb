@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Category } from 'src/app/core';
-import { Carousel, CarouselCategories, CarouselCategoriesMulti } from 'src/app/core/models/carousel.model';
+import { Carousel, CarouselMulti } from 'src/app/core/models/carousel.model';
 
 @Component({
   selector: 'app-carousel',
@@ -10,21 +10,17 @@ import { Carousel, CarouselCategories, CarouselCategoriesMulti } from 'src/app/c
 export class CarouselComponent implements OnInit{
 
   @Input() 
-  set dataCarousel(data: Carousel[]){
-    if(data){
-      console.log(data);
-    }
+  set inputCarousel(data: Carousel){
+    if(data) this.dataCarousel = data
   }
 
   @Input() 
-  set dataCarouselMulti(data: CarouselCategories[]){
-    if(data){
-      this.prova = data      
-    }
+  set inputCarouselMulti(data: CarouselMulti[]){
+    if(data) this.dataCarouselMulti = data      
   }
 
-  prova!: CarouselCategories[]
-  prova2!: any;
+  dataCarousel!: Carousel
+  dataCarouselMulti!: CarouselMulti[];
 
   slides: Carousel = {
     slug: 'test',

@@ -1,8 +1,4 @@
 import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Carousel, CarouselCategories, CarouselCategoriesMulti } from 'src/app/core/models/carousel.model';
-import { Signal } from '@angular/core'
-
 
 @Component({
   selector: 'app-card-carousel-multi',
@@ -17,9 +13,7 @@ constructor(){ }
 
   @Input()
   set preLoadData(data: any[]){
-    if(data){
-      this.dataTest = data      
-    }
+    if(data) this.dataTest = data
   }
 
   ngOnInit(): void { }

@@ -1,12 +1,10 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-12 col-lg-12">
-      <app-card-carousel-multi 
-      [preLoadData]="prova"
-      ></app-card-carousel-multi>
-      <!-- <mdb-carousel [controls]="true" [indicators]="true" [animation]="'fade'"> -->
-          <!-- <app-card-carousel [preLoadData]="slides"></app-card-carousel> -->
-      <!-- </mdb-carousel> -->
+      <app-card-carousel-multi *ngIf="dataCarouselMulti"
+      [preLoadData]="dataCarouselMulti"></app-card-carousel-multi>
+      <app-card-carousel *ngIf="dataCarousel"
+      [preLoadData]="dataCarousel"></app-card-carousel>
     </div>
   </div>
 </div>

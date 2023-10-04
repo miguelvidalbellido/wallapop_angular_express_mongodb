@@ -3,12 +3,8 @@ export interface Carousel {
     images: String[]
 }
 
-export interface CarouselCategories {
+export interface CarouselMulti {
     slug: String,
     images: String
-}
-
-export interface CarouselCategoriesMulti {
-    categories: CarouselCategories[]
 }
 

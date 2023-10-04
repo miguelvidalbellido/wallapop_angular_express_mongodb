@@ -9,18 +9,11 @@ import { Carousel } from 'src/app/core/models/carousel.model';
 })
 export class CardCarouselComponent implements OnInit{
 
-
   @Input()
-  preLoadData?: Carousel;
-
-  // @Input()
-  // set preLoadData(slide: Carousel){
-  //   console.log(slide);
-  // }
+  preLoadData!: Carousel;
 
   constructor() {}
 
-  ngOnInit(): void {
-
+  ngOnInit(): void {    
   }
 }

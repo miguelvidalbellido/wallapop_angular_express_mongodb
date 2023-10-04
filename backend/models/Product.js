@@ -64,7 +64,7 @@ productSchema.methods.toProductResponse = async function() {
         tagList: this.tagList,
         favouritesCount: this.favouritesCount,
         visitsCount: this.visitsCount,
-        category: categoryObj.name
+        category: categoryObj?.name
     }
 }
 

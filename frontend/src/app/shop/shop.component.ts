@@ -10,7 +10,6 @@ export class ShopComponent implements OnInit{
 
   slugCategory?: String
 
-
   constructor(private activatedRoute: ActivatedRoute) {
 
   }
@@ -22,7 +21,6 @@ export class ShopComponent implements OnInit{
         }
       }
     )
-    console.log("rdsfdsf");
   }
 
 }

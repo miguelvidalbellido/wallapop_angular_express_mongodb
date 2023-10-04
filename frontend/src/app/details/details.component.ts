@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Producto, ProductosService } from '../core';
+import { Carousel } from '../core/models/carousel.model';
 
 @Component({
   selector: 'app-details',
@@ -16,6 +17,7 @@ export class DetailsComponent implements OnInit {
   slug?: String
 
   dataProduct: Producto | undefined;
+  carouselImages?: Carousel;
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe((params) => {
@@ -25,6 +27,7 @@ export class DetailsComponent implements OnInit {
         this.productosService.getOne(this.slug)
         .subscribe((data) => {          
           this.dataProduct = data;
+          this.carouselImages = data;
         })
       }
     })

@@ -1,13 +1,16 @@
-<mdb-carousel [controls]="true" [indicators]="true" [animation]="'fade'">
-
-  <mdb-carousel-item *ngFor="let image of preLoadData?.images">
-      <img
-        src="{{ image }}"
-        class="d-block w-100"
-      />
-      
+<mdb-carousel *ngIf="preLoadData.images.length > 1" [controls]="true" [indicators]="true" [animation]="'fade'">
+  <mdb-carousel-item *ngFor="let image of preLoadData.images">
+    <img
+      src="{{ image }}"
+      class="d-block w-100"
+    />
+    
   </mdb-carousel-item>
-
 </mdb-carousel>
 
+<img *ngIf="preLoadData.images.length == 1"
+src="{{ preLoadData.images[0] }}"
+class="d-block w-100"
+/>
 
+<p *ngIf="preLoadData?.images?.length == 0">No hi haaaan</p>

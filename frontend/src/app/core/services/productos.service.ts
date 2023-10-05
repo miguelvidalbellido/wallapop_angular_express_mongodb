@@ -22,6 +22,14 @@ export class ProductosService {
         .pipe(map(data => data.products))
     }
 
+    getInfinite(params: any): Observable<Producto[]> {
+        return this.apiService.get(
+            '/api/products',
+            new HttpParams({fromObject: params})).pipe(
+                map(data => data.products)
+            )
+    } 
+
     getProductCategory(slug: String): Observable<Producto[]> {
         return this.apiService.get('/api/products/categories/'+slug)
         .pipe(map(data => data.products))

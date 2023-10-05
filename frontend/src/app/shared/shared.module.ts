@@ -11,7 +11,9 @@ import { CarouselComponent } from './carousel/carousel.component';
 import { CardCarouselComponent } from './card-carousel/card-carousel.component';
 import { MdbCarouselModule  } from 'mdb-angular-ui-kit/carousel';
 import { CardCarouselMultiComponent } from "./card-carousel";
-
+import { ListProductsInfiniteComponent } from './cmp-products/list-products-infinite/list-products-infinite.component';
+import { InfiniteScrollModule } from "ngx-infinite-scroll";
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
     imports: [
@@ -20,7 +22,9 @@ import { CardCarouselMultiComponent } from "./card-carousel";
         RouterModule,
         FormsModule,
         ReactiveFormsModule,
-        MdbCarouselModule
+        MdbCarouselModule,
+        InfiniteScrollModule,
+        MatCardModule
     ],
     declarations: [
     ListCategoriesComponent,
@@ -29,7 +33,8 @@ import { CardCarouselMultiComponent } from "./card-carousel";
     CardProductComponent,
     CarouselComponent,
     CardCarouselComponent,
-    CardCarouselMultiComponent
+    CardCarouselMultiComponent,
+    ListProductsInfiniteComponent
   ],
     exports: [
       ListCategoriesComponent,
@@ -37,7 +42,8 @@ import { CardCarouselMultiComponent } from "./card-carousel";
       DetailsProductComponent,
       CommonModule,
       CarouselComponent,
-      MdbCarouselModule
+      MdbCarouselModule,
+      ListProductsInfiniteComponent
     ]
 })
 export class SharedModule {}

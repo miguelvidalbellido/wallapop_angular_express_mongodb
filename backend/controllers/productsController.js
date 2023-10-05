@@ -13,6 +13,16 @@ const listProducts = asyncHandler(async (req, res) => {
     let offset = 0;
     let query = {};
 
+    // Procesador HTTP params del cliente
+    
+    if (req.query.offset) {
+        offset = req.query.offset;
+    }
+
+    if (req.query.limit) {
+        limit = req.query.limit;
+    }
+
     // Si tenemos slug construimos una query para indicar porque ha de filtrar
     if(req.params.slug) {
         const dataCategory = await Category.findOne({ slug: req.params.slug }).exec();

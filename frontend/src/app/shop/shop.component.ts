@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Route } from '@angular/router';
+import { filter } from '../core/models/filter.model';
+import { ProductosService } from '../core';
 
 @Component({
   selector: 'app-shop',
@@ -10,9 +12,7 @@ export class ShopComponent implements OnInit{
 
   slugCategory?: String
 
-  constructor(private activatedRoute: ActivatedRoute) {
-
-  }
+  constructor(private activatedRoute: ActivatedRoute,) { }
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe((params) => {
@@ -22,5 +22,4 @@ export class ShopComponent implements OnInit{
       }
     )
   }
-
 }

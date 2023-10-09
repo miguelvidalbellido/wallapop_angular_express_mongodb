@@ -14,6 +14,8 @@ import { CardCarouselMultiComponent } from "./card-carousel";
 import { ListProductsInfiniteComponent } from './cmp-products/list-products-infinite/list-products-infinite.component';
 import { InfiniteScrollModule } from "ngx-infinite-scroll";
 import {MatCardModule} from '@angular/material/card';
+import { FiltersComponent } from './cmp-products/filters';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
     imports: [
@@ -24,7 +26,8 @@ import {MatCardModule} from '@angular/material/card';
         ReactiveFormsModule,
         MdbCarouselModule,
         InfiniteScrollModule,
-        MatCardModule
+        MatCardModule,
+        MatSelectModule
     ],
     declarations: [
     ListCategoriesComponent,
@@ -34,7 +37,8 @@ import {MatCardModule} from '@angular/material/card';
     CarouselComponent,
     CardCarouselComponent,
     CardCarouselMultiComponent,
-    ListProductsInfiniteComponent
+    ListProductsInfiniteComponent,
+    FiltersComponent
   ],
     exports: [
       ListCategoriesComponent,
@@ -43,7 +47,9 @@ import {MatCardModule} from '@angular/material/card';
       CommonModule,
       CarouselComponent,
       MdbCarouselModule,
-      ListProductsInfiniteComponent
+      ListProductsInfiniteComponent,
+      FiltersComponent,
+      MatSelectModule
     ]
 })
 export class SharedModule {}

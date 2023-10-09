@@ -1,0 +1,18 @@
+<form [formGroup]="form">
+    <div class="container-fluid">
+        <div class="row">
+            <h3>Filtros</h3>
+        </div>
+        
+        <div class="row">
+            <mat-form-field>
+                <mat-label>Categorias</mat-label>
+                <mat-select formControlName="categories"
+                (selectionChange)="filter_products()" multiple>
+                  <mat-option *ngFor="let category of listCategories" 
+                  [value]="category.slug">{{category.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+</form>

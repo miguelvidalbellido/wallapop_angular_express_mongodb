@@ -12,7 +12,7 @@ const listProducts = asyncHandler(async (req, res) => {
     let limit = 20;
     let offset = 0;
     let query = {};
-
+    // console.log(req.query);
     // Procesador HTTP params del cliente
     
     if (req.query.offset) {
@@ -24,14 +24,28 @@ const listProducts = asyncHandler(async (req, res) => {
     }
 
     // Si tenemos slug construimos una query para indicar porque ha de filtrar
-    if(req.params.slug) {
-        const dataCategory = await Category.findOne({ slug: req.params.slug }).exec();
+    if(req.params.slug || req.query.categories) {
+        let DATA_SLUG = req.params.slug ? [req.params.slug] : req.query.categories
+        let arrayProvaCat = []
+        let dataCategory = ''
+        
+        if(typeof DATA_SLUG === 'string') {
+            dataCategory = await Category.findOne({ slug: DATA_SLUG }).exec();
 
-        if(!dataCategory) {
+            arrayProvaCat.push(dataCategory.id)
+        } else {
+            for (let index = 0; index < DATA_SLUG.length; index++) {
+                dataCategory = await Category.findOne({ slug: DATA_SLUG[index] }).exec();
+    
+                arrayProvaCat.push(dataCategory.id)
+            }
+        }
+
+        if(!arrayProvaCat) {
             res.status(400).json({message: "Category not found"})
         }
 
-        query = { category: dataCategory.id }
+        query = { category: { $in : arrayProvaCat} }
     }
 
     const filteredProducts = await Product.find(query)

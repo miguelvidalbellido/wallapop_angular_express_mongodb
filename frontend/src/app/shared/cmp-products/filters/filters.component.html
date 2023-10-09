@@ -13,6 +13,24 @@
                   [value]="category.slug">{{category.name}}</mat-option>
                 </mat-select>
             </mat-form-field>
+            <mat-form-field floatLabel="always">
+                <mat-label>Desde: </mat-label>
+                <input formControlName="price_min"
+                    (change)="filter_products()"
+                    matInput type="number" class="example-right-align" 
+                    placeholder="0">
+                <span matTextPrefix>€&nbsp;</span>
+            </mat-form-field>
+            <mat-form-field floatLabel="always">
+                <mat-label>Hasta: </mat-label>
+                <input formControlName="price_max"
+                    (change)="filter_products()"
+                    matInput type="number" class="example-right-align" 
+                    placeholder="0">
+                <span matTextPrefix>€&nbsp;</span>
+            </mat-form-field>
         </div>
     </div>
 </form>
+
+<button (click)="remove_all()" type="button" class="btn btn-danger">Borrar Filtros</button>

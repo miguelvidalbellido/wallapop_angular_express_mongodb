@@ -49,15 +49,32 @@ export class FiltersComponent implements OnInit {
   }
 
   filter_products() {    
-    const encodeFormGroupFilter = btoa(JSON.stringify(this.form.value)); // Se codifican los filtros
+    const DATA_FORM = this.form.value;
+    console.log(DATA_FORM);
+    const encodeFormGroupFilter = btoa(JSON.stringify(DATA_FORM)); // Se codifican los filtros
     this.location.replaceState('/shop/' + `?filters=${encodeFormGroupFilter}`); // Se almacenan en la url
     this.filterEvent.emit(this.form.value);
   }
 
   remove_all() {
-    this.form.reset(); // Borramos los datos de filter
-    this.router.navigateByUrl('shop/');
+    this.resetForm(); // Borramos los datos de filter
+    console.log(this.form.value);
+    this.router.navigate(['/shop/']);
     //window.location.reload(); // No deberia hacer falta pero sinos falla
+  }
+
+  resetForm() {
+    // Funcion creada para evitar usar reset, ya que setea todos los par clave valor con valor null
+    // this.form.reset();
+    this.form = this.formBuilder.group({
+      limit: '',
+      offset: '',
+      title: '',
+      categories: [],
+      price_min: '',
+      price_max: '',
+      order: ''
+    });
   }
 
 }

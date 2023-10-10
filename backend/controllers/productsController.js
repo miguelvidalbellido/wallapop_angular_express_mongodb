@@ -12,6 +12,7 @@ const listProducts = asyncHandler(async (req, res) => {
     let limit = 20;
     let offset = 0;
     let query = {};
+    let sort = {};
     // console.log(req.query);
     // Procesador HTTP params del cliente
     
@@ -62,10 +63,41 @@ const listProducts = asyncHandler(async (req, res) => {
         query.price = { $gte: PRICE_MIN, $lte: PRICE_MAX } ;
     }
 
+    // ORDENAR
+    if(req.query.order){
+        const DATA_SORT = req.query.order;
+
+        switch (DATA_SORT) {
+            case 'price_asc':
+                sort['price'] = 1;
+                break;
+            case 'price_desc':
+                sort['price'] = -1;
+                break;
+            case 'views_asc':
+                sort['visitsCount'] = 1;
+                break;
+            case 'views_desc':
+                sort['visitsCount'] = -1;
+                break;
+            case 'fpub_asc':
+                sort['createdAt'] = 1;
+                break;
+            case 'fpub_desc':
+                sort['createdAt'] = -1;
+                break;
+            default:
+                sort['createdAt'] = -1;
+        }
+
+    } else {
+        sort['createdAt'] = -1;
+    }
+
     const filteredProducts = await Product.find(query)
         .limit(Number(limit))
         .skip(Number(offset))
-        .sort({createdAt: 'desc'}).exec()
+        .sort(sort).exec()
 
     const productCount = await Product.count(query);
 

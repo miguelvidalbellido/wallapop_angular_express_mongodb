@@ -12,6 +12,7 @@ const listProducts = asyncHandler(async (req, res) => {
     let limit = 20;
     let offset = 0;
     let query = {};
+    let sort = {};
     // console.log(req.query);
     // Procesador HTTP params del cliente
     
@@ -23,35 +24,80 @@ const listProducts = asyncHandler(async (req, res) => {
         limit = req.query.limit;
     }
 
-    // Si tenemos slug construimos una query para indicar porque ha de filtrar
-    if(req.params.slug || req.query.categories) {
+    // FILTRAR CATEGORIA/S
+    if( (req.params.slug !== undefined || req.query.categories !== undefined) &&
+        (req.params.slug !== null || req.query.categories !== null) &&
+        (req.query.categories !== 'null')) {
+
         let DATA_SLUG = req.params.slug ? [req.params.slug] : req.query.categories
-        let arrayProvaCat = []
+        let objectsIdCategory = []
         let dataCategory = ''
         
         if(typeof DATA_SLUG === 'string') {
             dataCategory = await Category.findOne({ slug: DATA_SLUG }).exec();
 
-            arrayProvaCat.push(dataCategory.id)
+            objectsIdCategory.push(dataCategory.id)
         } else {
-            for (let index = 0; index < DATA_SLUG.length; index++) {
-                dataCategory = await Category.findOne({ slug: DATA_SLUG[index] }).exec();
-    
-                arrayProvaCat.push(dataCategory.id)
-            }
+            objectsIdCategory = await Promise.all(DATA_SLUG.map(async (element) => {
+                const category = await Category.findOne({ slug: element }).exec();
+                return category.id;
+            }));
         }
 
-        if(!arrayProvaCat) {
+        if(!objectsIdCategory) {
             res.status(400).json({message: "Category not found"})
         }
 
-        query = { category: { $in : arrayProvaCat} }
+        query.category = { $in : objectsIdCategory}
+    }
+
+    // FILTRAR PRECIO 
+    if(req.query.price_min || req.query.price_max) {
+        let PRICE_MIN = req.query.price_min ; // Simula igual o mayor que
+        let PRICE_MAX = req.query.price_max ? req.query.price_max : await obtainMaxPrice();
+
+        if(PRICE_MIN > PRICE_MAX) {
+            res.status(400).json({message: "Price min upper than max"})
+        }
+
+        query.price = { $gte: PRICE_MIN, $lte: PRICE_MAX } ;
+    }
+
+    // ORDENAR
+    if(req.query.order){
+        const DATA_SORT = req.query.order;
+
+        switch (DATA_SORT) {
+            case 'price_asc':
+                sort['price'] = 1;
+                break;
+            case 'price_desc':
+                sort['price'] = -1;
+                break;
+            case 'views_asc':
+                sort['visitsCount'] = 1;
+                break;
+            case 'views_desc':
+                sort['visitsCount'] = -1;
+                break;
+            case 'fpub_asc':
+                sort['createdAt'] = 1;
+                break;
+            case 'fpub_desc':
+                sort['createdAt'] = -1;
+                break;
+            default:
+                sort['createdAt'] = -1;
+        }
+
+    } else {
+        sort['createdAt'] = -1;
     }
 
     const filteredProducts = await Product.find(query)
         .limit(Number(limit))
         .skip(Number(offset))
-        .sort({createdAt: 'desc'}).exec()
+        .sort(sort).exec()
 
     const productCount = await Product.count(query);
 
@@ -121,6 +167,13 @@ const createProduct = asyncHandler(async (req, res) => {
 
 });
 
+// Internal function
+
+const obtainMaxPrice = asyncHandler(async () => {
+    const INCREMENT_ONE = 1;
+    let product = await Product.findOne().sort({price: -1}).limit(1);
+    return product.price;
+})
 module.exports = {
     listProducts,
     createProduct,

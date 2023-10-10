@@ -16,6 +16,7 @@ import { InfiniteScrollModule } from "ngx-infinite-scroll";
 import {MatCardModule} from '@angular/material/card';
 import { FiltersComponent } from './cmp-products/filters';
 import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
     imports: [
@@ -27,7 +28,8 @@ import { MatSelectModule } from '@angular/material/select';
         MdbCarouselModule,
         InfiniteScrollModule,
         MatCardModule,
-        MatSelectModule
+        MatSelectModule,
+        MatInputModule
     ],
     declarations: [
     ListCategoriesComponent,
@@ -49,7 +51,8 @@ import { MatSelectModule } from '@angular/material/select';
       MdbCarouselModule,
       ListProductsInfiniteComponent,
       FiltersComponent,
-      MatSelectModule
+      MatSelectModule,
+      MatInputModule
     ]
 })
 export class SharedModule {}

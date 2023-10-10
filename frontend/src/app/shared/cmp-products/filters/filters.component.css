@@ -1,3 +1,7 @@
 mat-form-field {
     max-width: 400px;
 }
+
+.container_filters {
+    background-color: #f5f5f5;
+}

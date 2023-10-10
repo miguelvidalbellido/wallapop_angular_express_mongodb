@@ -1,23 +1,13 @@
 <app-filters (filterEvent)="getListFiltered($event)"></app-filters>
 
 <div class="container_products">
-
+  <div *ngIf="!dataProducts">
+    <p>no hay productos</p>
+  </div>
   <div *ngFor="let item of dataProducts">
     <app-card-product 
     [dataProduct]="item"></app-card-product>
   </div>
-    <!-- <div *ngFor="let item of dataProducts" ngClass="card dark">
-      <img [src]="item.images" class="card-img-top" alt="...">
-      <div class="card-body">
-        <div class="text-section">
-          <h5 class="card-title">{{ item.title }}</h5>
-          <p class="card-text">{{ item.description }}</p>
-        </div>
-        <div class="cta-section">
-          <div class="price">{{item.price}} €</div>
-          <a href="#" class="btn ">Ver</a>
-        </div>
-      </div>
-    </div> -->
+
 
 </div>

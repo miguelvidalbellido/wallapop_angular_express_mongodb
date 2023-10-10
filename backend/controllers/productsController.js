@@ -63,6 +63,14 @@ const listProducts = asyncHandler(async (req, res) => {
         query.price = { $gte: PRICE_MIN, $lte: PRICE_MAX } ;
     }
 
+    // FILTRAR TITULO
+    if(req.query.title){
+        console.log('holaaa');
+        let TITLE = req.query.title
+        console.log(TITLE);
+        query.title = { $regex: TITLE }
+    }
+
     // ORDENAR
     if(req.query.order){
         const DATA_SORT = req.query.order;

@@ -49,8 +49,17 @@ export class FiltersComponent implements OnInit {
   }
 
   filter_products() {    
+    if(this.activatedRoute.snapshot.queryParamMap.get('filters')) {
+      let encodedFilters = this.activatedRoute.snapshot.queryParamMap.get('filters');
+      
+      if(encodedFilters) {   
+        console.log(JSON.parse(atob(encodedFilters)));
+             
+        this.form.get('title')?.setValue(JSON.parse(atob(encodedFilters)).title)
+      }
+    }
+
     const DATA_FORM = this.form.value;
-    console.log(DATA_FORM);
     const encodeFormGroupFilter = btoa(JSON.stringify(DATA_FORM)); // Se codifican los filtros
     this.location.replaceState('/shop/' + `?filters=${encodeFormGroupFilter}`); // Se almacenan en la url
     this.filterEvent.emit(this.form.value);
@@ -58,15 +67,15 @@ export class FiltersComponent implements OnInit {
 
   remove_all() {
     this.resetForm(); // Borramos los datos de filter
-    console.log(this.form.value);
-    this.router.navigate(['/shop/']);
+    // console.log(this.form.value);
+    // this.router.navigate(['/shop']);
     //window.location.reload(); // No deberia hacer falta pero sinos falla
   }
 
   resetForm() {
     // Funcion creada para evitar usar reset, ya que setea todos los par clave valor con valor null
     // this.form.reset();
-    this.form = this.formBuilder.group({
+    this.form.setValue({
       limit: '',
       offset: '',
       title: '',
@@ -75,6 +84,9 @@ export class FiltersComponent implements OnInit {
       price_max: '',
       order: ''
     });
+
+    this.location.replaceState('/shop'); // Se almacenan en la url
+    this.filterEvent.emit(this.form.value);
   }
 
 }

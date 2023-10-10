@@ -28,6 +28,8 @@ export class ListProductsComponent implements OnInit{
       let encodedFilters = this.route.snapshot.queryParamMap.get('filters');
       
       if(encodedFilters) {
+        console.log(JSON.parse(atob(encodedFilters)));
+        
         this.getListFiltered(JSON.parse(atob(encodedFilters)));
       }
 

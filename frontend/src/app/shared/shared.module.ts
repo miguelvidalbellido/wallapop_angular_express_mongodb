@@ -17,6 +17,7 @@ import {MatCardModule} from '@angular/material/card';
 import { FiltersComponent } from './cmp-products/filters';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
+import { SearchComponent } from './cmp-products/search/search.component';
 
 @NgModule({
     imports: [
@@ -40,7 +41,8 @@ import { MatInputModule } from '@angular/material/input';
     CardCarouselComponent,
     CardCarouselMultiComponent,
     ListProductsInfiniteComponent,
-    FiltersComponent
+    FiltersComponent,
+    SearchComponent
   ],
     exports: [
       ListCategoriesComponent,
@@ -52,7 +54,8 @@ import { MatInputModule } from '@angular/material/input';
       ListProductsInfiniteComponent,
       FiltersComponent,
       MatSelectModule,
-      MatInputModule
+      MatInputModule,
+      SearchComponent
     ]
 })
 export class SharedModule {}

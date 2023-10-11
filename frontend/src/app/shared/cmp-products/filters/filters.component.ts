@@ -48,7 +48,7 @@ export class FiltersComponent implements OnInit {
   
   }
 
-  filter_products() {    
+  filter_products() {
     if(this.activatedRoute.snapshot.queryParamMap.get('filters')) {
       let encodedFilters = this.activatedRoute.snapshot.queryParamMap.get('filters');
       

@@ -9,13 +9,13 @@ const Category = require('../models/Category');
 ////////////////////////////////////////////////
 
 const listProducts = asyncHandler(async (req, res) => {
-    let limit = 20;
+    let limit = 4;
     let offset = 0;
     let query = {};
     let sort = {};
     // console.log(req.query);
     // Procesador HTTP params del cliente
-    
+
     if (req.query.offset) {
         offset = req.query.offset;
     }

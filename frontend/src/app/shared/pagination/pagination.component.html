@@ -1,0 +1,13 @@
+<nav *ngIf="numPages" aria-label="Page navigation example" class="m-4 pb-5">
+    <ul class="pagination justify-content-center">
+      <li class="page-item disabled">
+        <a class="page-link" tabindex="-1">Previous</a>
+      </li>
+      <li class="page-item" (click)="changePage(a)" *ngFor="let a of getRange(numPages)">
+        <a class="page-link">{{ a }}</a>
+      </li>
+      <li class="page-item">
+        <a class="page-link">Next</a>
+      </li>
+    </ul>
+</nav>

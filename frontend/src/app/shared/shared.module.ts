@@ -18,6 +18,7 @@ import { FiltersComponent } from './cmp-products/filters';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { SearchComponent } from './cmp-products/search/search.component';
+import { PaginationComponent } from './pagination/pagination.component';
 
 @NgModule({
     imports: [
@@ -42,7 +43,8 @@ import { SearchComponent } from './cmp-products/search/search.component';
     CardCarouselMultiComponent,
     ListProductsInfiniteComponent,
     FiltersComponent,
-    SearchComponent
+    SearchComponent,
+    PaginationComponent
   ],
     exports: [
       ListCategoriesComponent,
@@ -55,7 +57,8 @@ import { SearchComponent } from './cmp-products/search/search.component';
       FiltersComponent,
       MatSelectModule,
       MatInputModule,
-      SearchComponent
+      SearchComponent,
+      PaginationComponent
     ]
 })
 export class SharedModule {}

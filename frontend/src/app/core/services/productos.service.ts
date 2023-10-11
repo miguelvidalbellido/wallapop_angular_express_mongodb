@@ -3,7 +3,7 @@ import { HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { ApiService } from './api.service';
-import { Producto } from '../models';
+import { Producto, ProductoAndCount } from '../models';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -22,11 +22,14 @@ export class ProductosService {
         .pipe(map(data => data.products))
     }
 
-    getInfinite(params: any): Observable<Producto[]> {
+    getInfinite(params: any): Observable<ProductoAndCount> {
         return this.apiService.get(
             '/api/products',
             new HttpParams({fromObject: params})).pipe(
-                map(data => data.products)
+                map((data) => ({
+                    products: data.products,
+                    countProducts: data.productsCount
+                }))
             )
     } 
 

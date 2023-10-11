@@ -40,15 +40,15 @@ export class ListProductsComponent implements OnInit{
       this.productService.getProductCategory(this.dataSlugCategory)
       .subscribe((data) => {
         this.dataProducts = data;
-        this.numItems = data.length;
+        //this.numItems = data.length;
       })
     }else{
-      this.productService.get()
-      .subscribe((data) => {  
-        this.dataProducts = data;
-        this.numItems = data.length;
-      })
-
+      // this.productService.get()
+      // .subscribe((data) => {  
+      //   this.dataProducts = data;
+      //   this.numItems = data.length;
+      // })
+      this.getListFiltered(this.lastParams)
     }
   }
   
@@ -62,9 +62,9 @@ export class ListProductsComponent implements OnInit{
       params.title = this.titleProducts;
     } 
     this.productService.getInfinite(params)
-    .subscribe((data) => {      
-      this.dataProducts = data;
-      this.numItems = data.length;
+    .subscribe((data) => {   
+      this.dataProducts = data.products;
+      this.numItems = data.countProducts;
     })
   }
 
@@ -76,7 +76,6 @@ export class ListProductsComponent implements OnInit{
 
   testPagination(data: any) {
     let params: any = {};
-    console.log(data);
     // realizamos la peticion con filtros cuando hayan y si no hay solo pasamos la paginacion
     if(this.lastParams) {
       params = this.lastParams;

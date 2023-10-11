@@ -9,3 +9,8 @@ export interface Producto {
     visitsCount: Number;
     category: String;
 }
+
+export interface ProductoAndCount {
+    products: Producto[];
+    countProducts: number;
+}

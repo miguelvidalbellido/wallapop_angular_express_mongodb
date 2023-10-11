@@ -1,4 +1,4 @@
-<app-search></app-search>
+<app-search (filterEvent)="saveTitle($event)"></app-search>
 
 <app-filters (filterEvent)="getListFiltered($event)"></app-filters>
 
@@ -10,6 +10,8 @@
     <app-card-product 
     [dataProduct]="item"></app-card-product>
   </div>
+</div>
 
-
+<div *ngIf="numItems">
+  <app-pagination (paginationEvent)="testPagination($event)" [numItems]="numItems" [numItemsXPage]="4"></app-pagination>
 </div>

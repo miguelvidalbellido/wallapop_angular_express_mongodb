@@ -40,14 +40,8 @@ export class ListProductsComponent implements OnInit{
       this.productService.getProductCategory(this.dataSlugCategory)
       .subscribe((data) => {
         this.dataProducts = data;
-        //this.numItems = data.length;
       })
     }else{
-      // this.productService.get()
-      // .subscribe((data) => {  
-      //   this.dataProducts = data;
-      //   this.numItems = data.length;
-      // })
       this.getListFiltered(this.lastParams)
     }
   }

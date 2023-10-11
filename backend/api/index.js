@@ -15,7 +15,8 @@ app.use(express.json()); // middleware to parse json
 // comment routes
 app.use('/api/products', require('../routes/productRoutes'));   // Products
 app.use('/api/categories', require('../routes/categoriesRoutes'));   // Categories
-app.use('/api/carousel', require('../routes/carouselRoutes'));   // Categories
+app.use('/api/carousel', require('../routes/carouselRoutes'));   // Carousel
+app.use('/api/users', require('../routes/usersRoutes'));   // Users
 
 mongoose.connection.once('open', () => {
     console.log('Connected to MongoDB');

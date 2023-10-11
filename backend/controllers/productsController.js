@@ -13,7 +13,6 @@ const listProducts = asyncHandler(async (req, res) => {
     let offset = 0;
     let query = {};
     let sort = {};
-    // console.log(req.query);
     // Procesador HTTP params del cliente
 
     if (req.query.offset) {
@@ -65,9 +64,7 @@ const listProducts = asyncHandler(async (req, res) => {
 
     // FILTRAR TITULO
     if(req.query.title){
-        console.log('holaaa');
         let TITLE = req.query.title
-        console.log(TITLE);
         query.title = { $regex: TITLE }
     }
 
@@ -155,7 +152,6 @@ const createProduct = asyncHandler(async (req, res) => {
     if (!title || !description || !price || !category) {
         res.status(400).json({message: "All fields are required"});
     }
-    console.log(images);
     const dataCategory = await Category.findOne({ name: req.body.category }).exec();
 
     if (!dataCategory) {
@@ -165,7 +161,6 @@ const createProduct = asyncHandler(async (req, res) => {
     const categoryObjectId = dataCategory.id;
 
     const product = await Product.create({ title, description, price, category: categoryObjectId, images });
-    console.log(categoryObjectId);
 
     await product.save()
 

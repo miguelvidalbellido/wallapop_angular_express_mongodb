@@ -1,0 +1,59 @@
+const mongoose = require('mongoose');
+const uniqueValidator = require('mongoose-unique-validator');
+
+const userSchema = new mongoose.Schema({
+    username: {
+        type: String,
+        required: true,
+        unique: true,
+        lowercase: true
+    },
+    email: {
+        type: String,
+        required: true,
+        unique: true,
+        lowercase: true
+    },
+    passwordHash: {
+        type: String,
+        required: true
+    },
+    userBio: {
+        type: String,
+        required: false
+    },
+    f_nac: {
+        type: Date,
+        required: true
+    },
+    cp: {
+        type: Number,
+        required: true
+    },
+    profileImage: {
+        type: String,
+        required: false
+    },
+    usersFollowing: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }
+}, {
+    timestamps: true
+});
+
+userSchema.plugin(uniqueValidator);
+
+userSchema.methods.toUserResponse = async function() {
+    return {
+        username: this.username,
+        email: this.email,
+        passwordHash: this.passwordHash,
+        userBio: this.userBio,
+        f_nac: this.f_nac,
+        cp: this.cp,
+        profileImage: this.profileImage
+    }
+}
+
+module.exports = mongoose.model('User', userSchema);

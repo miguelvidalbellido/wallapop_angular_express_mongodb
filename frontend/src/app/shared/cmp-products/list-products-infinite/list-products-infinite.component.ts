@@ -34,8 +34,7 @@ export class ListProductsInfiniteComponent implements OnInit{
 
     this.productsService.getInfinite(params).subscribe(
       (data) => {
-        console.log(data);
-        this.products = this.products.concat(data);
+        this.products = this.products.concat(data.products);
         this.offset = this.offset + 3;
       },
       (error) => {

@@ -25,7 +25,11 @@ export class PaginationComponent implements OnInit{
   constructor() {}
   
   ngOnInit(): void {
-    this.loadPagination()
+    //this.loadPagination()
+  }
+
+  ngOnChanges() {
+    this.loadPagination();
   }
 
   loadPagination() {

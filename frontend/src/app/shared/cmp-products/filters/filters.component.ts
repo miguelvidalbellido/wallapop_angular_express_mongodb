@@ -52,9 +52,7 @@ export class FiltersComponent implements OnInit {
     if(this.activatedRoute.snapshot.queryParamMap.get('filters')) {
       let encodedFilters = this.activatedRoute.snapshot.queryParamMap.get('filters');
       
-      if(encodedFilters) {   
-        console.log(JSON.parse(atob(encodedFilters)));
-             
+      if(encodedFilters) {                
         this.form.get('title')?.setValue(JSON.parse(atob(encodedFilters)).title)
       }
     }
@@ -67,9 +65,6 @@ export class FiltersComponent implements OnInit {
 
   remove_all() {
     this.resetForm(); // Borramos los datos de filter
-    // console.log(this.form.value);
-    // this.router.navigate(['/shop']);
-    //window.location.reload(); // No deberia hacer falta pero sinos falla
   }
 
   resetForm() {

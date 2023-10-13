@@ -19,6 +19,11 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { SearchComponent } from './cmp-products/search/search.component';
 import { PaginationComponent } from './pagination/pagination.component';
+import { MainMenuComponent } from './main-menu/main-menu.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
+import { FooterComponent } from './footer/footer.component';
+import { MatGridListModule } from '@angular/material/grid-list'
 
 @NgModule({
     imports: [
@@ -31,7 +36,10 @@ import { PaginationComponent } from './pagination/pagination.component';
         InfiniteScrollModule,
         MatCardModule,
         MatSelectModule,
-        MatInputModule
+        MatInputModule,
+        MatMenuModule,
+        MatButtonModule,
+        MatGridListModule
     ],
     declarations: [
     ListCategoriesComponent,
@@ -44,7 +52,10 @@ import { PaginationComponent } from './pagination/pagination.component';
     ListProductsInfiniteComponent,
     FiltersComponent,
     SearchComponent,
-    PaginationComponent
+    PaginationComponent,
+    MainMenuComponent,
+    FooterComponent,
+    
   ],
     exports: [
       ListCategoriesComponent,
@@ -58,7 +69,12 @@ import { PaginationComponent } from './pagination/pagination.component';
       MatSelectModule,
       MatInputModule,
       SearchComponent,
-      PaginationComponent
+      PaginationComponent,
+      MatMenuModule,
+      MatButtonModule,
+      MainMenuComponent,
+      FooterComponent,
+      MatGridListModule
     ]
 })
 export class SharedModule {}

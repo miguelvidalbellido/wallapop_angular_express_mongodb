@@ -16,7 +16,7 @@ export class ListProductsInfiniteComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.getProducts
+    this.getProducts();
   }
 
   getRequestParams(offset: Number, limit: number) {

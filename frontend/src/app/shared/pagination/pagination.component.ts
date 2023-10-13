@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { paginationConfig } from 'src/app/core';
 
 @Component({
   selector: 'app-pagination',

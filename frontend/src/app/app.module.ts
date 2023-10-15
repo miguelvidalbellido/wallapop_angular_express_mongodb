@@ -12,10 +12,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ShopModule } from './shop/shop.module';
 import { DetailsModule } from './details/details.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AuthComponent } from './auth/auth.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,

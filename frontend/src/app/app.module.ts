@@ -13,11 +13,11 @@ import { ShopModule } from './shop/shop.module';
 import { DetailsModule } from './details/details.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthComponent } from './auth/auth.component';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AuthComponent
   ],
   imports: [
     BrowserModule,
@@ -25,6 +25,7 @@ import { AuthComponent } from './auth/auth.component';
     SharedModule,
     CoreModule,
     HomeModule,
+    AuthModule,
     ShopModule,
     DetailsModule,
     NgbModule,

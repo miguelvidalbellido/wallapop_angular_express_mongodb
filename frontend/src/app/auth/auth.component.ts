@@ -2,14 +2,14 @@ import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
-// import { Errors, UserService } from '../core';
-import {  UserService } from '../core';
+import { Errors, UserService } from '../core';
 
 @Component({
   selector: 'app-auth-page',
   templateUrl: './auth.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
+
 export class AuthComponent implements OnInit {
   authType: String = '';
   title: String = '';

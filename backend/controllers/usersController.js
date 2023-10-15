@@ -44,7 +44,7 @@ const createUser = asyncHandler(async (req, res) => {
 
     if(createdUser) {
         res.status(201).json({
-            user: await createdUser.toUserResponse()
+            user: await createdUser.toUserResponseWithToken()
         })
     } else {
         res.status(422).json({
@@ -82,7 +82,7 @@ const userLogin = asyncHandler(async (req, res) => {
     }
 
     return res.status(200).json({
-        user: await loginUser.toUserResponse()
+        user: await loginUser.toUserResponseWithToken()
     })
 
 })
@@ -92,9 +92,15 @@ const userLogin = asyncHandler(async (req, res) => {
 ////////////////////////////////////////////////
 
 const getCurrentUser = asyncHandler(async (req,res) => {
-    const username = req.body.username;
+    const email = req.userEmail;
+    
+    if(!email) {
+        return res.status(404).json({
+            message: "Email Error"
+        });
+     }
 
-    const user = await User.findOne({username: username});
+     const user = await User.findOne({email: email});
 
     if(!user) {
         return res.status(404).json({
@@ -103,7 +109,7 @@ const getCurrentUser = asyncHandler(async (req,res) => {
     }
 
     return res.status(200).json({
-        user: await user.toUserResponse()
+        user: await user.toUserResponseWithToken()
     });
 
 })
@@ -126,9 +132,55 @@ const getAllInfoUser = asyncHandler(async (req, res) => {
     })
 })
 
+//////////////////////////////////////////////////
+/////////           UPDATE_USER           ///////
+////////////////////////////////////////////////
+
+const updateUser = asyncHandler(async (req, res) => {
+    const { user } = req.body;
+
+    // confirm data
+    if (!user) {
+        return res.status(400).json({message: "Required a User object"});
+    }
+
+    const email = req.userEmail;
+
+    const target = await User.findOne({ email: email }).exec();
+    
+    if (!target) {
+        // Si no se encontró un usuario con ese email, puedes manejarlo como quieras
+        return res.status(404).json({ message: "User not found" });
+    }
+
+    if (user.email) {
+        target.email = user.email;
+    }
+    if (user.username) {
+        target.username = user.username;
+    }
+    if (user.password) {
+        const hashedPwd = await bcrypt.hash(user.passwordHash, 10);
+        target.passwordHash = hashedPwd;
+    }
+    if (typeof user.profileImage !== 'undefined') {
+        target.profileImage = user.profileImage;
+    }
+    if (typeof user.userBio !== 'undefined') {
+        target.userBio = user.userBio;
+    }
+    await target.save();
+
+    return res.status(200).json({
+        user: await target.toUserResponseWithToken()
+    });
+
+});
+
 module.exports = {
     createUser,
     getAllInfoUser,
     userLogin,
-    getCurrentUser
+    getCurrentUser,
+    updateUser
 }

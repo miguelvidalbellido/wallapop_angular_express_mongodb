@@ -12,10 +12,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ShopModule } from './shop/shop.module';
 import { DetailsModule } from './details/details.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AuthComponent } from './auth/auth.component';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -23,6 +25,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     SharedModule,
     CoreModule,
     HomeModule,
+    AuthModule,
     ShopModule,
     DetailsModule,
     NgbModule,

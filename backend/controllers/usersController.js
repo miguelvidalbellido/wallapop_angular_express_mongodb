@@ -19,6 +19,7 @@ const createUser = asyncHandler(async (req, res) => {
     }
 
     const usernameExists = await User.findOne({username: req.body.username});
+    console.log(usernameExists);
     
     if(usernameExists !== null) {
         return res.status(411).send({message: 'username already exists'});
@@ -63,9 +64,9 @@ const createUser = asyncHandler(async (req, res) => {
 ////////////////////////////////////////////////
 
 const userLogin = asyncHandler(async (req, res) => {
-    const { username, password } = req.body;
+    const { email, password } = req.body.user;
 
-    const loginUser = await User.findOne({username: username});
+    const loginUser = await User.findOne({email: email});
 
     if(!loginUser) {
         return res.status(404).json({
@@ -126,7 +127,7 @@ const getAllInfoUser = asyncHandler(async (req, res) => {
 
     return res.status(200).json({
         users: await Promise.all(getUsers.map(async user => {
-            return await user.toUserResponse();
+            return await user.toUserResponseWithToken();
         })),
         usersCount: getUsersCount
     })

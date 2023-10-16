@@ -6,6 +6,9 @@ import { JwtService } from './jwt.service';
 import { User } from '../models';
 import { map ,  distinctUntilChanged } from 'rxjs/operators';
 
+@Injectable({
+  providedIn: 'root'
+})
 export class UserService {
     private currentUserSubject = new BehaviorSubject<User>({} as User);
     public currentUser = this.currentUserSubject.asObservable().pipe(distinctUntilChanged());
@@ -24,8 +27,10 @@ export class UserService {
       // If JWT detected, attempt to get & store user's info
       const token = this.jwtService.getToken();
       if (token) {
-        this.apiService.get("/user").subscribe(
+        this.apiService.get("/api/users/dataUser").subscribe(
           (data) => {
+            console.log(data);
+            
             return this.setAuth({ ...data.user, token });
           },
           (err) => this.purgeAuth()
@@ -55,8 +60,8 @@ export class UserService {
     }
   
     attemptAuth(type: any, credentials: any): Observable<User> {
-      const route = (type === 'login') ? '/login' : '';
-      return this.apiService.post(`/users${route}`, {user: credentials})
+      const route = (type === 'login') ? '/userLogin' : '';
+      return this.apiService.post(`/api/users${route}`, {user: credentials})
         .pipe(map(
         data => {
           this.setAuth(data.user);

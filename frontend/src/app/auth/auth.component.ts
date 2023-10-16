@@ -1,8 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-
-import { Errors, UserService } from '../core';
+import { UserService } from '../core';
 
 @Component({
   selector: 'app-auth-page',
@@ -13,9 +12,8 @@ import { Errors, UserService } from '../core';
 export class AuthComponent implements OnInit {
   authType: String = '';
   title: String = '';
-  errors: Errors = {errors: {}};
+  // errors: Errors = {errors: {}};
   isSubmitting = false;
-  authForm: FormGroup;
 
   constructor(
     private route: ActivatedRoute,
@@ -30,6 +28,8 @@ export class AuthComponent implements OnInit {
       'password': ['', Validators.required]
     });
   }
+
+  authForm: FormGroup;
 
   ngOnInit() {
     this.route.url.subscribe(data => {
@@ -47,7 +47,8 @@ export class AuthComponent implements OnInit {
 
   submitForm() {
     this.isSubmitting = true;
-    this.errors = {errors: {}};
+    // this.errors = {errors: {}};
+
 
     const credentials = this.authForm.value;
     this.userService
@@ -55,7 +56,7 @@ export class AuthComponent implements OnInit {
     .subscribe(
       data => this.router.navigateByUrl('/'),
       err => {
-        this.errors = err;
+        // this.errors = err;
         this.isSubmitting = false;
         this.cd.markForCheck();
       }

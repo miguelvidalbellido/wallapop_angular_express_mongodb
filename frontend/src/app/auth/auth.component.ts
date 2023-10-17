@@ -2,6 +2,11 @@ import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../core';
+import {
+  MatSnackBar,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition,
+} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-auth-page',
@@ -20,7 +25,8 @@ export class AuthComponent implements OnInit {
     private router: Router,
     private userService: UserService,
     private fb: FormBuilder,
-    private cd: ChangeDetectorRef
+    private cd: ChangeDetectorRef,
+    private _snackbar: MatSnackBar
   ) {
     // use FormBuilder to create a form group
     this.authForm = this.fb.group({
@@ -28,6 +34,9 @@ export class AuthComponent implements OnInit {
       'password': ['', Validators.required]
     });
   }
+  // Snackbar
+  horizontalPosition: MatSnackBarHorizontalPosition = 'start';
+  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
 
   authForm: FormGroup;
 
@@ -57,9 +66,38 @@ export class AuthComponent implements OnInit {
       data => this.router.navigateByUrl('/'),
       err => {
         // this.errors = err;
+        this.errorControl(err.message)
         this.isSubmitting = false;
         this.cd.markForCheck();
       }
     );
   }
+
+  errorControl(errMsg: String) {
+    switch (errMsg) {
+      case 'username already exists':
+        this.showSnackBar("El usuario introducido no es valido");
+        break;
+      case 'email already exists':
+        this.showSnackBar("El email introducido no es valido");
+        break;
+      case 'Unauthorized: Wrong password':
+        this.showSnackBar("Contraseña Incorrecta");
+        break;
+      case 'User Not Found':
+        this.showSnackBar("La dirección email no existe");
+        break;
+      default:
+        console.log("err");
+    }
+  
+  }
+
+  showSnackBar(msg: string) {
+    this._snackbar.open(msg, 'Aceptar', {
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+    });
+  }
+
 }

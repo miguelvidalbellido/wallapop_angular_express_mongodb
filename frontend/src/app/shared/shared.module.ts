@@ -24,6 +24,9 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { FooterComponent } from './footer/footer.component';
 import { MatGridListModule } from '@angular/material/grid-list'
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ShowAuthedDirective } from './show-authed.directive';
 
 @NgModule({
     imports: [
@@ -39,7 +42,9 @@ import { MatGridListModule } from '@angular/material/grid-list'
         MatInputModule,
         MatMenuModule,
         MatButtonModule,
-        MatGridListModule
+        MatGridListModule,
+        MatFormFieldModule,
+        MatSnackBarModule
     ],
     declarations: [
     ListCategoriesComponent,
@@ -55,7 +60,7 @@ import { MatGridListModule } from '@angular/material/grid-list'
     PaginationComponent,
     MainMenuComponent,
     FooterComponent,
-    
+    ShowAuthedDirective
   ],
     exports: [
       ListCategoriesComponent,
@@ -76,7 +81,10 @@ import { MatGridListModule } from '@angular/material/grid-list'
       FooterComponent,
       MatGridListModule,
       FormsModule,
-      ReactiveFormsModule
+      ReactiveFormsModule,
+      MatFormFieldModule,
+      MatSnackBarModule,
+      ShowAuthedDirective
     ]
 })
 export class SharedModule {}

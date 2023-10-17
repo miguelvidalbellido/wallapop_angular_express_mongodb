@@ -25,11 +25,11 @@ const userSchema = new mongoose.Schema({
     },
     f_nac: {
         type: Date,
-        required: true
+        required: false
     },
     cp: {
         type: Number,
-        required: true
+        required: false
     },
     profileImage: {
         type: String,

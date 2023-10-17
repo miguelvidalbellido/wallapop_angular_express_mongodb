@@ -11,21 +11,22 @@ const bcrypt = require('bcrypt');
 ////////////////////////////////////////////////
 
 const createUser = asyncHandler(async (req, res) => {
-    
-    const { username, email, passwordHash, userBio, f_nac, cp, profileImage } = req.body;
+    // const { username, email, passwordHash, userBio, f_nac, cp, profileImage } = req.body.user;
+    const { username, email, password, profileImage } = req.body.user;
+
     let defaultProfileImage = "";
-    if(!username || !email || !passwordHash || !userBio || !f_nac || !cp) {
+
+    if(!username || !email || !password) {
         res.status(400).json({message: "All fields are required"})
     }
 
-    const usernameExists = await User.findOne({username: req.body.username});
-    console.log(usernameExists);
+    const usernameExists = await User.findOne({username: username});
     
     if(usernameExists !== null) {
         return res.status(411).send({message: 'username already exists'});
     }
 
-    const emailExists = await User.findOne({email: req.body.email});
+    const emailExists = await User.findOne({email: email});
 
     if(emailExists !== null) {
         return res.status(411).send({message: 'email already exists'});
@@ -39,10 +40,10 @@ const createUser = asyncHandler(async (req, res) => {
     }
 
     // Encriptamos la contraseña antes de guardarla
-    const hashedPassword = await bcrypt.hash(passwordHash, 10);
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-    const createdUser = await User.create({username, email, passwordHash: hashedPassword, userBio, f_nac, cp, profileImage: defaultProfileImage});
-
+    //const createdUser = await User.create({username, email, passwordHash: hashedPassword, userBio, f_nac, cp, profileImage: defaultProfileImage});
+    const createdUser = await User.create({username, email, passwordHash: hashedPassword, profileImage: defaultProfileImage});
     if(createdUser) {
         res.status(201).json({
             user: await createdUser.toUserResponseWithToken()
@@ -64,10 +65,11 @@ const createUser = asyncHandler(async (req, res) => {
 ////////////////////////////////////////////////
 
 const userLogin = asyncHandler(async (req, res) => {
+    // Se puede realizar el login por email o username, como el front solo tiene username, aqui haremos la distincion
     const { email, password } = req.body.user;
 
-    const loginUser = await User.findOne({email: email});
-
+    const loginUser = await User.findOne({$or: [{email: email}, {username: email}]});
+    
     if(!loginUser) {
         return res.status(404).json({
             message: "User Not Found"

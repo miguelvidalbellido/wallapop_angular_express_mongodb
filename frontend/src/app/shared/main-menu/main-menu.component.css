@@ -1,0 +1,26 @@
+.header {
+    padding-top: 0.5vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+}
+
+.user-info {
+    display: flex;
+    align-items: flex-end;
+    margin-right: 2vw;;
+}
+
+/* Estilo para la imagen para que sea redonda y adaptativa */
+.rounded-image {
+    border-radius: 50%; /* Hacer que la imagen sea completamente redonda */
+    width: 40px; /* Establece el ancho deseado */
+    height: 40px; /* Establece el alto deseado */
+    object-fit: cover;
+    margin-left: 1vw;
+}

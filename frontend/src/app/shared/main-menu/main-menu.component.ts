@@ -16,8 +16,6 @@ currentUser!: User;
   ngOnInit(): void {
     this.userService.currentUser.subscribe(
       (userData) => {
-        console.log(userData);
-        
         this.currentUser = userData;
       }
     );

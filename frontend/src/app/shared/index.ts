@@ -6,3 +6,4 @@ export * from './carousel';
 export * from './card-carousel';
 export * from './main-menu';
 export * from './footer';
+export * from './show-authed.directive';

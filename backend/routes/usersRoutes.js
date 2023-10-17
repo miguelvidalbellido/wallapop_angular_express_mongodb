@@ -6,7 +6,7 @@ const usersController = require('../controllers/usersController');
 
 router.get('/all', usersController.getAllInfoUser);
 router.post('/', usersController.createUser);
-router.post('/userLogin', usersController.userLogin);
+router.post('/login', usersController.userLogin);
 router.get('/dataUser', verifyJWT, usersController.getCurrentUser);
 router.put('/update', verifyJWT, usersController.updateUser);
 

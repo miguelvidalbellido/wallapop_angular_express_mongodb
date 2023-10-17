@@ -4,7 +4,7 @@
         <button mat-button [routerLink]="['/shop']">Tienda</button>
         <div *appShowAuthed="false">
             <button mat-button [routerLink]="['/login']" routerLinkActive="active">Login</button>
-            <button mat-button [routerLink]="['/register']" routerLinkActive="active">Register</button>    
+            <button mat-button [routerLink]="['/register']" routerLinkActive="active">Register</button>
         </div>
         
         
@@ -12,5 +12,6 @@
     <div class="user-info" *appShowAuthed="true">
         <p>{{ currentUser.username }}</p>
         <img mat-card-sm-image src="{{ currentUser.profileImage }}" class="rounded-image">
+        <button mat-button [routerLink]="['/profile']" routerLinkActive="active">Profile</button>    
     </div>
 </div>

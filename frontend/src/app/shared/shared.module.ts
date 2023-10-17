@@ -27,6 +27,7 @@ import { MatGridListModule } from '@angular/material/grid-list'
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ShowAuthedDirective } from './show-authed.directive';
+import { SettingsComponent } from './cmp-profile/settings/settings.component';
 
 @NgModule({
     imports: [
@@ -60,7 +61,8 @@ import { ShowAuthedDirective } from './show-authed.directive';
     PaginationComponent,
     MainMenuComponent,
     FooterComponent,
-    ShowAuthedDirective
+    ShowAuthedDirective,
+    SettingsComponent
   ],
     exports: [
       ListCategoriesComponent,
@@ -84,7 +86,8 @@ import { ShowAuthedDirective } from './show-authed.directive';
       ReactiveFormsModule,
       MatFormFieldModule,
       MatSnackBarModule,
-      ShowAuthedDirective
+      ShowAuthedDirective,
+      SettingsComponent
     ]
 })
 export class SharedModule {}

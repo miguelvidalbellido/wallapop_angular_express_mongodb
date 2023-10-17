@@ -74,7 +74,9 @@ import { MatGridListModule } from '@angular/material/grid-list'
       MatButtonModule,
       MainMenuComponent,
       FooterComponent,
-      MatGridListModule
+      MatGridListModule,
+      FormsModule,
+      ReactiveFormsModule
     ]
 })
 export class SharedModule {}

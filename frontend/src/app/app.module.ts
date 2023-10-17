@@ -13,7 +13,7 @@ import { ShopModule } from './shop/shop.module';
 import { DetailsModule } from './details/details.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthModule } from './auth/auth.module';
-
+import { ProfileModule } from './profile/profile.module';
 @NgModule({
   declarations: [
     AppComponent
@@ -28,7 +28,8 @@ import { AuthModule } from './auth/auth.module';
     ShopModule,
     DetailsModule,
     NgbModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ProfileModule
   ],
   providers: [],
   bootstrap: [AppComponent]

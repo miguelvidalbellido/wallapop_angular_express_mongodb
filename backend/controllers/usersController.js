@@ -13,7 +13,7 @@ const bcrypt = require('bcrypt');
 const createUser = asyncHandler(async (req, res) => {
     // const { username, email, passwordHash, userBio, f_nac, cp, profileImage } = req.body.user;
     const { username, email, password, profileImage } = req.body.user;
-
+    console.log(password);
     let defaultProfileImage = "";
 
     if(!username || !email || !password) {
@@ -96,7 +96,6 @@ const userLogin = asyncHandler(async (req, res) => {
 
 const getCurrentUser = asyncHandler(async (req,res) => {
     const email = req.userEmail;
-    
     if(!email) {
         return res.status(404).json({
             message: "Email Error"
@@ -141,7 +140,7 @@ const getAllInfoUser = asyncHandler(async (req, res) => {
 
 const updateUser = asyncHandler(async (req, res) => {
     const { user } = req.body;
-
+    
     // confirm data
     if (!user) {
         return res.status(400).json({message: "Required a User object"});

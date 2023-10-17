@@ -29,8 +29,6 @@ export class UserService {
       if (token) {
         this.apiService.get("/api/users/dataUser").subscribe(
           (data) => {
-            console.log(data);
-            
             return this.setAuth({ ...data.user, token });
           },
           (err) => this.purgeAuth()

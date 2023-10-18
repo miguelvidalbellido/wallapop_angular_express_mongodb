@@ -2,3 +2,24 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.carousel-control-next-icon,
+.carousel-control-prev-icon {
+    background-color: black !important;
+}
+
+.carousel-control-next.ng-star-inserted {
+    margin-left: 7rem !important;
+}
+
+mdb-carousel {
+    padding: 1rem !important;
+    border-radius: 10px !important;
+    border: 1px solid transparent !important;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px !important;
+}
+
+.carousel-indicators .active {
+    background-color: red !important;
+}

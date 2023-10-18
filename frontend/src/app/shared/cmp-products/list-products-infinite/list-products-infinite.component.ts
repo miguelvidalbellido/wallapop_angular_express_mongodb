@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import { Producto, ProductosService } from 'src/app/core';
 
@@ -10,6 +11,7 @@ export class ListProductsInfiniteComponent implements OnInit{
 
   products: Producto[] = [];
   offset: number = 0;
+  count: number = 0;
 
   constructor( private productsService: ProductosService ) {
 
@@ -31,16 +33,20 @@ export class ListProductsInfiniteComponent implements OnInit{
   getProducts() {
     const QUANTITY_PRODUCTS = 3;
     const params = this.getRequestParams(this.offset, QUANTITY_PRODUCTS);
+    if(this.count < 2) {
+      this.productsService.getInfinite(params).subscribe(
+        (data) => {
+          this.products = this.products.concat(data.products);
+          this.offset = this.offset + 3;
+        },
+        (error) => {
+          // Mostrar error
+        }
+      )
+    }
+    
 
-    this.productsService.getInfinite(params).subscribe(
-      (data) => {
-        this.products = this.products.concat(data.products);
-        this.offset = this.offset + 3;
-      },
-      (error) => {
-        // Mostrar error
-      }
-    )
+    this.count++;
 
   }
 

@@ -4,9 +4,10 @@
         <div class="row">
           <div *ngFor="let images of slides" class="col-md-3" >
             <img
-            src="https://picsum.photos/200/300"
+            src="{{images.images}}"
             class="d-block w-100"
             alt="..."
+            (click)="redirectShop(images.slug)"
           />
           </div>
         </div>

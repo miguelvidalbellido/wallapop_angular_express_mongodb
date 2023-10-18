@@ -139,8 +139,7 @@ const getAllInfoUser = asyncHandler(async (req, res) => {
 ////////////////////////////////////////////////
 
 const updateUser = asyncHandler(async (req, res) => {
-    const { user } = req.body;
-    
+    const user = req.body;
     // confirm data
     if (!user) {
         return res.status(400).json({message: "Required a User object"});

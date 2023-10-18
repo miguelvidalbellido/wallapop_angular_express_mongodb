@@ -12,6 +12,7 @@
     <div class="user-info" *appShowAuthed="true">
         <p>{{ currentUser.username }}</p>
         <img mat-card-sm-image src="{{ currentUser.profileImage }}" class="rounded-image">
-        <button mat-button [routerLink]="['/profile']" routerLinkActive="active">Profile</button>    
+        <button mat-button [routerLink]="['/profile']" routerLinkActive="active">Profile</button>
+        <button mat-button (click)="logout()">Cerrar sessión</button>    
     </div>
 </div>

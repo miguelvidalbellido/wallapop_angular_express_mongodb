@@ -8,6 +8,6 @@ router.get('/all', usersController.getAllInfoUser);
 router.post('/', usersController.createUser);
 router.post('/login', usersController.userLogin);
 router.get('/dataUser', verifyJWT, usersController.getCurrentUser);
-router.put('/update', verifyJWT, usersController.updateUser);
+router.put('/', verifyJWT, usersController.updateUser);
 
 module.exports = router;

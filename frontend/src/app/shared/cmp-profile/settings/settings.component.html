@@ -1,1 +1,29 @@
-<p>settings works!</p>
+<div class="UserUpdateForm">
+    <form [formGroup]="formUpdateUser">
+        <mat-form-field appearance="fill" >
+            <mat-label>Username</mat-label>
+            <input formControlName="username"  matInput type="text">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input formControlName="email"  matInput type="email">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Password</mat-label>
+            <input formControlName="password"  matInput type="password">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Imagen de perfil</mat-label>
+            <input formControlName="profileImage"  matInput type="text">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Codigo postal</mat-label>
+            <input formControlName="cp"  matInput type="number">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Fecha de nacimiento</mat-label>
+            <input formControlName="f_nac"  matInput type="date">
+        </mat-form-field>
+        <button mat-stroked-button (click)="updateUser()" color="accent">Actualizar</button>
+    </form>
+  </div>

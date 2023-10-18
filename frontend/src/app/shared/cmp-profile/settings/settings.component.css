@@ -1,0 +1,5 @@
+.UserUpdateForm {
+    margin-top: 1vw;
+    display: flex;
+    flex-direction: column;
+}

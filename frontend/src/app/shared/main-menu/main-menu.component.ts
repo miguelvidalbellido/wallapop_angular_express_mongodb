@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { User, UserService } from 'src/app/core';
+import {
+  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition,
+} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-main-menu',
@@ -8,10 +14,17 @@ import { User, UserService } from 'src/app/core';
 })
 export class MainMenuComponent implements OnInit{
 
-constructor(private userService: UserService){
+constructor(
+  private userService: UserService,
+  private router: Router,
+  private _snackbar: MatSnackBar){
 
 }
 currentUser!: User;
+
+// Snackbar
+horizontalPosition: MatSnackBarHorizontalPosition = 'end';
+verticalPosition: MatSnackBarVerticalPosition = 'top';
 
   ngOnInit(): void {
     this.userService.currentUser.subscribe(
@@ -21,4 +34,18 @@ currentUser!: User;
     );
 
   }
+
+  logout() {
+    this.showSnackBar();
+    this.userService.purgeAuth();
+    this.router.navigateByUrl('/');
+  }
+
+  showSnackBar() {
+    this._snackbar.open("Sesion cerrada", 'Aceptar', {
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+    });
+  }
+
 }

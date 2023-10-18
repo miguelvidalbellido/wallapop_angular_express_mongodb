@@ -84,4 +84,6 @@ userSchema.methods.toUserResponseWithToken = async function() {
     }
 }
 
+
+
 module.exports = mongoose.model('User', userSchema);

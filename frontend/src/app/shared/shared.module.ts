@@ -28,6 +28,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ShowAuthedDirective } from './show-authed.directive';
 import { SettingsComponent } from './cmp-profile/settings/settings.component';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
     imports: [
@@ -45,7 +46,8 @@ import { SettingsComponent } from './cmp-profile/settings/settings.component';
         MatButtonModule,
         MatGridListModule,
         MatFormFieldModule,
-        MatSnackBarModule
+        MatSnackBarModule,
+        MatTabsModule
     ],
     declarations: [
     ListCategoriesComponent,
@@ -87,7 +89,8 @@ import { SettingsComponent } from './cmp-profile/settings/settings.component';
       MatFormFieldModule,
       MatSnackBarModule,
       ShowAuthedDirective,
-      SettingsComponent
+      SettingsComponent,
+      MatTabsModule
     ]
 })
 export class SharedModule {}

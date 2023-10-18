@@ -35,8 +35,8 @@ export class AuthComponent implements OnInit {
     });
   }
   // Snackbar
-  horizontalPosition: MatSnackBarHorizontalPosition = 'start';
-  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+  horizontalPosition: MatSnackBarHorizontalPosition = 'end';
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
 
   authForm: FormGroup;
 

@@ -139,7 +139,8 @@ const getAllInfoUser = asyncHandler(async (req, res) => {
 ////////////////////////////////////////////////
 
 const updateUser = asyncHandler(async (req, res) => {
-    const user = req.body;
+    const { user } = req.body;
+
     // confirm data
     if (!user) {
         return res.status(400).json({message: "Required a User object"});
@@ -164,12 +165,13 @@ const updateUser = asyncHandler(async (req, res) => {
         const hashedPwd = await bcrypt.hash(user.passwordHash, 10);
         target.passwordHash = hashedPwd;
     }
-    if (typeof user.profileImage !== 'undefined') {
+    if (user.profileImage) {
         target.profileImage = user.profileImage;
     }
-    if (typeof user.userBio !== 'undefined') {
+    if (user.userBio) {
         target.userBio = user.userBio;
     }
+
     await target.save();
 
     return res.status(200).json({

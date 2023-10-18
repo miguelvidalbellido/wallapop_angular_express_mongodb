@@ -43,7 +43,9 @@ export class SettingsComponent implements OnInit{
     const dataUser = this.formUpdateUser.value;
     
     if(dataUser) {
-      this.userService.update(dataUser);
+      this.userService.update(dataUser).subscribe((data) => {
+        console.log(data);
+      });
     }
     
   }

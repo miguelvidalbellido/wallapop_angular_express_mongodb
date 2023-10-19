@@ -3,12 +3,14 @@ const asyncHandler = require('express-async-handler');
 // Import models
 const Product = require('../models/Product');
 const Category = require('../models/Category');
-
+const User = require('../models/User');
 //////////////////////////////////////////////////
 /////////       LIST_PRODUCTS       /////////////
 ////////////////////////////////////////////////
 
 const listProducts = asyncHandler(async (req, res) => {
+    const userEmailExists = req.userEmail; 
+    
     let limit = 4;
     let offset = 0;
     let query = {};
@@ -104,12 +106,16 @@ const listProducts = asyncHandler(async (req, res) => {
         .skip(Number(offset))
         .sort(sort).exec()
 
+    
     const productCount = await Product.count(query);
-
+    
+    // TEMA LIKES
+    //const user = await User.findOne({email: userEmailExists});
+    
 
     return res.status(200).json({
         products: await Promise.all(filteredProducts.map(async product => {
-            return await product.toProductResponse();
+            return await product.toProductResponseLikes(userEmailExists);
         })),
         productsCount: productCount
     })
@@ -170,6 +176,39 @@ const createProduct = asyncHandler(async (req, res) => {
 
 });
 
+//////////////////////////////////////////////////
+/////////       LIKE_PRODUCT       ///////////
+////////////////////////////////////////////////
+const likeOrDislikeProduct = asyncHandler(async (req, res) => {
+    const slugProduct = req.params.slug;
+    const userEmail = req.userEmail;
+
+    const user = await User.findOne({ email: userEmail });
+    const product = await Product.findOne({slug: slugProduct});
+
+    if(!product) {
+        res.status(400).json({message: "slug error"});
+    }
+
+    const existsLike = await user.isFavourite(product.id);
+
+    if(existsLike) {
+        await user.unfavorite(product.id);
+        await product.decreaseLikes();
+    } else {
+        await user.favorite(product.id);
+        await product.increaseLikes();
+
+    }
+
+    
+
+    return await res.status(200).json({
+        change_favourite: true
+    })
+
+});
+
 // Internal function
 
 const obtainMaxPrice = asyncHandler(async () => {
@@ -180,5 +219,6 @@ const obtainMaxPrice = asyncHandler(async () => {
 module.exports = {
     listProducts,
     createProduct,
-    getProduct
+    getProduct,
+    likeOrDislikeProduct
 }

@@ -13,7 +13,10 @@ const routes: Routes = [
     path: 'register',
     component: AuthComponent,
     canActivate: [NoAuthGuard]
-  }
+  },{
+    path: '**',
+    redirectTo: 'home'
+   }
 ];
 
 @NgModule({

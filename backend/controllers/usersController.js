@@ -43,7 +43,7 @@ const createUser = asyncHandler(async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     //const createdUser = await User.create({username, email, passwordHash: hashedPassword, userBio, f_nac, cp, profileImage: defaultProfileImage});
-    const createdUser = await User.create({username, email, passwordHash: hashedPassword, profileImage: defaultProfileImage});
+    const createdUser = await User.create({username, email, passwordHash: hashedPassword, profileImage: defaultProfileImage, productsLike: []});
     if(createdUser) {
         res.status(201).json({
             user: await createdUser.toUserResponseWithToken()

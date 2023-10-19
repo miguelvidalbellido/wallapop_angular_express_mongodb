@@ -38,7 +38,11 @@ const userSchema = new mongoose.Schema({
     usersFollowing: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
-    }
+    },
+    productsLike: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Product'
+    }]
 }, {
     timestamps: true
 });
@@ -58,6 +62,32 @@ userSchema.methods.generateAccessToken = function() {
     );
     return accessToken;
 }
+
+userSchema.methods.isFavourite = function (id) {
+    const idStr = id.toString();
+    for (const product of this.productsLike) {
+        if (product.toString() === idStr) {
+            return true;
+        }
+    }
+    return false;
+}
+
+userSchema.methods.favorite = function (id) {
+    if(this.productsLike.indexOf(id) === -1){
+        this.productsLike.push(id);
+    }
+
+    return this.save();
+}
+
+userSchema.methods.unfavorite = function (id) {
+    if(this.productsLike.indexOf(id) !== -1){
+        this.productsLike.remove(id);
+    }
+
+    return this.save();
+};
 
 userSchema.methods.toUserResponse = async function() {
     return {

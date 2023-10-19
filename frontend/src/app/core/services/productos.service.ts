@@ -43,6 +43,11 @@ export class ProductosService {
         .pipe(map(data => data.product))
     }
 
+    favourite(slug?: String): Observable<boolean> {
+        return this.apiService.put('/api/products/favourite/'+slug)
+        .pipe(map(data => data.change_favourite))
+    }
+
     // updateOne(productoMod: any): Observable<String> {
     //     return this.apiService.put('/api/productos/' + productoMod.id, productoMod)
     //     .pipe(map(data => data))

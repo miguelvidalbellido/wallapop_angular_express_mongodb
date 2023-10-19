@@ -10,7 +10,7 @@
         <a [routerLink]="['/details/', dataProduct.slug]" class="btn">Ver</a>
       </div>
       <div>
-        <app-like [slugProduct]="dataProduct.slug" [like]="false"></app-like>
+        <app-like [slugProduct]="dataProduct.slug" [like]="dataProduct.isFavourited"></app-like>
       </div>
     </div>
 </div>

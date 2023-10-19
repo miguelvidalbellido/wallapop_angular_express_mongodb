@@ -3,25 +3,18 @@ const router = express.Router();
 // const verifyJWT = require('../middleware/verifyJWT');
 // const verifyJWTOptional = require('../middleware/verifyJWTOptional');
 const productController = require('../controllers/productsController');
+const verifyJWT = require('../middleware/verifyJWT');
+const verifyJWTOptional = require('../middleware/verifyJWToptional');
 
 // feed endpoint must go before :slug endpoint
-router.get('/', productController.listProducts);
+router.get('/',verifyJWTOptional, productController.listProducts);
 
 router.get('/:slug', productController.getProduct);
 
 router.post('/', productController.createProduct);
 
 router.get('/categories/:slug', productController.listProducts);
-
-
-// router.delete('/:slug', verifyJWT, articleController.deleteArticle);
-
-// router.post('/:slug/favorite', verifyJWT, articleController.favoriteArticle);
-
-// router.delete('/:slug/favorite', verifyJWT, articleController.unfavoriteArticle);
-
-// router.put('/:slug', verifyJWT, articleController.updateArticle);
-
+router.put('/favourite/:slug',verifyJWT, productController.likeOrDislikeProduct)
 
 
 module.exports = router;

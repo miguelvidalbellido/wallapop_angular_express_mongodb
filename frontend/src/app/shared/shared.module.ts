@@ -29,6 +29,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ShowAuthedDirective } from './show-authed.directive';
 import { SettingsComponent } from './cmp-profile/settings/settings.component';
 import {MatTabsModule} from '@angular/material/tabs';
+import { LikeComponent } from './cmp-products/like/like.component';
+import { MatIconModule } from "@angular/material/icon";
 
 @NgModule({
     imports: [
@@ -47,7 +49,8 @@ import {MatTabsModule} from '@angular/material/tabs';
         MatGridListModule,
         MatFormFieldModule,
         MatSnackBarModule,
-        MatTabsModule
+        MatTabsModule,
+        MatIconModule
     ],
     declarations: [
     ListCategoriesComponent,
@@ -64,7 +67,8 @@ import {MatTabsModule} from '@angular/material/tabs';
     MainMenuComponent,
     FooterComponent,
     ShowAuthedDirective,
-    SettingsComponent
+    SettingsComponent,
+    LikeComponent
   ],
     exports: [
       ListCategoriesComponent,
@@ -90,7 +94,9 @@ import {MatTabsModule} from '@angular/material/tabs';
       MatSnackBarModule,
       ShowAuthedDirective,
       SettingsComponent,
-      MatTabsModule
+      MatTabsModule,
+      LikeComponent,
+      MatIconModule
     ]
 })
 export class SharedModule {}

@@ -9,5 +9,8 @@
         <div class="price">{{dataProduct.price}} €</div>
         <a [routerLink]="['/details/', dataProduct.slug]" class="btn">Ver</a>
       </div>
+      <div>
+        <app-like [slugProduct]="dataProduct.slug" [like]="false"></app-like>
+      </div>
     </div>
 </div>

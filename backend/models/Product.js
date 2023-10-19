@@ -86,8 +86,13 @@ productSchema.methods.toProductResponse = async function() {
 
 productSchema.methods.toProductResponseLikes = async function(userEmail) {
     const categoryObj = await Category.findById(this.category).exec();// Obtenemos el object id de category para obtener el nombre
-    const user = await User.findOne({email: userEmail});
-    const favorito = await user.isFavourite(this.id);
+    if(userEmail) {
+        const user = await User.findOne({email: userEmail});
+        const favorito = await user.isFavourite(this.id);
+    } else {
+        favorito = false
+    }
+    
     return {
         slug: this.slug,
         title: this.title,
@@ -98,7 +103,7 @@ productSchema.methods.toProductResponseLikes = async function(userEmail) {
         favouritesCount: this.favouritesCount,
         visitsCount: this.visitsCount,
         category: categoryObj?.name,
-        isFavourited: favorito || false
+        isFavourited: favorito 
     }
 }
 

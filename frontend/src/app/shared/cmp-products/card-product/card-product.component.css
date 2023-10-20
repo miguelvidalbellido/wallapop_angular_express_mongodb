@@ -11,10 +11,10 @@ body {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 2em;
+    /* gap: 2em;
     margin-left: 10em;
     margin-right: 10em;
-    margin-top: 5em;
+    margin-top: 5em; */
   }
 
   .card {
@@ -24,6 +24,7 @@ body {
     background-color: #F5F5F5;
     border: 0;
     box-shadow: 0 7px 7px rgba(0, 0, 0, 0.18);
+    max-width: 100%;
     /* margin: 3em auto; */
   }
   .card.dark {

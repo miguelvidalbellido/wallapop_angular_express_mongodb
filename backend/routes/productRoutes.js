@@ -7,14 +7,14 @@ const verifyJWT = require('../middleware/verifyJWT');
 const verifyJWTOptional = require('../middleware/verifyJWToptional');
 
 // feed endpoint must go before :slug endpoint
-router.get('/',verifyJWTOptional, productController.listProducts);
+router.get('/', verifyJWTOptional, productController.listProducts);
 
-router.get('/:slug', productController.getProduct);
+router.get('/:slug', verifyJWTOptional, productController.getProduct);
 
 router.post('/', productController.createProduct);
 
 router.get('/categories/:slug', productController.listProducts);
-router.put('/favourite/:slug',verifyJWT, productController.likeOrDislikeProduct)
+router.put('/favourite/:slug', verifyJWT, productController.likeOrDislikeProduct)
 
 
 module.exports = router;

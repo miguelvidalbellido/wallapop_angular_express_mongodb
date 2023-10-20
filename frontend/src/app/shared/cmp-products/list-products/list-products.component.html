@@ -6,13 +6,13 @@
       <app-filters (filterEvent)="getListFiltered($event)"></app-filters>
     </div>
     <div class="col-md-9">
-      <div class="container row">
-        <div *ngIf="!dataProducts">
-          <p>no hay productos</p>
+      <div class="container row align-items-center">
+        <div *ngIf="dataProducts!.length === 0" >
+          <h2 class="text-center mt-2">No se han encontrado productos con los parámetros indicados.</h2>
         </div>
         <div class="container">
           <div class="row">
-            <div *ngFor="let item of dataProducts" class="my-2 col-md-4 align-imtes-center">
+            <div *ngFor="let item of dataProducts" class="my-2 col-lg-4 col-md-6">
               <app-card-product 
               [dataProduct]="item"></app-card-product>
             </div>

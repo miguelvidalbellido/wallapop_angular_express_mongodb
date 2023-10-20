@@ -39,7 +39,7 @@ export class SearchComponent implements OnInit{
   searchProducts(){
     const DATA_FORM = this.form.value;
     const encodeFormGroupFilter = btoa(JSON.stringify(DATA_FORM)); // Se codifican los filtros
-    this.router.navigateByUrl('/shop/' + `?filters=${encodeFormGroupFilter}`); // Se almacenan en la url
+    this.router.navigateByUrl('/shop' + `?filters=${encodeFormGroupFilter}`); // Se almacenan en la url
   }
 
 

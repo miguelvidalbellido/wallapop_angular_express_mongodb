@@ -48,8 +48,14 @@ export class ProductosService {
         .pipe(map(data => data.change_favourite))
     }
 
-    // updateOne(productoMod: any): Observable<String> {
-    //     return this.apiService.put('/api/productos/' + productoMod.id, productoMod)
-    //     .pipe(map(data => data))
-    // }
+    getFavouritedProductsOfCurrentUser(params: any): Observable<ProductoAndCount> {
+        return this.apiService.get(
+            '/api/products/user/favorites',
+            new HttpParams({fromObject: params})).pipe(
+                map((data) => ({
+                    products: data.products,
+                    countProducts: data.productsCount
+                }))
+            )
+    }
 }

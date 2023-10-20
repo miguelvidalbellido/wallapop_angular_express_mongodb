@@ -16,5 +16,7 @@ router.post('/', productController.createProduct);
 router.get('/categories/:slug', productController.listProducts);
 router.put('/favourite/:slug', verifyJWT, productController.likeOrDislikeProduct)
 
+router.get('/user/favorites', verifyJWT, productController.productsLikeByUser);
+
 
 module.exports = router;

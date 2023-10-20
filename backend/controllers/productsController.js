@@ -212,6 +212,32 @@ const likeOrDislikeProduct = asyncHandler(async (req, res) => {
 
 });
 
+
+//////////////////////////////////////////////////
+/////////       LIKE_PRODUCT       ///////////
+////////////////////////////////////////////////
+const productsLikeByUser = asyncHandler(async (req, res) => {
+    const userEmail = req.userEmail;
+
+    const user = await User.findOne({ email: userEmail });
+
+    if(!user) {
+        res.status(400).json({message: "user error"});
+    }
+
+    const productsLike = await Product.find({_id: {$in: user.productsLike}})
+    
+    const productCount = await Product.count({_id: {$in: user.productsLike}});
+
+    return await res.status(200).json({
+        products: await Promise.all(productsLike.map(async product => {
+            return await product.toProductResponseLikes();
+        })),
+        productsCount: productCount
+    })
+
+});
+
 // Internal function
 
 const obtainMaxPrice = asyncHandler(async () => {
@@ -223,5 +249,6 @@ module.exports = {
     listProducts,
     createProduct,
     getProduct,
-    likeOrDislikeProduct
+    likeOrDislikeProduct,
+    productsLikeByUser
 }

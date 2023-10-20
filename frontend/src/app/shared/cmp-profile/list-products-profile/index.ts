@@ -1,0 +1,1 @@
+export * from './list-products-profile.component';

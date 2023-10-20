@@ -32,6 +32,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { LikeComponent } from './cmp-products/like/like.component';
 import { MatIconModule } from "@angular/material/icon";
 import { ProfileDetailsComponent } from './cmp-profile/profile-details/profile-details.component';
+import { ListProductsProfileComponent } from './cmp-profile/list-products-profile/list-products-profile.component';
 
 @NgModule({
     imports: [
@@ -70,7 +71,8 @@ import { ProfileDetailsComponent } from './cmp-profile/profile-details/profile-d
     ShowAuthedDirective,
     SettingsComponent,
     LikeComponent,
-    ProfileDetailsComponent
+    ProfileDetailsComponent,
+    ListProductsProfileComponent
   ],
     exports: [
       ListCategoriesComponent,
@@ -99,7 +101,8 @@ import { ProfileDetailsComponent } from './cmp-profile/profile-details/profile-d
       MatTabsModule,
       LikeComponent,
       MatIconModule,
-      ProfileDetailsComponent
+      ProfileDetailsComponent,
+      ListProductsProfileComponent
     ]
 })
 export class SharedModule {}

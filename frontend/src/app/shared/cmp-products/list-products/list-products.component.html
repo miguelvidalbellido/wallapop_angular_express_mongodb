@@ -7,7 +7,7 @@
     </div>
     <div class="col-md-9">
       <div class="container row align-items-center">
-        <div *ngIf="dataProducts!.length === 0" >
+        <div *ngIf="!dataProducts" >
           <h2 class="text-center mt-2">No se han encontrado productos con los parámetros indicados.</h2>
         </div>
         <div class="container">

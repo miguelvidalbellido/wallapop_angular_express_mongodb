@@ -57,13 +57,15 @@ productSchema.pre('save', function(next){
 });
 
 productSchema.methods.increaseLikes = async function() {
-    this.favouritesCount += 1;
-    
+    const INCREMENT_ONE = 1;
+    this.favouritesCount += INCREMENT_ONE;
+
     await this.save()
 }
 
 productSchema.methods.decreaseLikes = async function() {
-    this.favouritesCount -= 1;
+    const DECREASE_ONE = 1;
+    this.favouritesCount -= DECREASE_ONE;
 
     await this.save()
 }
@@ -86,11 +88,10 @@ productSchema.methods.toProductResponse = async function() {
 
 productSchema.methods.toProductResponseLikes = async function(userEmail) {
     const categoryObj = await Category.findById(this.category).exec();// Obtenemos el object id de category para obtener el nombre
+    let favorito = false;
     if(userEmail) {
         const user = await User.findOne({email: userEmail});
-        const favorito = await user.isFavourite(this.id);
-    } else {
-        favorito = false
+        favorito = await user.isFavourite(this.id);
     }
     
     return {

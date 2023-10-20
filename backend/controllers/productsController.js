@@ -127,7 +127,7 @@ const listProducts = asyncHandler(async (req, res) => {
 ////////////////////////////////////////////////
 
 const getProduct = asyncHandler(async (req, res) => {
-
+    const userEmailExists = req.userEmail; 
     const slug = req.params.slug;
 
     if(!slug) {
@@ -141,7 +141,7 @@ const getProduct = asyncHandler(async (req, res) => {
     }
 
     res.status(200).json({
-        product: await product.toProductResponse()
+        product: await product.toProductResponseLikes(userEmailExists)
     });
 
 });
@@ -190,6 +190,10 @@ const likeOrDislikeProduct = asyncHandler(async (req, res) => {
         res.status(400).json({message: "slug error"});
     }
 
+    if(!user) {
+        res.status(400).json({message: "user error"});
+    }
+
     const existsLike = await user.isFavourite(product.id);
 
     if(existsLike) {
@@ -198,13 +202,38 @@ const likeOrDislikeProduct = asyncHandler(async (req, res) => {
     } else {
         await user.favorite(product.id);
         await product.increaseLikes();
-
     }
 
     
 
     return await res.status(200).json({
         change_favourite: true
+    })
+
+});
+
+
+//////////////////////////////////////////////////
+/////////       LIKE_PRODUCT       ///////////
+////////////////////////////////////////////////
+const productsLikeByUser = asyncHandler(async (req, res) => {
+    const userEmail = req.userEmail;
+
+    const user = await User.findOne({ email: userEmail });
+
+    if(!user) {
+        res.status(400).json({message: "user error"});
+    }
+
+    const productsLike = await Product.find({_id: {$in: user.productsLike}})
+    
+    const productCount = await Product.count({_id: {$in: user.productsLike}});
+
+    return await res.status(200).json({
+        products: await Promise.all(productsLike.map(async product => {
+            return await product.toProductResponseLikes();
+        })),
+        productsCount: productCount
     })
 
 });
@@ -220,5 +249,6 @@ module.exports = {
     listProducts,
     createProduct,
     getProduct,
-    likeOrDislikeProduct
+    likeOrDislikeProduct,
+    productsLikeByUser
 }

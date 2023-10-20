@@ -25,7 +25,7 @@ export class DetailsComponent implements OnInit {
         this.slug = params.get('slug') || undefined; // Nunca sera undefined ya que no entra en ese caso
 
         this.productosService.getOne(this.slug)
-        .subscribe((data) => {          
+        .subscribe((data) => {       
           this.dataProduct = data;
           this.carouselImages = data;
         })

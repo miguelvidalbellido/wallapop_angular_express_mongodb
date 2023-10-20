@@ -1,0 +1,6 @@
+<div class="row bg-light rounded">
+    <h2 class="text-center">{{ title }}</h2>
+    <div class="col-md-4" *ngFor="let product of dataProducts">
+        <app-card-product [dataProduct]="product"></app-card-product>
+    </div>
+</div>

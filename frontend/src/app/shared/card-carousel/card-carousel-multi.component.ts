@@ -39,6 +39,6 @@ constructor(private router: Router,
     console.log(DATA_FORM);
     
     const encodeFormGroupFilter = btoa(JSON.stringify(DATA_FORM)); // Se codifican los filtros
-    this.router.navigateByUrl('/shop/' + `?filters=${encodeFormGroupFilter}`); // Se almacenan en la url
+    this.router.navigateByUrl('/shop' + `?filters=${encodeFormGroupFilter}`); // Se almacenan en la url
   }
 }

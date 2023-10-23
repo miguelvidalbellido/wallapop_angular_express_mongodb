@@ -93,9 +93,14 @@ productSchema.methods.toProductResponse = async function() {
 productSchema.methods.toProductResponseLikes = async function(userEmail) {
     const categoryObj = await Category.findById(this.category).exec();// Obtenemos el object id de category para obtener el nombre
     let favorito = false;
+    let followed = false;
     if(userEmail) {
         const user = await User.findOne({email: userEmail});
+
         favorito = await user.isFavourite(this.id);
+        
+        if(this.productOwner)
+        followed = await user.isFollowing(this.productOwner);
     }
 
     // Obtenemos el usuario
@@ -112,7 +117,8 @@ productSchema.methods.toProductResponseLikes = async function(userEmail) {
         visitsCount: this.visitsCount,
         category: categoryObj?.name,
         isFavourited: favorito,
-        productOwner: user?.username || "nothing"
+        productOwner: user?.username || "nothing",
+        isFollowed: followed
     }
 }
 

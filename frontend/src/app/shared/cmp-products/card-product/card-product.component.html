@@ -9,9 +9,8 @@
       <div class="cta-section">
         <div class="price">{{dataProduct.price}} €</div>
         <a [routerLink]="['/details/', dataProduct.slug]" class="btn">Ver</a>
-        <app-follow [username]="dataProduct.productOwner || ' '">
-
-        </app-follow>
+        <app-follow [username]="dataProduct.productOwner || ' '"
+        [follow]="dataProduct.isFollowed || false"></app-follow>
       </div>
       <div>
         <app-like [slugProduct]="dataProduct.slug" [like]="dataProduct.isFavourited"></app-like>

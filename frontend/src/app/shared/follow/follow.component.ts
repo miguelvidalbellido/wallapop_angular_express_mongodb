@@ -18,6 +18,9 @@ export class FollowComponent implements OnInit{
   username!: String;
   user?: User;
 
+  @Input()
+  follow!: boolean;
+
   // Snackbar
   horizontalPosition: MatSnackBarHorizontalPosition = 'end';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
@@ -28,9 +31,7 @@ export class FollowComponent implements OnInit{
     private _snackbar: MatSnackBar
   ) {}
 
-  ngOnInit(): void {
-    
-  }
+  ngOnInit(): void { }
 
   controlClick(username: String) {
     this.user = this.userService.getCurrentUser();
@@ -39,9 +40,11 @@ export class FollowComponent implements OnInit{
       console.log("no puedes autoseguirte");
     } else {
       if(Object.entries(this.user).length !== 0) {
-      
-        console.log(username);
-          
+        this.userService.follow(username)
+        .subscribe((data) => {
+          if(data)
+          this.follow = this.follow ? false : true;
+        })
       } else {
         this.router.navigate(['/login']);
         this.showSnackBar();

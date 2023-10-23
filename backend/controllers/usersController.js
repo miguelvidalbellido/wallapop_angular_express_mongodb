@@ -209,7 +209,7 @@ const userFollow = asyncHandler(async (req, res) => {
     }
 
     return res.status(200).json({
-        user: await user.toUserResponseWithToken()
+        response: true
     });
 
 })

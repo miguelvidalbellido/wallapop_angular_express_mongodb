@@ -8,7 +8,8 @@ export interface Producto {
     favouritesCount: Number;
     visitsCount: Number;
     category: String;
-    isFavourited: boolean 
+    isFavourited: boolean;
+    productOwner?: String;
 }
 
 export interface ProductoAndCount {

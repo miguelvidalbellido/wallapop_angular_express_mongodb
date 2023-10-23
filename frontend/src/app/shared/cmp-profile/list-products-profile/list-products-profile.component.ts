@@ -19,7 +19,7 @@ export class ListProductsProfileComponent implements OnInit{
   dataProducts?: Producto[];
 
   ngOnInit(): void {
-    
+
   }
 
 }

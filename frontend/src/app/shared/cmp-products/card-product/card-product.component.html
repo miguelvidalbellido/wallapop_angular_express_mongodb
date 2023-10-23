@@ -1,13 +1,17 @@
-<div ngClass="card dark" >
+<div ngClass="card dark">
     <img [src]="dataProduct.images[0]" class="card-img-top" alt="...">
     <div class="card-body">
       <div class="text-section">
         <h5 class="card-title">{{ dataProduct.title }}</h5>
         <p class="card-text">{{ dataProduct.description }}</p>
+        <p class="card-text">{{ dataProduct.productOwner }}</p>
       </div>
       <div class="cta-section">
         <div class="price">{{dataProduct.price}} €</div>
         <a [routerLink]="['/details/', dataProduct.slug]" class="btn">Ver</a>
+        <app-follow [username]="dataProduct.productOwner || ' '">
+
+        </app-follow>
       </div>
       <div>
         <app-like [slugProduct]="dataProduct.slug" [like]="dataProduct.isFavourited"></app-like>

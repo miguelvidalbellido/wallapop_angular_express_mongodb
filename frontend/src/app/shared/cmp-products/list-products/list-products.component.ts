@@ -56,7 +56,7 @@ export class ListProductsComponent implements OnInit{
       params.title = this.titleProducts;
     } 
     this.productService.getInfinite(params)
-    .subscribe((data) => {   
+    .subscribe((data) => {  
       this.dataProducts = data.products;
       this.numItems = data.countProducts;
     })

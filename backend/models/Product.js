@@ -40,6 +40,10 @@ const productSchema = new mongoose.Schema({
     category: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Category'
+    },
+    productOwner: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
     }
 }, {
     timestamps: true
@@ -93,6 +97,9 @@ productSchema.methods.toProductResponseLikes = async function(userEmail) {
         const user = await User.findOne({email: userEmail});
         favorito = await user.isFavourite(this.id);
     }
+
+    // Obtenemos el usuario
+    const user = await User.findById(this.productOwner).exec()
     
     return {
         slug: this.slug,
@@ -104,7 +111,8 @@ productSchema.methods.toProductResponseLikes = async function(userEmail) {
         favouritesCount: this.favouritesCount,
         visitsCount: this.visitsCount,
         category: categoryObj?.name,
-        isFavourited: favorito 
+        isFavourited: favorito,
+        productOwner: user?.username || "nothing"
     }
 }
 

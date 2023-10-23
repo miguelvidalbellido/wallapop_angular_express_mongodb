@@ -13,7 +13,7 @@ const bcrypt = require('bcrypt');
 const createUser = asyncHandler(async (req, res) => {
     // const { username, email, passwordHash, userBio, f_nac, cp, profileImage } = req.body.user;
     const { username, email, password, profileImage } = req.body.user;
-    console.log(password);
+
     let defaultProfileImage = "";
 
     if(!username || !email || !password) {
@@ -43,7 +43,7 @@ const createUser = asyncHandler(async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     //const createdUser = await User.create({username, email, passwordHash: hashedPassword, userBio, f_nac, cp, profileImage: defaultProfileImage});
-    const createdUser = await User.create({username, email, passwordHash: hashedPassword, profileImage: defaultProfileImage, productsLike: []});
+    const createdUser = await User.create({username, email, passwordHash: hashedPassword, profileImage: defaultProfileImage, productsLike: [], usersFollowing: []});
     if(createdUser) {
         res.status(201).json({
             user: await createdUser.toUserResponseWithToken()
@@ -180,10 +180,45 @@ const updateUser = asyncHandler(async (req, res) => {
 
 });
 
+//////////////////////////////////////////////////
+/////////          FOLLOW_USERS           ///////
+////////////////////////////////////////////////
+
+const userFollow = asyncHandler(async (req, res) => {
+    const userEmail = req.userEmail; 
+    const { username } = req.body;
+
+    const user = await User.findOne({email: userEmail}).exec();
+
+    if (!user) {
+        return res.status(404).json({ message: "User not found" });
+    }
+
+    const userToFollow = await User.findOne({username: username}).exec();
+    
+    if (!userToFollow) {
+        return res.status(404).json({ message: "User to follow not found" });
+    }
+
+    const isFollowing = await user.isFollowing(userToFollow.id);
+
+    if(isFollowing) {
+        await user.unfollow(userToFollow.id);
+    } else {
+        await user.follow(userToFollow.id);
+    }
+
+    return res.status(200).json({
+        user: await user.toUserResponseWithToken()
+    });
+
+})
+
 module.exports = {
     createUser,
     getAllInfoUser,
     userLogin,
     getCurrentUser,
-    updateUser
+    updateUser,
+    userFollow
 }

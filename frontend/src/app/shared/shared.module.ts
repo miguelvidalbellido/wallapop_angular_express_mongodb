@@ -33,6 +33,7 @@ import { LikeComponent } from './cmp-products/like/like.component';
 import { MatIconModule } from "@angular/material/icon";
 import { ProfileDetailsComponent } from './cmp-profile/profile-details/profile-details.component';
 import { ListProductsProfileComponent } from './cmp-profile/list-products-profile/list-products-profile.component';
+import { FollowComponent } from './follow/follow.component';
 
 @NgModule({
     imports: [
@@ -72,7 +73,8 @@ import { ListProductsProfileComponent } from './cmp-profile/list-products-profil
     SettingsComponent,
     LikeComponent,
     ProfileDetailsComponent,
-    ListProductsProfileComponent
+    ListProductsProfileComponent,
+    FollowComponent
   ],
     exports: [
       ListCategoriesComponent,
@@ -102,7 +104,8 @@ import { ListProductsProfileComponent } from './cmp-profile/list-products-profil
       LikeComponent,
       MatIconModule,
       ProfileDetailsComponent,
-      ListProductsProfileComponent
+      ListProductsProfileComponent,
+      FollowComponent
     ]
 })
 export class SharedModule {}

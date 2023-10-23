@@ -35,10 +35,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: false
     },
-    usersFollowing: {
+    usersFollowing: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
-    },
+    }],
     productsLike: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Product'
@@ -84,6 +84,27 @@ userSchema.methods.favorite = function (id) {
 userSchema.methods.unfavorite = function (id) {
     if(this.productsLike.indexOf(id) !== -1){
         this.productsLike.remove(id);
+    }
+
+    return this.save();
+};
+
+userSchema.methods.isFollowing = function (id) {
+    const idStr = id.toString();
+    return this.usersFollowing.includes(idStr);
+}
+
+userSchema.methods.follow = function (id) {
+    if(this.usersFollowing.indexOf(id) === -1){
+        this.usersFollowing.push(id);
+    }
+
+    return this.save();
+};
+
+userSchema.methods.unfollow = function (id) {
+    if(this.usersFollowing.indexOf(id) !== -1){
+        this.usersFollowing.remove(id);
     }
 
     return this.save();

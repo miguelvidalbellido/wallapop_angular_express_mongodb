@@ -153,7 +153,6 @@ const createProduct = asyncHandler(async (req, res) => {
 
     const { title, description, price, category, images } = req.body;
 
-
     // confirm data
     if (!title || !description || !price || !category) {
         res.status(400).json({message: "All fields are required"});
@@ -164,9 +163,13 @@ const createProduct = asyncHandler(async (req, res) => {
         res.status(400).json({message: "Invalid category"});
     }
 
-    const categoryObjectId = dataCategory.id;
+    // Añadim el productOwnerId estatic de moment usuari pruebas1
 
-    const product = await Product.create({ title, description, price, category: categoryObjectId, images });
+    const user = await User.findOne({username: "pruebas1"}).exec();
+    console.log(user);
+    const categoryObjectId = dataCategory.id;
+//////////////////////////////////////////////////////////////////////////
+    const product = await Product.create({ title, description, price, category: categoryObjectId, images, productOwner: user.id });
 
     await product.save()
 

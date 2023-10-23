@@ -10,6 +10,7 @@ export interface Producto {
     category: String;
     isFavourited: boolean;
     productOwner?: String;
+    isFollowed?: boolean;
 }
 
 export interface ProductoAndCount {

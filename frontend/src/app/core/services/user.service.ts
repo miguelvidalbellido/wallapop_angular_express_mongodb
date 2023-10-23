@@ -79,8 +79,15 @@ export class UserService {
       .pipe(map(data => {
         // Update the currentUser observable
         this.currentUserSubject.next(data.user);
-        console.log(data);
         return data.user;
+      }));
+    }
+
+    follow(username: String): Observable<any> {
+      return this.apiService
+      .put(`/api/users/follow`, {username} )
+      .pipe(map(data => {        
+        return data.response;
       }));
     }
   

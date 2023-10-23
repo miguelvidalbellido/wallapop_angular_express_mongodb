@@ -165,7 +165,7 @@ const createProduct = asyncHandler(async (req, res) => {
 
     // Añadim el productOwnerId estatic de moment usuari pruebas1
 
-    const user = await User.findOne({username: "pruebas1"}).exec();
+    const user = await User.findOne({username: "dev3"}).exec();
     console.log(user);
     const categoryObjectId = dataCategory.id;
 //////////////////////////////////////////////////////////////////////////

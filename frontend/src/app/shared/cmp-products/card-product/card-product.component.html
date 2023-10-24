@@ -13,7 +13,7 @@
         [follow]="dataProduct.isFollowed || false"></app-follow>
       </div>
       <div>
-        <app-like [slugProduct]="dataProduct.slug" [like]="dataProduct.isFavourited"></app-like>
+        <app-like [slugProduct]="dataProduct.slug" [numLikes]="dataProduct.favouritesCount" [like]="dataProduct.isFavourited"></app-like>
       </div>
     </div>
 </div>

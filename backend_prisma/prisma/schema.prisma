@@ -1,0 +1,66 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model categories {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  v           Int?      @map("__v")
+  createdAt   DateTime? @db.Date
+  descripcion String?
+  description String?
+  image       String
+  name        String
+  slug        String?   @unique(map: "slug_1")
+  updatedAt   DateTime? @db.Date
+}
+
+model products {
+  id              String   @id @default(auto()) @map("_id") @db.ObjectId
+  v               Int      @map("__v")
+  category        String   @db.ObjectId
+  createdAt       DateTime @db.Date
+  description     String
+  favouritesCount Int
+  images          String[]
+  price           Int
+  productOwner    String?  @db.ObjectId
+  slug            String   @unique(map: "slug_1")
+  /// Could not determine type: the field only had null or empty values in the sample set.
+  tagList         Json?
+  title           String
+  updatedAt       DateTime @db.Date
+  visitsCount     Int
+}
+
+model t {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+}
+
+model users {
+  id             String    @id @default(auto()) @map("_id") @db.ObjectId
+  v              Int       @map("__v")
+  cp             Int?
+  createdAt      DateTime  @db.Date
+  email          String    @unique(map: "email_1")
+  f_nac          DateTime? @db.Date
+  passwordHash   String
+  productsLike   String[]
+  profileImage   String
+  updatedAt      DateTime  @db.Date
+  userBio        String?
+  username       String    @unique(map: "username_1")
+  /// Could not determine type: the field only had null or empty values in the sample set.
+  usersFollowing Json?
+}
+
+model comments {
+  id              String    @id @default(auto()) @map("_id") @db.ObjectId
+  commentOwner    String?  @db.ObjectId
+  productId       String?  @db.ObjectId
+  body            String
+}

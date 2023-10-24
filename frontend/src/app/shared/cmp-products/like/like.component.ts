@@ -17,7 +17,8 @@ export class LikeComponent implements OnInit{
   slugProduct!: String;
   @Input()
   like!: boolean; 
-
+  @Input()
+  numLikes!: number;
   user?: User;
 
   // Snackbar
@@ -42,7 +43,12 @@ export class LikeComponent implements OnInit{
       this.productService.favourite(slug).
         subscribe((data) => {
           if(data === true) {
-            this.like = this.like ? false : true
+            this.like = this.like 
+                        ? false 
+                        : true
+            this.like 
+              ? this.numLikes += 1
+              : this.numLikes -= 1
           }
     })
       

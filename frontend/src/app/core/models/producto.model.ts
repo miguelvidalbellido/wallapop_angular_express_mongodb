@@ -5,7 +5,7 @@ export interface Producto {
     price: number;
     images: string[];
     tagList: string[];
-    favouritesCount: Number;
+    favouritesCount: number;
     visitsCount: Number;
     category: String;
     isFavourited: boolean;

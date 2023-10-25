@@ -3,7 +3,7 @@ const asyncHandler = require('express-async-handler');
 // Import models
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
-
+const Product = require('../models/Product');
 
 
 //////////////////////////////////////////////////
@@ -116,6 +116,46 @@ const getCurrentUser = asyncHandler(async (req,res) => {
 
 })
 
+
+//////////////////////////////////////////////////
+/////////          PROFILE_DATA           ///////
+////////////////////////////////////////////////
+
+const getProfileData = asyncHandler(async (req,res) => {
+    const { username } = req.params; 
+    if(!username) {
+        return res.status(404).json({
+            message: "Username Error"
+        });
+     }
+
+     const user = await User.findOne({username: username});
+
+    if(!user) {
+        return res.status(404).json({
+            message: "User Not Found"
+        });
+    }
+
+    // Ni ha que buscar els productes que te pujats
+    const count_products = await Product.count({
+        productOwner: this.id
+    }).exec();
+    // Ni ha que buscar numero de likes que li han donat
+    // Buscar tots els productes del usuario
+    // Buscar que usuaris tenen ixe id de producte en likes
+
+    // Ni ha que buscar el numero de seguidors
+    const count_followers = await User.count({
+        usersFollowing: {$in: user.id}
+    }).exec();
+
+    return res.status(200).json({
+        user: await user.toUserResponseProfileData(count_products, count_followers)
+    });
+
+})
+
 //////////////////////////////////////////////////
 /////////            LIST_USERS           ///////
 ////////////////////////////////////////////////
@@ -220,5 +260,6 @@ module.exports = {
     userLogin,
     getCurrentUser,
     updateUser,
-    userFollow
+    userFollow,
+    getProfileData
 }

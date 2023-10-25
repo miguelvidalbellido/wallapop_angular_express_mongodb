@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
 const jwt = require("jsonwebtoken");
 
+
 const userSchema = new mongoose.Schema({
     username: {
         type: String,
@@ -119,6 +120,22 @@ userSchema.methods.toUserResponse = async function() {
         f_nac: this.f_nac,
         cp: this.cp,
         profileImage: this.profileImage
+    }
+}
+
+userSchema.methods.toUserResponseProfileData = async function(count_products, count_followers) {
+
+    
+
+    return {
+        username: this.username,
+        email: this.email,
+        userBio: this.userBio,
+        f_nac: this.f_nac,
+        cp: this.cp,
+        profileImage: this.profileImage,
+        countPublishedProducts: count_products,
+        count_followers: count_followers
     }
 }
 

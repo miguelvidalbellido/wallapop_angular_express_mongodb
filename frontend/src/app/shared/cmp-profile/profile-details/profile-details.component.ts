@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Producto, ProductoAndCount, ProductosService } from 'src/app/core';
 
 @Component({
@@ -7,6 +7,7 @@ import { Producto, ProductoAndCount, ProductosService } from 'src/app/core';
   styleUrls: ['./profile-details.component.css']
 })
 export class ProfileDetailsComponent implements OnInit{
+
 
   constructor(
     private productService: ProductosService
@@ -73,6 +74,9 @@ export class ProfileDetailsComponent implements OnInit{
   ];
   // PETICIO 2 -- Obtenim els productes que el usuri li ha donat like
   
+  loadDataProfile() {
+    
+  }
   
   loadFavouritedProducts() {
     this.productService

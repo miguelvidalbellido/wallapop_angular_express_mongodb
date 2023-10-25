@@ -10,5 +10,7 @@ router.post('/login', usersController.userLogin);
 router.get('/dataUser', verifyJWT, usersController.getCurrentUser);
 router.put('/', verifyJWT, usersController.updateUser);
 router.put('/follow', verifyJWT, usersController.userFollow);
+router.get('/profileData/:username', usersController.getProfileData);
+
 
 module.exports = router;

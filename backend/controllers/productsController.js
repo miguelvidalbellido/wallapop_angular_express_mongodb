@@ -187,7 +187,7 @@ const likeOrDislikeProduct = asyncHandler(async (req, res) => {
     const userEmail = req.userEmail;
 
     const user = await User.findOne({ email: userEmail });
-    const product = await Product.findOne({slug: slugProduct});
+    const product = await Product.findOne({ slug: slugProduct });
 
     if(!product) {
         res.status(400).json({message: "slug error"});

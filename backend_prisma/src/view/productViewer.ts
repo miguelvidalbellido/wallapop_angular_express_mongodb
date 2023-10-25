@@ -6,6 +6,7 @@ export default function productViewer(
     product: product
 ) {
     const productView = {
+        id: product.id,
         slug: product.slug
     };
     return productView;

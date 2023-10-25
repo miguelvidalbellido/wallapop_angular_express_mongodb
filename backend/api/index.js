@@ -17,6 +17,7 @@ app.use('/api/products', require('../routes/productRoutes'));   // Products
 app.use('/api/categories', require('../routes/categoriesRoutes'));   // Categories
 app.use('/api/carousel', require('../routes/carouselRoutes'));   // Carousel
 app.use('/api/users', require('../routes/usersRoutes'));   // Users
+app.use('/api/comments', require('../routes/commentsRoutes'));   // Products
 
 mongoose.connection.once('open', () => {
     console.log('Connected to MongoDB');

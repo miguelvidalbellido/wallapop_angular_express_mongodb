@@ -34,8 +34,8 @@ const verifyJWT = (req: Request, res: Response, next: NextFunction) => {
         if (err) {
         return res.status(403).json({ message: 'Forbidden' });
     }
-
-    req.user = decoded;
+    
+    req.user = decoded.user;
 
     next();
   });

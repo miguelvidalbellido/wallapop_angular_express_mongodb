@@ -9,6 +9,8 @@ export default async function createComment(
     res: Response,
     next: NextFunction
   ) {
+    console.log(req.body);
+    
     const { body: body, slug: slugProduct } = req.body.comment;
     const user = req.user;
 

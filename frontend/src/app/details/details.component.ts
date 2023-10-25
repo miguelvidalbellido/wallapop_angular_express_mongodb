@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Producto, ProductosService } from '../core';
+import { Producto, ProductosService, User, UserService } from '../core';
 import { Carousel } from '../core/models/carousel.model';
 
 @Component({
@@ -11,7 +11,8 @@ import { Carousel } from '../core/models/carousel.model';
 export class DetailsComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute,
-    private productosService: ProductosService){
+    private productosService: ProductosService,
+    private userService: UserService){
   }
 
   slug?: String
@@ -27,7 +28,7 @@ export class DetailsComponent implements OnInit {
         this.productosService.getOne(this.slug)
         .subscribe((data) => {       
           this.dataProduct = data;
-          this.carouselImages = data;
+          this.carouselImages = data;          
         })
       }
     })

@@ -21,4 +21,10 @@
         <p id="btn-text">Add to Cart</p>
       </button>          
     </div>
+    <app-list-comments
+    [slugProduct]="dataProduct?.slug" *ngIf="dataProduct?.slug"></app-list-comments>
+
   </div>
+
+
+

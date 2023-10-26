@@ -14,7 +14,6 @@ export default async function createComment(
     const user = req.user;
 
     try {
-      console.log(body);
       if(!body || !slugProduct) {
         return res.status(401).json({ message: "Data of comment error - [comment]" });
       }

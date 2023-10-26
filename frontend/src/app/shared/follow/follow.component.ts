@@ -37,7 +37,7 @@ export class FollowComponent implements OnInit{
     this.user = this.userService.getCurrentUser();
     
     if(this.user.username === username) {
-      console.log("no puedes autoseguirte");
+      this.showSnackBar("No puedes seguirte a ti mismo");
     } else {
       if(Object.entries(this.user).length !== 0) {
         this.userService.follow(username)
@@ -47,13 +47,13 @@ export class FollowComponent implements OnInit{
         })
       } else {
         this.router.navigate(['/login']);
-        this.showSnackBar();
+        this.showSnackBar("Inicia sesión para poder seguir");
       }
     }
   }
 
-  showSnackBar() {
-    this._snackbar.open("Inicia sesión para poder seguir", 'Aceptar', {
+  showSnackBar(msg: string) {
+    this._snackbar.open(msg, 'Aceptar', {
       horizontalPosition: this.horizontalPosition,
       verticalPosition: this.verticalPosition,
     });

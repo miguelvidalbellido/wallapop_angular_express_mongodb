@@ -17,6 +17,8 @@ router.get('/categories/:slug', productController.listProducts);
 router.put('/favourite/:slug', verifyJWT, productController.likeOrDislikeProduct);
 
 router.get('/user/favorites', verifyJWT, productController.productsLikeByUser);
+router.get('/user/profileFavorites/:username', productController.productsLikeUserProfile);
+router.get('/user/publishedProducts/:username', productController.publishedProducts);
 
 
 module.exports = router;

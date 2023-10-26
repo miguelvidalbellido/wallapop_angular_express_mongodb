@@ -1,7 +1,7 @@
 <div class="container mt-2">
     <div class="col-md-12 background_header">
         <div class="col-md-3" style="height: 40vh; display: flex; align-items: center;">
-            <img src="https://picsum.photos/200/300" class="rounded img-fluid img_width" alt="" style="object-fit: cover; width: 100%; height: 100%;">
+            <img [src]="userData?.profileImage" class="rounded img-fluid img_width" alt="" style="object-fit: cover; width: 100%; height: 100%;">
         </div>
     </div>
     <div class="col-md-12 row">
@@ -12,7 +12,7 @@
 
         </div>
         <div class="col-md-8 mt-1">
-            <h2>JOSE LUIS BENITO KAMELA</h2>
+            <h2>{{ userData?.username }}</h2>
         
             <div class="info-container">
                 <div class="row">
@@ -20,21 +20,21 @@
                         <div class="info-item">
                             <i class="fas fa-cubes"></i>
                             <span>Cantidad de Productos</span>
-                            <p>10</p>
+                            <p>{{ userData?.countPublishedProducts }}</p>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="info-item">
                             <i class="fas fa-thumbs-up"></i>
                             <span>Número de Likes</span>
-                            <p>500</p>
+                            <p>{{ userData?.count_likes }}</p>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="info-item">
                             <i class="fas fa-users"></i>
                             <span>Número de Seguidores</span>
-                            <p>1000</p>
+                            <p>{{ userData?.count_followers }}</p>
                         </div>
                     </div>
                 </div>
@@ -42,7 +42,7 @@
         </div>
     </div>
 
-    <app-list-products-profile [title]="'Productos publicados'" [dataProducts]="dataProduct">
+    <app-list-products-profile [title]="'Productos publicados'" [dataProducts]="dataProductsPublished">
 
     </app-list-products-profile>
 

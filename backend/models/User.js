@@ -123,7 +123,7 @@ userSchema.methods.toUserResponse = async function() {
     }
 }
 
-userSchema.methods.toUserResponseProfileData = async function(count_products, count_followers) {
+userSchema.methods.toUserResponseProfileData = async function(count_products, count_followers, countLikes) {
 
     
 
@@ -135,7 +135,8 @@ userSchema.methods.toUserResponseProfileData = async function(count_products, co
         cp: this.cp,
         profileImage: this.profileImage,
         countPublishedProducts: count_products,
-        count_followers: count_followers
+        count_followers: count_followers,
+        count_likes: countLikes
     }
 }
 

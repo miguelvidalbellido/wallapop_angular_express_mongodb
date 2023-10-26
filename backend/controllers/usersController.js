@@ -142,8 +142,13 @@ const getProfileData = asyncHandler(async (req,res) => {
         productOwner: this.id
     }).exec();
     // Ni ha que buscar numero de likes que li han donat
-    // Buscar tots els productes del usuario
-    // Buscar que usuaris tenen ixe id de producte en likes
+
+    const productsUser = await Product.find({productOwner: user.id});
+    
+    let countLikes = 0 
+    productsUser.map(data => {
+        countLikes += data.favouritesCount;
+    })
 
     // Ni ha que buscar el numero de seguidors
     const count_followers = await User.count({
@@ -151,7 +156,7 @@ const getProfileData = asyncHandler(async (req,res) => {
     }).exec();
 
     return res.status(200).json({
-        user: await user.toUserResponseProfileData(count_products, count_followers)
+        user: await user.toUserResponseProfileData(count_products, count_followers, countLikes)
     });
 
 })

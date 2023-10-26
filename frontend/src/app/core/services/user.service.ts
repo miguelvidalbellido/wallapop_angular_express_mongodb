@@ -3,7 +3,7 @@ import { Observable ,  BehaviorSubject ,  ReplaySubject } from 'rxjs';
 
 import { ApiService } from './api.service';
 import { JwtService } from './jwt.service';
-import { User } from '../models';
+import { User, UserProfile } from '../models';
 import { map ,  distinctUntilChanged } from 'rxjs/operators';
 
 @Injectable({
@@ -90,5 +90,10 @@ export class UserService {
         return data.response;
       }));
     }
+
+    getDataUserProfile(username?: String): Observable<UserProfile> {
+      return this.apiService.get('/api/users/profileData/'+username)
+      .pipe(map(data => data.user))
+  }
   
   }

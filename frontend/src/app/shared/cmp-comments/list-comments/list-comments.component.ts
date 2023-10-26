@@ -36,10 +36,11 @@ export class ListCommentsComponent implements OnInit{
     })
   }
 
-  createComment() {    
+  createComment() {
+    this.form.patchValue({slug: this.slugProduct})
     this.commentService.create(this.form.value)
     .subscribe((data) => {
-      console.log(data);
+
       
     })
   }

@@ -44,7 +44,6 @@ export class SettingsComponent implements OnInit{
     
     if(dataUser) {
       this.userService.update(dataUser).subscribe((data) => {
-        console.log(data);
       });
     }
     

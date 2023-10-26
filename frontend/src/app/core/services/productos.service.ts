@@ -58,4 +58,26 @@ export class ProductosService {
                 }))
             )
     }
+
+    getFavouritedProductsOfUserSlug(params: any, username: String): Observable<ProductoAndCount> {
+        return this.apiService.get(
+            '/api/products/user/profileFavorites/'+username,
+            new HttpParams({fromObject: params})).pipe(
+                map((data) => ({
+                    products: data.products,
+                    countProducts: data.productsCount
+                }))
+            )
+    }
+
+    getPublishedProductsOfUserSelug(params: any, username: String): Observable<ProductoAndCount> {
+        return this.apiService.get(
+            '/api/products/user/publishedProducts/'+username,
+            new HttpParams({fromObject: params})).pipe(
+                map((data) => ({
+                    products: data.products,
+                    countProducts: data.productsCount
+                }))
+            )
+    }
 }

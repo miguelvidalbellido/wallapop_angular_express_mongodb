@@ -166,9 +166,9 @@ const createProduct = asyncHandler(async (req, res) => {
     // Añadim el productOwnerId estatic de moment usuari pruebas1
 
     const user = await User.findOne({username: "dev3"}).exec();
-    console.log(user);
+
     const categoryObjectId = dataCategory.id;
-//////////////////////////////////////////////////////////////////////////
+
     const product = await Product.create({ title, description, price, category: categoryObjectId, images, productOwner: user.id });
 
     await product.save()
@@ -241,6 +241,57 @@ const productsLikeByUser = asyncHandler(async (req, res) => {
 
 });
 
+//////////////////////////////////////////////////
+/////////       LIKES_PROD_PROFILE    ///////////
+////////////////////////////////////////////////
+const productsLikeUserProfile = asyncHandler(async (req, res) => {
+    const {username} = req.params;
+
+    const user = await User.findOne({ username: username });
+
+    if(!user) {
+        res.status(400).json({message: "user error"});
+    }
+
+    const productsLike = await Product.find({_id: {$in: user.productsLike}})
+    
+    const productCount = await Product.count({_id: {$in: user.productsLike}});
+
+    return await res.status(200).json({
+        products: await Promise.all(productsLike.map(async product => {
+            return await product.toProductResponseLikes();
+        })),
+        productsCount: productCount
+    })
+
+});
+
+
+//////////////////////////////////////////////////
+/////////   PUBLISHED_PROD_PROFILE    ///////////
+////////////////////////////////////////////////
+const publishedProducts = asyncHandler(async (req, res) => {
+    const {username} = req.params;
+
+    const user = await User.findOne({ username: username });
+
+    if(!user) {
+        res.status(400).json({message: "user error"});
+    }
+
+
+    const productsPublished = await Product.find({productOwner: user.id})
+    
+    const productCount = await Product.count({productOwner: user.id});
+
+    return await res.status(200).json({
+        products: await Promise.all(productsPublished.map(async product => {
+            return await product.toProductResponseLikes();
+        })),
+        productsCount: productCount
+    })
+
+});
 // Internal function
 
 const obtainMaxPrice = asyncHandler(async () => {
@@ -253,5 +304,7 @@ module.exports = {
     createProduct,
     getProduct,
     likeOrDislikeProduct,
-    productsLikeByUser
+    productsLikeByUser,
+    productsLikeUserProfile,
+    publishedProducts
 }

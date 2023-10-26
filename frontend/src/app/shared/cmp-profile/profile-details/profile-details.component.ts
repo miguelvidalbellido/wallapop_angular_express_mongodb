@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Producto, ProductoAndCount, ProductosService } from 'src/app/core';
+import { Producto, ProductoAndCount, ProductosService, UserProfile, UserService } from 'src/app/core';
 
 @Component({
   selector: 'app-profile-details',
@@ -8,82 +8,55 @@ import { Producto, ProductoAndCount, ProductosService } from 'src/app/core';
 })
 export class ProfileDetailsComponent implements OnInit{
 
+  @Input()
+  username!: String;
 
+  userData?: UserProfile;
   constructor(
-    private productService: ProductosService
+    private productService: ProductosService,
+    private _userService: UserService
   ) {
 
   }
 
   dataProductsFavourited?: Producto[];
+  dataProductsPublished?: Producto[];
 
   ngOnInit(): void {
-    this.loadFavouritedProducts()
+    this.loadDataProfile()
   }
-  // PETICIO 1 -- Obtenim els productes que ha pujat el usuari
-  dataProduct: Producto[] = [
-    {
-      slug: 'producto-1',
-      title: 'Producto 1',
-      description: 'Descripción del Producto 1',
-      price: 20,
-      images: ['https://picsum.photos/200/300', 'https://picsum.photos/200/300', 'https://picsum.photos/200/300'],
-      tagList: ['Tag1', 'Tag2'],
-      favouritesCount: 10,
-      visitsCount: 100,
-      category: 'Categoría 1',
-      isFavourited: true
-    },
-    {
-      slug: 'producto-2',
-      title: 'Producto 2',
-      description: 'Descripción del Producto 2',
-      price: 30,
-      images: ['https://picsum.photos/200/300', 'https://picsum.photos/200/300'],
-      tagList: ['Tag3'],
-      favouritesCount: 5,
-      visitsCount: 50,
-      category: 'Categoría 2',
-      isFavourited: false
-    },
-    {
-      slug: 'producto-2',
-      title: 'Producto 2',
-      description: 'Descripción del Producto 2',
-      price: 30,
-      images: ['https://picsum.photos/200/300', 'https://picsum.photos/200/300'],
-      tagList: ['Tag3'],
-      favouritesCount: 5,
-      visitsCount: 50,
-      category: 'Categoría 2',
-      isFavourited: false
-    },
-    {
-      slug: 'producto-2',
-      title: 'Producto 2',
-      description: 'Descripción del Producto 2',
-      price: 30,
-      images: ['https://picsum.photos/200/300', 'https://picsum.photos/200/300'],
-      tagList: ['Tag3'],
-      favouritesCount: 5,
-      visitsCount: 50,
-      category: 'Categoría 2',
-      isFavourited: false
-    },
-    // Agrega más productos según sea necesario
-  ];
-  // PETICIO 2 -- Obtenim els productes que el usuri li ha donat like
   
   loadDataProfile() {
-    
+    this.loadDataUser(this.username);
+    this.loadFavouritedProducts(this.username);
+    this.loadPublishedProducts(this.username);
   }
   
-  loadFavouritedProducts() {
+  loadFavouritedProducts(_username: String) {
     this.productService
-      .getFavouritedProductsOfCurrentUser(false)
+      .getFavouritedProductsOfUserSlug(false, _username)
       .subscribe(
         data => this.dataProductsFavourited = data.products
       );
+      
+  }
+
+  loadPublishedProducts(_username: String) {
+    this.productService
+      .getPublishedProductsOfUserSelug(false, _username)
+      .subscribe(
+        data => {
+          this.dataProductsPublished = data.products;
+        }
+      );
+  }
+
+  loadDataUser(_username: String) {
+    this._userService.getDataUserProfile(_username).subscribe(
+      data => {
+        this.userData = data;
+      }
+    )
   }
 
 }

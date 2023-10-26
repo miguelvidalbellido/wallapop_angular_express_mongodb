@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Category } from '../core/models/category.model';
-import {
-  CategoriesService
-} from '../core'
-import { Carousel, CarouselMulti } from '../core/models/carousel.model';
+import { CarouselMulti } from '../core/models/carousel.model';
 import { CarouselService } from '../core/services/carousel.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ProfileComponent } from '../profile';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -13,10 +10,8 @@ import { CarouselService } from '../core/services/carousel.service';
 })
 export class HomeComponent implements OnInit{
   
-  constructor(
-    private router: Router,
-    private carouselService: CarouselService
-    ) { }
+  constructor(private carouselService: CarouselService,
+    public dialog: MatDialog) { }
 
   dataCategories!: CarouselMulti[]
   
@@ -25,6 +20,11 @@ export class HomeComponent implements OnInit{
     .subscribe((data) => {                  
       this.dataCategories = data
     })
+  }
+
+  openModal(){
+    console.log('holll');
+    this.dialog.open(ProfileComponent);
   }
   
 }

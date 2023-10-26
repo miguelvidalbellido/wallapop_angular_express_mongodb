@@ -1,8 +1,9 @@
 .header {
-    padding-top: 0.5vw;
+    padding: 0.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .buttons {

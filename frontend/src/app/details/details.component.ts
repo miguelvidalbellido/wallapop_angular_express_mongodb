@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Producto, ProductosService, User, UserService } from '../core';
 import { Carousel } from '../core/models/carousel.model';
+import { ToastrComponent } from '../shared/toastr/toastr.component';
 
 @Component({
   selector: 'app-details',

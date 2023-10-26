@@ -1,11 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { User, UserService } from 'src/app/core';
-import {
-  MatSnackBarHorizontalPosition,
-  MatSnackBarVerticalPosition,
-} from '@angular/material/snack-bar';
+import { ToastrComponent } from '../toastr/toastr.component';
 
 @Component({
   selector: 'app-main-menu',
@@ -14,17 +11,16 @@ import {
 })
 export class MainMenuComponent implements OnInit{
 
-constructor(
-  private userService: UserService,
-  private router: Router,
-  private _snackbar: MatSnackBar){
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    private _snackbar: MatSnackBar){
 
-}
-currentUser!: User;
+  }
 
-// Snackbar
-horizontalPosition: MatSnackBarHorizontalPosition = 'end';
-verticalPosition: MatSnackBarVerticalPosition = 'top';
+  @ViewChild(ToastrComponent) snackBar!: ToastrComponent;
+
+  currentUser!: User;
 
   ngOnInit(): void {
     this.userService.currentUser.subscribe(
@@ -32,20 +28,11 @@ verticalPosition: MatSnackBarVerticalPosition = 'top';
         this.currentUser = userData;
       }
     );
-
   }
 
   logout() {
-    this.showSnackBar();
+    this.snackBar.showSnackBar("Sesion cerrada")
     this.userService.purgeAuth();
     this.router.navigateByUrl('/');
   }
-
-  showSnackBar() {
-    this._snackbar.open("Sesion cerrada", 'Aceptar', {
-      horizontalPosition: this.horizontalPosition,
-      verticalPosition: this.verticalPosition,
-    });
-  }
-
 }

@@ -1,11 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { Like, ProductosService, User, UserService } from 'src/app/core';
-import {
-  MatSnackBar,
-  MatSnackBarHorizontalPosition,
-  MatSnackBarVerticalPosition,
-} from '@angular/material/snack-bar';
+import { ProductosService, User, UserService } from 'src/app/core';
+import { ToastrComponent } from '../../toastr/toastr.component';
 @Component({
   selector: 'app-like',
   templateUrl: './like.component.html',
@@ -15,27 +11,22 @@ export class LikeComponent implements OnInit{
 
   @Input()
   slugProduct!: String;
+
   @Input()
   like!: boolean; 
+
   @Input()
   numLikes!: number;
   user?: User;
 
-  // Snackbar
-  horizontalPosition: MatSnackBarHorizontalPosition = 'end';
-  verticalPosition: MatSnackBarVerticalPosition = 'top';
+  @ViewChild(ToastrComponent) snackBar!: ToastrComponent;
 
   constructor(
     private userService: UserService,
     private productService: ProductosService,
-    private router: Router,
-    private _snackbar: MatSnackBar) {
+    private router: Router) { }
 
-  }
-
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void { }
 
   controlClick(slug: String) {
     this.user = this.userService.getCurrentUser();
@@ -54,16 +45,7 @@ export class LikeComponent implements OnInit{
       
     } else {
       this.router.navigate(['/login']);
-      this.showSnackBar();
+      this.snackBar.showSnackBar("Inicia sesión para guardar los productos que mas te gustan")
     }
-
   }
-
-  showSnackBar() {
-    this._snackbar.open("Inicia sesión para guardar los productos que mas te gustan", 'Aceptar', {
-      horizontalPosition: this.horizontalPosition,
-      verticalPosition: this.verticalPosition,
-    });
-  }
-
 }

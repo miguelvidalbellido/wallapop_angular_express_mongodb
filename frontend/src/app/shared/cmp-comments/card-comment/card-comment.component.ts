@@ -1,7 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { UserService } from 'src/app/core';
 import { Comentario } from 'src/app/core/models/comment.model';
 import { CommentsService } from 'src/app/core/services/comments.service';
+import { ToastrComponent } from '../../toastr/toastr.component';
 
 @Component({
   selector: 'app-card-comment',
@@ -11,6 +12,10 @@ import { CommentsService } from 'src/app/core/services/comments.service';
 export class CardCommentComponent implements OnInit {
   
   @Input() dataComment!: Comentario;
+
+  @Output() deleteOk: EventEmitter<string> = new EventEmitter();
+
+  @ViewChild(ToastrComponent) snackBar!: ToastrComponent;
 
   canDelete?: boolean = false;
 
@@ -28,8 +33,8 @@ export class CardCommentComponent implements OnInit {
   deleteComment(id: String){
     this._commentsService.delete(id)
     .subscribe((data) => {
-      console.log(data);
-      
+      this.snackBar.showSnackBar('El comentario se ha eliminado correctamente')
+      this.deleteOk.emit();
     })
   }
 }

@@ -10,10 +10,10 @@ router.post(
     comments.commentsCreate
 );
 
-router.get(
-    "/",
+router.delete(
+    "/:id",
     auth.default,
-    comments.commentsCreate
+    comments.commentsDelete
 );
 
 export default router;

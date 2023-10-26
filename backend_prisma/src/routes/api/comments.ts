@@ -10,4 +10,10 @@ router.post(
     comments.commentsCreate
 );
 
+router.get(
+    "/",
+    auth.default,
+    comments.commentsCreate
+);
+
 export default router;

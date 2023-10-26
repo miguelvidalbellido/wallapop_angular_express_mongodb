@@ -1,5 +1,4 @@
 <div class="container">
-    <!-- <div class="left-side" *ngFor="let image of dataProduct?.images"> -->
     <div class="left-side" *ngIf="carouselImages">
         <app-carousel
         [inputCarousel]="carouselImages"></app-carousel>
@@ -22,3 +21,10 @@
       </button>          
     </div>
   </div>
+<div>
+  <app-list-comments [slugProduct]="dataProduct?.slug" 
+  *ngIf="dataProduct?.slug"></app-list-comments>
+
+</div>
+  
+

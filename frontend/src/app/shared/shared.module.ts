@@ -34,6 +34,9 @@ import { MatIconModule } from "@angular/material/icon";
 import { ProfileDetailsComponent } from './cmp-profile/profile-details/profile-details.component';
 import { ListProductsProfileComponent } from './cmp-profile/list-products-profile/list-products-profile.component';
 import { FollowComponent } from './follow/follow.component';
+import { ListCommentsComponent } from './cmp-comments/list-comments/list-comments.component';
+import { CardCommentComponent } from './cmp-comments/card-comment/card-comment.component';
+import { ToastrComponent } from './toastr/toastr.component';
 
 @NgModule({
     imports: [
@@ -74,7 +77,10 @@ import { FollowComponent } from './follow/follow.component';
     LikeComponent,
     ProfileDetailsComponent,
     ListProductsProfileComponent,
-    FollowComponent
+    FollowComponent,
+    ListCommentsComponent,
+    CardCommentComponent,
+    ToastrComponent
   ],
     exports: [
       ListCategoriesComponent,
@@ -105,7 +111,9 @@ import { FollowComponent } from './follow/follow.component';
       MatIconModule,
       ProfileDetailsComponent,
       ListProductsProfileComponent,
-      FollowComponent
+      FollowComponent,
+      ListCommentsComponent,
+      ToastrComponent
     ]
 })
 export class SharedModule {}

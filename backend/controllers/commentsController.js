@@ -4,7 +4,7 @@ const asyncHandler = require('express-async-handler');
 const Comment = require('../models/Comment');
 const Product = require('../models/Product');
 //////////////////////////////////////////////////
-/////////       LIST_CATEGORIES       ///////////
+/////////       LIST_COMMENTS_PRODUCT       ///////////
 ////////////////////////////////////////////////
 
 const listComments = asyncHandler(async (req, res) => {

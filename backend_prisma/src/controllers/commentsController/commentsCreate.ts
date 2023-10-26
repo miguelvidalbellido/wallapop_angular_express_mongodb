@@ -9,11 +9,11 @@ export default async function createComment(
     res: Response,
     next: NextFunction
   ) {
+    
     const { body: body, slug: slugProduct } = req.body.comment;
     const user = req.user;
 
     try {
-
       if(!body || !slugProduct) {
         return res.status(401).json({ message: "Data of comment error - [comment]" });
       }

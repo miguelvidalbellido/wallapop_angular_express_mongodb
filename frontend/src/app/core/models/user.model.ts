@@ -8,3 +8,12 @@ export interface User{
     profileImage: string,
     token: string
 }
+
+export interface UserProfile {
+    username:  string,
+    email: string,
+    profileImage: string,
+    countPublishedProducts: number,
+    count_followers:  number,
+    count_likes: number
+}

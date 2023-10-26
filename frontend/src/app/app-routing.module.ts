@@ -19,6 +19,10 @@ const routes: Routes = [
     path: 'profile',
     loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule)
    },
+   {
+    path: 'admin',
+    loadChildren: () => import('./admin-panel/admin-panel.module').then(m => m.AdminPanelModule)
+   },
 ];
 
 @NgModule({

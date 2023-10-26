@@ -31,6 +31,7 @@ import { SettingsComponent } from './cmp-profile/settings/settings.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import { LikeComponent } from './cmp-products/like/like.component';
 import { MatIconModule } from "@angular/material/icon";
+import { MatDialogModule } from "@angular/material/dialog";
 import { ProfileDetailsComponent } from './cmp-profile/profile-details/profile-details.component';
 import { ListProductsProfileComponent } from './cmp-profile/list-products-profile/list-products-profile.component';
 import { FollowComponent } from './follow/follow.component';
@@ -56,7 +57,8 @@ import { ToastrComponent } from './toastr/toastr.component';
         MatFormFieldModule,
         MatSnackBarModule,
         MatTabsModule,
-        MatIconModule
+        MatIconModule,
+        MatDialogModule
     ],
     declarations: [
     ListCategoriesComponent,
@@ -113,7 +115,8 @@ import { ToastrComponent } from './toastr/toastr.component';
       ListProductsProfileComponent,
       FollowComponent,
       ListCommentsComponent,
-      ToastrComponent
+      ToastrComponent,
+      MatDialogModule
     ]
 })
 export class SharedModule {}

@@ -31,8 +31,7 @@ export class ListCommentsComponent implements OnInit{
   ngOnInit(): void {        
     this.commentService.get(this.slugProduct)
     .subscribe((data) => {
-      console.log(data);
-      
+      this.dataComments = data;
     })
   }
 
@@ -40,11 +39,10 @@ export class ListCommentsComponent implements OnInit{
     this.form.patchValue({slug: this.slugProduct})
     this.commentService.create(this.form.value)
     .subscribe((data) => {
-
-      
+      this.form.get('body')?.setValue('')
+      this.ngOnInit()
     })
   }
-  
 
   // getListFiltered(params: filter){
   //   this.lastParams = params;
@@ -66,8 +64,5 @@ export class ListCommentsComponent implements OnInit{
 
     params['limit'] = data.limit;
     params['offset'] = data.offset;
-
-    // this.getListFiltered(params)
-
   }
 }

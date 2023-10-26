@@ -1,1 +1,9 @@
-<p>card-comment works!</p>
+<div ngClass="card dark">
+    <div class="card-body">
+      <div class="text-section">
+        <h5 class="card-title">{{ dataComment.commentOwner }}</h5>
+        <p class="card-text">{{ dataComment.body }}</p>
+        <button *ngIf="canDelete" (click)="deleteComment(dataComment.id)">Eliminar</button>
+      </div>
+    </div>
+</div>

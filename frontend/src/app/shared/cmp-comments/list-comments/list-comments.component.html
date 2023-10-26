@@ -13,14 +13,15 @@
       <div class="col-md-2"></div>
       <div class="col-md-8">
         <div class="container row align-items-center">
-          <div *ngIf="!dataComments">
+          <div *ngIf="dataComments?.length == 0">
             <h2 class="text-center mt-2">No hay comentarios para este producto</h2>
           </div>
           <div class="container">
             <div class="row">
               <div *ngFor="let item of dataComments" class="my-2 col-lg-4 col-md-6">
                 <app-card-comment 
-                [dataComment]="item"></app-card-comment>
+                [dataComment]="item"
+                (deleteOk)="getComments()"></app-card-comment>
               </div>
             </div>  
           </div>
@@ -34,3 +35,4 @@
       <div class="col-md-2"></div>
     </div>
   </div>
+  <app-toastr></app-toastr>

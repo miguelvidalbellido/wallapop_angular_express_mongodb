@@ -36,6 +36,7 @@ import { ListProductsProfileComponent } from './cmp-profile/list-products-profil
 import { FollowComponent } from './follow/follow.component';
 import { ListCommentsComponent } from './cmp-comments/list-comments/list-comments.component';
 import { CardCommentComponent } from './cmp-comments/card-comment/card-comment.component';
+import { ToastrComponent } from './toastr/toastr.component';
 
 @NgModule({
     imports: [
@@ -78,7 +79,8 @@ import { CardCommentComponent } from './cmp-comments/card-comment/card-comment.c
     ListProductsProfileComponent,
     FollowComponent,
     ListCommentsComponent,
-    CardCommentComponent
+    CardCommentComponent,
+    ToastrComponent
   ],
     exports: [
       ListCategoriesComponent,
@@ -110,7 +112,8 @@ import { CardCommentComponent } from './cmp-comments/card-comment/card-comment.c
       ProfileDetailsComponent,
       ListProductsProfileComponent,
       FollowComponent,
-      ListCommentsComponent
+      ListCommentsComponent,
+      ToastrComponent
     ]
 })
 export class SharedModule {}

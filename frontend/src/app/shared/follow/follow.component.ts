@@ -1,11 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
-import {
-  MatSnackBar,
-  MatSnackBarHorizontalPosition,
-  MatSnackBarVerticalPosition,
-} from '@angular/material/snack-bar';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { User, UserService } from 'src/app/core';
+import { ToastrComponent } from '../toastr/toastr.component';
 
 @Component({
   selector: 'app-follow',
@@ -21,15 +17,11 @@ export class FollowComponent implements OnInit{
   @Input()
   follow!: boolean;
 
-  // Snackbar
-  horizontalPosition: MatSnackBarHorizontalPosition = 'end';
-  verticalPosition: MatSnackBarVerticalPosition = 'top';
+  @ViewChild(ToastrComponent) snackBar!: ToastrComponent;
 
   constructor(
     private userService: UserService,
-    private router: Router,
-    private _snackbar: MatSnackBar
-  ) {}
+    private router: Router) {}
 
   ngOnInit(): void { }
 
@@ -37,7 +29,7 @@ export class FollowComponent implements OnInit{
     this.user = this.userService.getCurrentUser();
     
     if(this.user.username === username) {
-      this.showSnackBar("No puedes seguirte a ti mismo");
+      this.snackBar.showSnackBar("No puedes seguirte a ti mismo")
     } else {
       if(Object.entries(this.user).length !== 0) {
         this.userService.follow(username)
@@ -47,16 +39,8 @@ export class FollowComponent implements OnInit{
         })
       } else {
         this.router.navigate(['/login']);
-        this.showSnackBar("Inicia sesión para poder seguir");
+        this.snackBar.showSnackBar("Inicia sesión para poder seguir");
       }
     }
   }
-
-  showSnackBar(msg: string) {
-    this._snackbar.open(msg, 'Aceptar', {
-      horizontalPosition: this.horizontalPosition,
-      verticalPosition: this.verticalPosition,
-    });
-  }
-
 }

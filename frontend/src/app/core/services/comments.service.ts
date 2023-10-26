@@ -25,6 +25,6 @@ export class CommentsService {
 
   delete(id?: String): Observable<Comentario> {    
     return this.apiSecureService.delete('/api/comment/'+id)
-    .pipe(map(data => data.comments))
+    .pipe(map(data => data.comment))
   }
 }

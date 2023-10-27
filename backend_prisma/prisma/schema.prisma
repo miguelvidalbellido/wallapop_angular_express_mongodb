@@ -21,7 +21,6 @@ model categories {
 
 model products {
   id              String   @id @default(auto()) @map("_id") @db.ObjectId
-  v               Int      @map("__v")
   category        String   @db.ObjectId
   createdAt       DateTime @db.Date
   description     String

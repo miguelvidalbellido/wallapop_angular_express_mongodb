@@ -51,8 +51,6 @@ export default async function deleteComment(
         return res.status(401).json({ message: "Slug error - [createProduct]" });
     }
 
-    // Comprobamos datos del producto {body}
-    
   
     // Insert in db
     const product = await productCreatePrisma(
@@ -69,7 +67,7 @@ export default async function deleteComment(
     console.log(product);
     // Create product view
     const productView = productViewer(product);
-    return res.json({ product: productView });
+    return res.status(200).json({ product: productView });
     } catch (error) {
       return next(error);
     }

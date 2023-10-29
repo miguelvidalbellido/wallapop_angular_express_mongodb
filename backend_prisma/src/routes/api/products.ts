@@ -15,4 +15,10 @@ router.post(
     products.productsCreate
 );
 
+router.delete(
+    "/delete/:slug",
+    auth.default,
+    products.productDelete
+)
+
 export default router;

@@ -94,6 +94,11 @@ export class UserService {
     getDataUserProfile(username?: String): Observable<UserProfile> {
       return this.apiService.get('/api/users/profileData/'+username)
       .pipe(map(data => data.user))
-  }
+    }
+
+    checkIfUserLoggedIsFollowing(username?: String) {
+      return this.apiService.get('/api/users/userIsFollowByCurrentUser/'+username)
+      .pipe(map(data => data.isFollowing))
+    }
   
   }

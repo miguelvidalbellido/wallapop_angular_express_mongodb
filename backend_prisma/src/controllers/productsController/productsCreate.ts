@@ -4,7 +4,6 @@ import productCreatePrisma from "../../utils/db/product/productCreatePrisma";
 import productViewer from "../../view/productViewer";
 import categoryGetPrisma from "../../utils/db/category/categoryGetPrisma";
 import slugify from "slugify";
-import { deepStrictEqual } from "assert";
 
 export default async function deleteComment(
     req: Request,

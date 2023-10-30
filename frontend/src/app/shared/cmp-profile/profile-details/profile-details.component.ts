@@ -12,6 +12,8 @@ export class ProfileDetailsComponent implements OnInit{
   username!: String;
 
   userData?: UserProfile;
+  showFollow: boolean = false;
+  isFollowing: String = 'Seguir';
   constructor(
     private productService: ProductosService,
     private _userService: UserService
@@ -30,6 +32,7 @@ export class ProfileDetailsComponent implements OnInit{
     this.loadDataUser(this.username);
     this.loadFavouritedProducts(this.username);
     this.loadPublishedProducts(this.username);
+    this.checkIfUserIsLogged();
   }
   
   loadFavouritedProducts(_username: String) {
@@ -57,6 +60,27 @@ export class ProfileDetailsComponent implements OnInit{
         this.userData = data;
       }
     )
+  }
+
+  checkIfUserIsLogged() {
+    this._userService.currentUser.subscribe(data => {
+      const userLogged = data;
+      
+      this.showFollow = (userLogged.username === this.username)
+      ? false
+      : true
+
+      if(this.showFollow) {
+        this._userService.checkIfUserLoggedIsFollowing(this.username).subscribe(
+          data => {
+            this.isFollowing = data ? 'Dejar de seguir' : 'Seguir';
+          }
+        )
+      }
+      
+    });
+
+    // Falta implementar backend si x usuario lo sigue o no para mostrar seguir o dejar de seguir
   }
 
 }

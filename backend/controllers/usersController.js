@@ -259,6 +259,33 @@ const userFollow = asyncHandler(async (req, res) => {
 
 })
 
+//////////////////////////////////////////////////
+/////////          FOLLOW_USERS           ///////
+////////////////////////////////////////////////
+const userIsFollowByCurrentUser = asyncHandler(async (req, res) => {
+    const userEmail =  req.userEmail;
+    const { username } = req.params;
+
+    const userLogged = await User.findOne({email: userEmail}).exec();
+
+    if(!userLogged) {
+        return res.status(404).json({ message: "User not found - [userIsFollowByCurrentUser]" });
+    }
+
+    const profile_user = await User.findOne({ username: username }).exec();
+
+    if(!profile_user) {
+        return res.status(404).json({ message: "User not found - [userIsFollowByCurrentUser]" });
+    }
+
+    const isFollowing = await userLogged.isFollowing(profile_user.id);
+
+    return res.status(200).json({
+        isFollowing: isFollowing
+    });
+
+})
+
 module.exports = {
     createUser,
     getAllInfoUser,
@@ -266,5 +293,6 @@ module.exports = {
     getCurrentUser,
     updateUser,
     userFollow,
-    getProfileData
+    getProfileData,
+    userIsFollowByCurrentUser
 }

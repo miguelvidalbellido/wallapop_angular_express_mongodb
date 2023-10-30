@@ -13,4 +13,7 @@ router.put('/follow', verifyJWT, usersController.userFollow);
 router.get('/profileData/:username', usersController.getProfileData);
 router.get('/userIsFollowByCurrentUser/:username', verifyJWT, usersController.userIsFollowByCurrentUser);
 
+router.get('/usersFollowed/', verifyJWT, usersController.usersFollowed);
+
+
 module.exports = router;

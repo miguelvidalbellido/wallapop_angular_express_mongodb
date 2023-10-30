@@ -4,7 +4,7 @@
       <div class="text-section">
         <h5 class="card-title">{{ dataProduct.title }}</h5>
         <p class="card-text">{{ dataProduct.description }}</p>
-        <p class="card-text">{{ dataProduct.productOwner }}</p>
+        <p class="card-text" (click)="redirectUserProfile(dataProduct.productOwner || 'err')">{{ dataProduct.productOwner }}</p>
       </div>
       <div class="cta-section">
         <div class="price">{{dataProduct.price}} €</div>

@@ -1,5 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Producto, ProductoAndCount, ProductosService, UserProfile, UserService } from 'src/app/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Producto, ProductoAndCount, ProductosService, User, UserProfile, UserService } from 'src/app/core';
+import { ToastrComponent } from '../../toastr/toastr.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile-details',
@@ -10,19 +12,22 @@ export class ProfileDetailsComponent implements OnInit{
 
   @Input()
   username!: String;
-
+  user?: User;
   userData?: UserProfile;
   showFollow: boolean = false;
   isFollowing: String = 'Seguir';
   constructor(
     private productService: ProductosService,
-    private _userService: UserService
+    private _userService: UserService,
+    private router: Router
   ) {
 
   }
 
   dataProductsFavourited?: Producto[];
   dataProductsPublished?: Producto[];
+
+  @ViewChild(ToastrComponent) snackBar!: ToastrComponent;
 
   ngOnInit(): void {
     this.loadDataProfile()
@@ -79,8 +84,20 @@ export class ProfileDetailsComponent implements OnInit{
       }
       
     });
+  }
 
-    // Falta implementar backend si x usuario lo sigue o no para mostrar seguir o dejar de seguir
+  controlClickFollow() {
+    this.user = this._userService.getCurrentUser();
+    if(Object.entries(this.user).length !== 0) {
+      this._userService.follow(this.username)
+      .subscribe((data) => {
+        if(data)
+        this.isFollowing = (this.isFollowing === "Dejar de seguir") ? 'Seguir' : 'Dejar de seguir'; 
+      })
+    } else {
+      this.router.navigate(['/login']);
+        this.snackBar.showSnackBar("Inicia sesión para poder seguir");
+    }
   }
 
 }

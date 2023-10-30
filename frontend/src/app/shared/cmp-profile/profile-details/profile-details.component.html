@@ -39,7 +39,7 @@
                     </div>
                     <div class="col-md-1">
                         <div class="info-item" *ngIf="this.showFollow">
-                            <button class="btn btn-primary">
+                            <button class="btn btn-primary" (click)="controlClickFollow()">
                                 <span>{{ isFollowing }}</span>
                             </button>
                         </div>
@@ -57,3 +57,6 @@
 
     </app-list-products-profile>
 </div>
+
+<app-toastr></app-toastr>
+

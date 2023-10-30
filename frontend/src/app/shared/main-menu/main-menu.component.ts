@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { User, UserService } from 'src/app/core';
 import { ToastrComponent } from '../toastr/toastr.component';
@@ -13,10 +12,7 @@ export class MainMenuComponent implements OnInit{
 
   constructor(
     private userService: UserService,
-    private router: Router,
-    private _snackbar: MatSnackBar){
-
-  }
+    private router: Router){ }
 
   @ViewChild(ToastrComponent) snackBar!: ToastrComponent;
 

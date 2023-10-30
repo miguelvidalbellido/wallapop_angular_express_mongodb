@@ -12,13 +12,17 @@ export default async function deleteComment(
   ) {
     // Comprobamos usuario
     const user = req.user;
+    console.log(req.body);
+    req.body.product.images = ['https://picsum.photos/200/300'];
+    req.body.product.price = 10;
+
     const { title, category: category_name, description, images, price } = req.body.product;
 
     try {
         
     if(!user) {
         return res.status(401).json({ message: "User error - [createProduct]" });
-    }
+    }    
 
     if(!title || !category_name || !description || !images || !price) {
         return res.status(401).json({ message: "Data error - [createProduct]" });

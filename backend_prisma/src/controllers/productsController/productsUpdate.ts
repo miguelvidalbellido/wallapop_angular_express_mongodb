@@ -13,6 +13,7 @@ export default async function updateProduct(
     
     // Comprobamos usuario
     const user = req.user;
+    req.body.product.price = 10;
     const { title, category: category_name, description, images, price } = req.body.product;
     const slug = req.params.slug;
 

@@ -5,6 +5,7 @@ import { ApiService } from './api.service';
 import { JwtService } from './jwt.service';
 import { User, UserProfile } from '../models';
 import { map ,  distinctUntilChanged } from 'rxjs/operators';
+import { ApiSecureService } from './api_secure.service';
 
 @Injectable({
   providedIn: 'root'

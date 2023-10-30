@@ -12,10 +12,10 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerJsdoc = require('swagger-jsdoc');
 
 
-connectDB();
+connectDB();  // Connect to MongoDB
 
-app.use(cors(corsOptions));
-app.use(express.json()); // middleware to parse json
+app.use(cors(corsOptions)); // Enable CORS
+app.use(express.json()); // Parse JSON bodies (as sent by API clients)
 
 const options = {
     definition: {

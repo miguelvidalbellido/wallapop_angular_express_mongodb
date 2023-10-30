@@ -21,4 +21,10 @@ router.delete(
     products.productDelete
 )
 
+router.put(
+    "/update/:slug",
+    auth.default,
+    products.productUpdate
+)
+
 export default router;

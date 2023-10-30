@@ -30,11 +30,18 @@
                             <p>{{ userData?.count_likes }}</p>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="info-item">
                             <i class="fas fa-users"></i>
                             <span>Número de Seguidores</span>
                             <p>{{ userData?.count_followers }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="info-item" *ngIf="this.showFollow">
+                            <button class="btn btn-primary">
+                                <span>{{ isFollowing }}</span>
+                            </button>
                         </div>
                     </div>
                 </div>

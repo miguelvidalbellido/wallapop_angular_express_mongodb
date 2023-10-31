@@ -12,8 +12,7 @@ export default async function deleteProduct(
     const slug = req.params.slug;
     const user = req.user;
 
-    try {
-      
+    try {      
       if(!user) return res.status(401).json({message: "User error - [deleteProduct]]"});
 
       const checkUserProduct = await productGetPrisma(slug);

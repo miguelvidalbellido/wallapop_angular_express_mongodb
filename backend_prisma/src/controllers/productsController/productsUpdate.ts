@@ -16,13 +16,15 @@ export default async function updateProduct(
     const { title, category: category_name, description, images, price } = req.body.product;
     const slug = req.params.slug;
 
+    // Parseamos el precio
+    const _price = parseFloat(price);
+
     try {
         
         //Comprobamos que el producto sea del propietario
         const _productInDb = await productGetPrisma(slug);
-
         if(!_productInDb) return res.status(404).json({message: "Product error - [updateProduct]"});
-
+        
         if(_productInDb?.productOwner !== user?.id) {
             return res.status(403).json({message: "ProductOwner error - [updateProduct]"});
         }
@@ -35,7 +37,7 @@ export default async function updateProduct(
         // Update product
         const product = await productUpdatePrisma(slug, {
             title,
-            price,
+            price: _price,
             category: _categoryInDb.id,
             description,
             images
@@ -43,7 +45,7 @@ export default async function updateProduct(
         
         const productView = productViewer(product);
         return res.status(200).json({ product: productView });
-        return res.status(200).json({message: "updateProduct"});
+        
     } catch(error) {
         return next(error);
     }

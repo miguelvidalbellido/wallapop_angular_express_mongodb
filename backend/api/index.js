@@ -23,7 +23,7 @@ const options = {
       info: {
         title: 'API "wallapop" con Express + MongoDB + Mongoose + JWT + Swagger',
         version: '1.0.0',
-        description: 'Documentación de la API de wallapop para el primer proyecto de segundo de DAW en el Ies Ontinyent.',
+        description: 'Documentación de la API de wallapop para el primer proyecto de segundo de DAW en el Ies Ontinyent.'
       },
 
       contact: {

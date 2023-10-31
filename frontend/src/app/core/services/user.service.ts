@@ -5,6 +5,7 @@ import { ApiService } from './api.service';
 import { JwtService } from './jwt.service';
 import { User, UserProfile } from '../models';
 import { map ,  distinctUntilChanged } from 'rxjs/operators';
+import { ApiSecureService } from './api_secure.service';
 
 @Injectable({
   providedIn: 'root'
@@ -100,5 +101,11 @@ export class UserService {
       return this.apiService.get('/api/users/userIsFollowByCurrentUser/'+username)
       .pipe(map(data => data.isFollowing))
     }
+
+    checkUsersFollowed() {
+      return this.apiService.get('/api/users/usersFollowed/')
+      .pipe(map(data => data.users))
+    }
   
+    
   }

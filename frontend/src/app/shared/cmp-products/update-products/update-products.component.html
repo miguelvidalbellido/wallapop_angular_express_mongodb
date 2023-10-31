@@ -1,0 +1,9 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Crear producto</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+    <app-form-products *ngIf="modelo"
+    [modelo]="modelo"
+    (onSubmit)="guardarCambios($event)"></app-form-products>
+</div>

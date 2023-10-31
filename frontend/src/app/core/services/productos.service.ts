@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { ApiService } from './api.service';
 import { Producto, ProductoAndCount } from '../models';
 import { map } from 'rxjs/operators';
+import { ApiSecureService } from './api_secure.service';
 
 @Injectable({
     providedIn: 'root'
@@ -14,7 +15,8 @@ export class ProductosService {
       throw new Error('Method not implemented.');
     }
     constructor (
-        private apiService: ApiService
+        private apiService: ApiService,
+        private apiSecureService: ApiSecureService
     ) {}
 
     get(): Observable<Producto[]> {
@@ -79,5 +81,32 @@ export class ProductosService {
                     countProducts: data.productsCount
                 }))
             )
+    }
+
+    // Delete the product on the server
+    create(product: Producto): Observable<any> {
+        return this.apiSecureService
+        .post('/api/product/create', {product})
+        .pipe(map(data => {
+            return data;
+        }));
+    }
+
+    // Delete the product on the server
+    update(slug: String, product: Producto): Observable<any> {
+        return this.apiSecureService
+        .put('/api/product/update/'+slug, {product})
+        .pipe(map(data => {
+            return data;
+        }));
+    }
+
+    // Delete the product on the server
+    delete(slug: String): Observable<any> {
+        return this.apiSecureService
+        .delete('/api/product/delete/'+slug)
+        .pipe(map(data => {
+            return data;
+        }));
     }
 }

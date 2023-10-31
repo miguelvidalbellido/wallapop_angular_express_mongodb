@@ -281,10 +281,25 @@ const userIsFollowByCurrentUser = asyncHandler(async (req, res) => {
     const isFollowing = await userLogged.isFollowing(profile_user.id);
 
     return res.status(200).json({
-        isFollowing: isFollowing
+        isFollowing: await isFollowing
     });
 
 })
+
+const usersFollowed = asyncHandler(async (req, res) => {
+    
+    const userEmail = req.userEmail;
+    
+    const _user = await User.findOne({email: userEmail}).exec();
+
+    const usersFollowed = await User.find({_id: {$in: _user.usersFollowing}}).exec()
+
+    return res.status(200).json({
+        users: await Promise.all(usersFollowed.map(async user => {
+            return await user.toUserResponseProfileData();
+        }))
+    })
+}) 
 
 module.exports = {
     createUser,
@@ -294,5 +309,6 @@ module.exports = {
     updateUser,
     userFollow,
     getProfileData,
-    userIsFollowByCurrentUser
+    userIsFollowByCurrentUser,
+    usersFollowed
 }

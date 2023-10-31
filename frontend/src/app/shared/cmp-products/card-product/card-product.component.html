@@ -1,19 +1,51 @@
-<div ngClass="card dark">
+<!-- <div ngClass="card dark">
     <img [src]="dataProduct.images[0]" class="card-img-top" alt="...">
     <div class="card-body">
       <div class="text-section">
         <h5 class="card-title">{{ dataProduct.title }}</h5>
         <p class="card-text">{{ dataProduct.description }}</p>
-        <p class="card-text" (click)="redirectUserProfile(dataProduct.productOwner || 'err')">{{ dataProduct.productOwner }}</p>
+        <div class="price">{{dataProduct.price}} €</div>
       </div>
       <div class="cta-section">
-        <div class="price">{{dataProduct.price}} €</div>
+        <p class="card-text" (click)="redirectUserProfile(dataProduct.productOwner || 'err')">{{ dataProduct.productOwner }}</p>
         <a [routerLink]="['/details/', dataProduct.slug]" class="btn">Ver</a>
+        <app-like [slugProduct]="dataProduct.slug" [numLikes]="dataProduct.favouritesCount" [like]="dataProduct.isFavourited"></app-like>
+      </div>
+      <div>
         <app-follow [username]="dataProduct.productOwner || ' '"
         [follow]="dataProduct.isFollowed || false"></app-follow>
       </div>
-      <div>
-        <app-like [slugProduct]="dataProduct.slug" [numLikes]="dataProduct.favouritesCount" [like]="dataProduct.isFavourited"></app-like>
+    </div>
+</div> -->
+
+
+<div class="container m-4">
+  <div class="card border-0 rounded-0 shadow" style="width: 18rem;">
+    <img [src]="dataProduct.images[0]" class="card-img-top rounded-0" alt="...">
+    <div class="card-body mt-3 mb-3">
+      <div class="row">
+        <div class="col-10">
+          <h4 class="card-title">{{ dataProduct.title }}</h4>
+          <h3>{{ dataProduct.description }}</h3>
+          <div style="display: flex;">
+            <button (click)="redirectUserProfile(dataProduct.productOwner || 'err')">{{ dataProduct.productOwner }}</button>
+            <!-- <p class="card-text" (click)="redirectUserProfile(dataProduct.productOwner || 'err')">{{ dataProduct.productOwner }}</p> -->
+            <app-follow [username]="dataProduct.productOwner || ' '"
+            [follow]="dataProduct.isFollowed || false"></app-follow>
+          </div>
+        </div>
+        <div class="col-2">
+          <app-like [slugProduct]="dataProduct.slug" [numLikes]="dataProduct.favouritesCount" [like]="dataProduct.isFavourited"></app-like>
+        </div>
       </div>
     </div>
+    <div class="row align-items-center text-center g-0">
+      <div class="col-4">
+        <h4>{{dataProduct.price}} €</h4>
+      </div>
+      <div class="col-8">
+        <a [routerLink]="['/details/', dataProduct.slug]" class="btn btn-dark w-100 p-3 rounded-0 text-warning">VER</a>
+      </div>
+    </div>
+  </div>
 </div>

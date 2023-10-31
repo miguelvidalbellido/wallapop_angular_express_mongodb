@@ -7,7 +7,8 @@
     </div>
     <div class="col-md-9">
       <div class="container row align-items-center">
-        <div *ngIf="!dataProducts" >
+        <mat-spinner *ngIf="isDataLoaded$ && !isDataLoaded$.closed"></mat-spinner>
+        <div *ngIf="isDataLoaded$ && isDataLoaded$.closed && dataProducts?.length == 0">
           <h2 class="text-center mt-2">No se han encontrado productos con los parámetros indicados.</h2>
         </div>
         <div class="container">

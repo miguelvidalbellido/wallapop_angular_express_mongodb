@@ -44,19 +44,20 @@ export class AdminPanelComponent implements OnInit {
   }
 
   loadGridUsers(){
-    // this.userService.(false, this.userInfo.username)
-    // .subscribe((data) => {
-    //   console.log(data);
-      
-    //   this.gridProducts = data.products;
-    // })
+     this.userService.checkUsersFollowed()
+     .subscribe((data) => {
+      console.log(data);
+       this.gridUsers = data;
+     })
   }
 
   createProduct(){
     this.modalService.open(CreateProductsComponent, { ariaLabelledBy: 'modal-basic-title' }).result.then(
 			(result) => {
-				console.log('result');
-        
+        if (result) {
+          this.snackBar.showSnackBar('Producto creado correctamente')
+          this.loadGridProducts();
+        }
 			},
 			(reason) => {
 				console.log(reason);
@@ -81,5 +82,13 @@ export class AdminPanelComponent implements OnInit {
         this.snackBar.showSnackBar('Producto eliminado correctamente')
       })
     }
+  }
+
+  removeUserFollow(username: String){
+    this.userService.follow(username)
+    .subscribe((data) => {
+      if(data === true) this.loadGridUsers();
+      this.snackBar.showSnackBar('Se acaba de dejar de seguir al usuario: '+username)
+    })
   }
 }

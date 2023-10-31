@@ -41,6 +41,7 @@ export class FormProductsComponent implements OnInit {
   }
 
   guardarCambios(){
+    console.log(this.form.value);
     this.onSubmit.emit(this.form.value)
   }
 }

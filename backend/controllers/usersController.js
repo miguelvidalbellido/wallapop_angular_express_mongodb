@@ -289,7 +289,7 @@ const userIsFollowByCurrentUser = asyncHandler(async (req, res) => {
 const usersFollowed = asyncHandler(async (req, res) => {
     
     const userEmail = req.userEmail;
-
+    
     const _user = await User.findOne({email: userEmail}).exec();
 
     const usersFollowed = await User.find({_id: {$in: _user.usersFollowing}}).exec()

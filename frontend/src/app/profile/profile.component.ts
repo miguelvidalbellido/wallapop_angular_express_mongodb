@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User, UserService } from '../core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -14,10 +14,13 @@ export class ProfileComponent implements OnInit{
   isYourProfile?: boolean;
   constructor(
     private _userService: UserService,
-    private _route: ActivatedRoute
+    private _route: ActivatedRoute,
+    private _router: Router
   ) {
 
   }
+
+
 
   ngOnInit(): void {
  
@@ -33,7 +36,12 @@ export class ProfileComponent implements OnInit{
       : false
       
     });
-
+  
+    this._router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        window.location.reload();
+      }
+    });
   }
 
 }

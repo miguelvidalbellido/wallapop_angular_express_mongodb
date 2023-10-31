@@ -101,5 +101,11 @@ export class UserService {
       return this.apiService.get('/api/users/userIsFollowByCurrentUser/'+username)
       .pipe(map(data => data.isFollowing))
     }
+
+    checkUsersFollowed() {
+      return this.apiService.get('/api/users/usersFollowed/')
+      .pipe(map(data => data.users))
+    }
   
+    
   }

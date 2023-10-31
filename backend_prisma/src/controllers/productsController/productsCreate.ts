@@ -12,12 +12,12 @@ export default async function deleteComment(
   ) {
     // Comprobamos usuario
     const user = req.user;
-    console.log(req.body);
+
     req.body.product.images = ['https://picsum.photos/200/300'];
-    req.body.product.price = 10;
 
-    const { title, category: category_name, description, images, price } = req.body.product;
-
+    const { title, category: category_name, description, images } = req.body.product;
+    const _price = parseFloat(req.body.product.price);
+    const price = _price;
     try {
         
     if(!user) {
@@ -67,7 +67,6 @@ export default async function deleteComment(
         title
     );
 
-    console.log(product);
     // Create product view
     const productView = productViewer(product);
     return res.status(200).json({ product: productView });

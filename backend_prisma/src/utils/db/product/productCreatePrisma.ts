@@ -14,7 +14,7 @@ export default async function createProductInMongoDB(
 
     const product = await prisma.products.create({
         data: {
-            v: 0,
+            ///v: 0,
             category: category,
             createdAt: createdAt,
             description: description,

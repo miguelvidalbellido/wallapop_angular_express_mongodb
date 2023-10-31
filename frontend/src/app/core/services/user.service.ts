@@ -106,6 +106,11 @@ export class UserService {
       return this.apiService.get('/api/users/usersFollowed/')
       .pipe(map(data => data.users))
     }
+
+    getProfileStats() {
+      return this.apiService.get('/api/users/userProfileStats/')
+      .pipe(map(data => data.stats))
+    }
   
     
   }

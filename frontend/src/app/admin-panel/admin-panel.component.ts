@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Producto, ProductosService, User, UserService } from '../core';
+import { Producto, ProductosService, ProfileStats, User, UserService } from '../core';
 import { ToastrComponent } from '../shared/toastr/toastr.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CreateProductsComponent } from '../shared/cmp-products/create-products/create-products.component';
 import { UpdateProductsComponent } from '../shared/cmp-products/update-products/update-products.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-panel',
@@ -14,22 +15,26 @@ export class AdminPanelComponent implements OnInit {
   
   constructor(private userService: UserService,
     private productsService: ProductosService,
-    private modalService: NgbModal){ }
+    private modalService: NgbModal,
+    private router: Router){ }
   
   userInfo!: User
   gridProducts!: Producto[];
   gridUsers!: User[];
+
+  statsData!: ProfileStats;
 
   @ViewChild(ToastrComponent) snackBar!: ToastrComponent;
 
   ngOnInit(): void {
     this.userService.currentUser.subscribe(
       (userData) => {
-        console.log(userData);
+        //console.log(userData);
         
         this.userInfo = userData
         this.loadGridProducts();
         this.loadGridUsers();
+        this.loadProfileStats();
       }
     );
   }
@@ -37,7 +42,7 @@ export class AdminPanelComponent implements OnInit {
   loadGridProducts(){
     this.productsService.getPublishedProductsOfUserSelug(false, this.userInfo.username)
     .subscribe((data) => {
-      console.log(data);
+      //console.log(data);
       
       this.gridProducts = data.products;
     })
@@ -46,7 +51,7 @@ export class AdminPanelComponent implements OnInit {
   loadGridUsers(){
      this.userService.checkUsersFollowed()
      .subscribe((data) => {
-      console.log(data);
+      //console.log(data);
        this.gridUsers = data;
      })
   }
@@ -57,10 +62,11 @@ export class AdminPanelComponent implements OnInit {
         if (result) {
           this.snackBar.showSnackBar('Producto creado correctamente')
           this.loadGridProducts();
+          this.loadProfileStats();
         }
 			},
 			(reason) => {
-				console.log(reason);
+				//console.log(reason);
         
 			},
 		);
@@ -71,7 +77,8 @@ export class AdminPanelComponent implements OnInit {
     const modalRef = this.modalService.open(UpdateProductsComponent, { ariaLabelledBy: 'modal-basic-title' });
     modalRef.componentInstance.slug = slug;
     modalRef.result.then((result) => {
-      if (result) console.log(result);
+      //if (result) console.log(result);
+      this.loadGridProducts();
     }).catch((res) => console.log(res));    
   }
 
@@ -79,7 +86,8 @@ export class AdminPanelComponent implements OnInit {
     if(confirm('¿Está seguro de que quiere eliminar el producto')){
       this.productsService.delete(slug)
       .subscribe((data) => {
-        this.snackBar.showSnackBar('Producto eliminado correctamente')
+        this.snackBar.showSnackBar('Producto eliminado correctamente');
+        this.loadGridProducts();
       })
     }
   }
@@ -91,4 +99,18 @@ export class AdminPanelComponent implements OnInit {
       this.snackBar.showSnackBar('Se acaba de dejar de seguir al usuario: '+username)
     })
   }
+
+  loadProfileStats() {
+    this.userService.getProfileStats()
+    .subscribe((data) => {
+      this.statsData = data;
+    })
+  }
+
+  logout() {
+    this.snackBar.showSnackBar("Sesion cerrada")
+    this.userService.purgeAuth();
+    this.router.navigateByUrl('/');
+  }
+
 }

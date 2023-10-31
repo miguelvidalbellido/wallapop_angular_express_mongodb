@@ -30,7 +30,7 @@ export class FormProductsComponent implements OnInit {
   modelo!: Producto;
 
   ngOnInit(): void {
-    console.log(this.modelo);
+    //console.log(this.modelo);
     
     if(this.modelo) this.form.patchValue(this.modelo)
 
@@ -41,7 +41,7 @@ export class FormProductsComponent implements OnInit {
   }
 
   guardarCambios(){
-    console.log(this.form.value);
+    //console.log(this.form.value);
     this.onSubmit.emit(this.form.value)
   }
 }

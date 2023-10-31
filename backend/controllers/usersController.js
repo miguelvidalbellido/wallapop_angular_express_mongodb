@@ -139,7 +139,7 @@ const getProfileData = asyncHandler(async (req,res) => {
 
     // Ni ha que buscar els productes que te pujats
     const count_products = await Product.count({
-        productOwner: this.id
+        productOwner: user.id
     }).exec();
     // Ni ha que buscar numero de likes que li han donat
 
@@ -157,6 +157,50 @@ const getProfileData = asyncHandler(async (req,res) => {
 
     return res.status(200).json({
         user: await user.toUserResponseProfileData(count_products, count_followers, countLikes)
+    });
+
+})
+
+//////////////////////////////////////////////////
+/////////          PROFILE_DATA           ///////
+////////////////////////////////////////////////
+
+const getProfileStats = asyncHandler(async (req,res) => {
+    const userEmail = req.userEmail; 
+    if(!userEmail) {
+        return res.status(404).json({
+            message: "Username Error"
+        });
+     }
+
+    const user = await User.findOne({email: userEmail});
+
+    if(!user) {
+        return res.status(404).json({
+            message: "User Not Found"
+        });
+    }
+
+    // Ni ha que buscar els productes que te pujats
+    const count_products = await Product.count({
+        productOwner: user.id
+    }).exec();
+    // Ni ha que buscar numero de likes que li han donat
+
+    const productsUser = await Product.find({productOwner: user.id});
+    
+    let countLikes = 0 
+    productsUser.map(data => {
+        countLikes += data.favouritesCount;
+    })
+
+    // Ni ha que buscar el numero de seguidors
+    const count_followers = await User.count({
+        usersFollowing: {$in: user.id}
+    }).exec();
+
+    return res.status(200).json({
+        stats: await user.toUserResponseProfileStats(count_products, count_followers, countLikes)
     });
 
 })
@@ -310,5 +354,6 @@ module.exports = {
     userFollow,
     getProfileData,
     userIsFollowByCurrentUser,
-    usersFollowed
+    usersFollowed,
+    getProfileStats
 }

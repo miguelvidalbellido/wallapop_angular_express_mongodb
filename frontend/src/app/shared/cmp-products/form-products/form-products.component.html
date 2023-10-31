@@ -1,0 +1,30 @@
+<form [formGroup]="form">
+    <mat-form-field appearance="fill" >
+        <mat-label>Título</mat-label>
+        <input formControlName="title" matInput type="text">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" >
+        <mat-label>Descripción</mat-label>
+        <input formControlName="description" matInput type="text">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" >
+        <mat-label>Categoria</mat-label>
+        <input formControlName="category" matInput type="text">
+    </mat-form-field>
+
+    <!-- <mat-form-field appearance="fill">
+        <mat-label>Imagen</mat-label>
+        <input formControlName="images" matInput type="text">
+    </mat-form-field> -->
+
+    <mat-form-field appearance="fill" >
+        <mat-label>Precio</mat-label>
+        <input formControlName="price" matInput type="text">
+    </mat-form-field>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="guardarCambios()">Guardar</button>
+    </div>
+</form>

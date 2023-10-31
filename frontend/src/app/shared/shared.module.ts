@@ -38,6 +38,9 @@ import { FollowComponent } from './follow/follow.component';
 import { ListCommentsComponent } from './cmp-comments/list-comments/list-comments.component';
 import { CardCommentComponent } from './cmp-comments/card-comment/card-comment.component';
 import { ToastrComponent } from './toastr/toastr.component';
+import { FormProductsComponent } from './cmp-products/form-products/form-products.component';
+import { CreateProductsComponent } from './cmp-products/create-products/create-products.component';
+import { UpdateProductsComponent } from './cmp-products/update-products/update-products.component';
 
 @NgModule({
     imports: [
@@ -82,7 +85,10 @@ import { ToastrComponent } from './toastr/toastr.component';
     FollowComponent,
     ListCommentsComponent,
     CardCommentComponent,
-    ToastrComponent
+    ToastrComponent,
+    FormProductsComponent,
+    CreateProductsComponent,
+    UpdateProductsComponent
   ],
     exports: [
       ListCategoriesComponent,
@@ -116,7 +122,8 @@ import { ToastrComponent } from './toastr/toastr.component';
       FollowComponent,
       ListCommentsComponent,
       ToastrComponent,
-      MatDialogModule
+      MatDialogModule,
+      FormProductsComponent
     ]
 })
 export class SharedModule {}

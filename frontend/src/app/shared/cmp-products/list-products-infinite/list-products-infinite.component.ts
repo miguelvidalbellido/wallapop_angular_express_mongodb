@@ -12,7 +12,7 @@ export class ListProductsInfiniteComponent implements OnInit{
   products: Producto[] = [];
   offset: number = 0;
   count: number = 0;
-
+  
   constructor( private productsService: ProductosService ) {
 
   }

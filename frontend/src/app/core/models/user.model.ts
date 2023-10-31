@@ -17,3 +17,9 @@ export interface UserProfile {
     count_followers:  number,
     count_likes: number
 }
+
+export interface ProfileStats {
+    countPublishedProducts: Number,
+    count_followers: Number,
+    count_likes: Number
+}

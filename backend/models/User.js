@@ -140,6 +140,17 @@ userSchema.methods.toUserResponseProfileData = async function(count_products, co
     }
 }
 
+userSchema.methods.toUserResponseProfileStats = async function(count_products, count_followers, countLikes) {
+
+    
+
+    return {
+        countPublishedProducts: count_products,
+        count_followers: count_followers,
+        count_likes: countLikes
+    }
+}
+
 userSchema.methods.toUserResponseWithToken = async function() {
     return {
         username: this.username,

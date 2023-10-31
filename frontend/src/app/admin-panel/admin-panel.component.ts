@@ -78,6 +78,7 @@ export class AdminPanelComponent implements OnInit {
     modalRef.componentInstance.slug = slug;
     modalRef.result.then((result) => {
       //if (result) console.log(result);
+      this.loadGridProducts();
     }).catch((res) => console.log(res));    
   }
 
@@ -85,7 +86,8 @@ export class AdminPanelComponent implements OnInit {
     if(confirm('¿Está seguro de que quiere eliminar el producto')){
       this.productsService.delete(slug)
       .subscribe((data) => {
-        this.snackBar.showSnackBar('Producto eliminado correctamente')
+        this.snackBar.showSnackBar('Producto eliminado correctamente');
+        this.loadGridProducts();
       })
     }
   }

@@ -5,12 +5,10 @@
     </div>
     <div class="right-side">
       <p id="perfume">{{dataProduct?.title}}</p>
-      <h1 id="header">{{dataProduct?.description}}</h1>
-      <p id="description">A floral, solar and voluptuous interpretation composed by
-                          Olivier Polge, Perfumer-Creator for the House of CHANEL</p>
+      <h1 id="header">{{dataProduct?.category}}</h1>
+      <p id="description">{{dataProduct?.description}}</p>
       <div class="price">
-        <h1 id="number-discount">$149.99</h1>
-        <p id="number-full">$169.99</p>
+        <h1 id="number-discount">{{ dataProduct?.price }} €</h1>
       </div>
       <div *ngIf="dataProduct">
         <app-like [slugProduct]="dataProduct!.slug" [like]="dataProduct!.isFavourited"></app-like>

@@ -1,5 +1,4 @@
-<!-- Dependiendo de si es true o false pintamos un button o otros -->
-<p style="color: black">{{ this.numLikes }}</p>
 <button mat-icon-button [ngClass]="{'mat-warn': like, 'mat-primary': !like}" (click)="controlClick(this.slugProduct)">
     <mat-icon>favorite</mat-icon>
+    <p style="color: black">{{ this.numLikes }}</p>
 </button>

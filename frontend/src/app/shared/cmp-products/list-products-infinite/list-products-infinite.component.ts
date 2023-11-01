@@ -1,5 +1,5 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Producto, ProductosService } from 'src/app/core';
 
 @Component({
@@ -12,7 +12,8 @@ export class ListProductsInfiniteComponent implements OnInit{
   products: Producto[] = [];
   offset: number = 0;
   count: number = 0;
-
+  
+  @Input() categoryMostReleated!: String;
   constructor( private productsService: ProductosService ) {
 
   }
@@ -23,7 +24,9 @@ export class ListProductsInfiniteComponent implements OnInit{
 
   getRequestParams(offset: Number, limit: number) {
     const params: any = {};
-
+    if(this.categoryMostReleated) {
+      params['category'] = this.categoryMostReleated;
+    }
     params['offset'] = offset;
     params['limit'] = limit;
 

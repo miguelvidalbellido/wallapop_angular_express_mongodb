@@ -41,6 +41,7 @@ import { ToastrComponent } from './toastr/toastr.component';
 import { FormProductsComponent } from './cmp-products/form-products/form-products.component';
 import { CreateProductsComponent } from './cmp-products/create-products/create-products.component';
 import { UpdateProductsComponent } from './cmp-products/update-products/update-products.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
     imports: [
@@ -61,7 +62,8 @@ import { UpdateProductsComponent } from './cmp-products/update-products/update-p
         MatSnackBarModule,
         MatTabsModule,
         MatIconModule,
-        MatDialogModule
+        MatDialogModule,
+        MatProgressSpinnerModule
     ],
     declarations: [
     ListCategoriesComponent,
@@ -123,7 +125,8 @@ import { UpdateProductsComponent } from './cmp-products/update-products/update-p
       ListCommentsComponent,
       ToastrComponent,
       MatDialogModule,
-      FormProductsComponent
+      FormProductsComponent,
+      MatProgressSpinnerModule
     ]
 })
 export class SharedModule {}

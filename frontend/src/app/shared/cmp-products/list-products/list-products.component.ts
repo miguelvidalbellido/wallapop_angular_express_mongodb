@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { Producto, ProductosService } from 'src/app/core';
 import { filter } from 'src/app/core/models/filter.model';
 
@@ -16,6 +17,8 @@ export class ListProductsComponent implements OnInit{
   dataProducts?: Producto[];
   titleProducts!: String;
   lastParams!: filter;
+
+  isDataLoaded$?: Subscription;
 
   // Control pagination
   numItems?: number;
@@ -37,9 +40,11 @@ export class ListProductsComponent implements OnInit{
         this.getListFiltered(JSON.parse(atob(encodedFilters)));
       }
     }else if(this.dataSlugCategory) {
-      this.productService.getProductCategory(this.dataSlugCategory)
+      this.isDataLoaded$ = this.productService.getProductCategory(this.dataSlugCategory)
       .subscribe((data) => {
         this.dataProducts = data;
+        console.log(this.dataProducts);
+        
       })
     }else{
       this.getListFiltered(this.lastParams)
@@ -55,7 +60,7 @@ export class ListProductsComponent implements OnInit{
       }
       params.title = this.titleProducts;
     } 
-    this.productService.getInfinite(params)
+    this.isDataLoaded$ = this.productService.getInfinite(params)
     .subscribe((data) => {  
       this.dataProducts = data.products;
       this.numItems = data.countProducts;

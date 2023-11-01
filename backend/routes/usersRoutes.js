@@ -159,4 +159,20 @@ router.get('/userIsFollowByCurrentUser/:username', verifyJWT, usersController.us
  */
 router.get('/usersFollowed/', verifyJWT, usersController.usersFollowed);
 
+/**
+ * @swagger
+ * /api/users/userProfileStats:
+ *   get:
+ *     tags:
+ *       - Usuarios
+ *     summary: Get stats for current user
+ *     description: Retrieve a list of stats by the currently logged in user
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: A list of all stats by the currently logged in user
+ */
+router.get('/userProfileStats/', verifyJWT, usersController.getProfileStats);
+
 module.exports = router;

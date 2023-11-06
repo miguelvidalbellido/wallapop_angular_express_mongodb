@@ -42,16 +42,14 @@ La web se compone de los siguientes módulos:
 1️⃣ __Home__ :
 
   El módulo principal donde se muestran los siguientes apartados:
-  * Carrusel de búsqueda por marcas de coche.
-  * Selector de filtro por categoría de coche.
-  * Selector de filtro por tipo de motor.
-  * Carrusel con los coches más visitados.
-  * Listado de revistas relacionadas con coches.
+  * Carrusel de búsqueda de productos por categorías.
+  * Buscador de productos por nombre.
+  * Listado de prodcutos con scroll infinito.
   
 2️⃣ __Shop__ :
 
-  El módulo donde se puede visualizar el listado de coches disponibles. Incluye lo siguiente:
-  * Listado de los coches almacenados.
+  El módulo donde se puede visualizar el listado de productos disponibles. Incluye lo siguiente:
+  * Listado de los productos disponibles.
   * Selector de filtros por marca, tipo de motor, categoría y color.
   * Opciones como eliminar los filtros aplicados y seleccionar cualquiera de los filtros aplicados anteriormente.
   * Selector de orden por kilómetros, precio y más visitados, tanto ascendente como descendente.
